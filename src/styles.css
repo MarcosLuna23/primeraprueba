@@ -275,6 +275,8 @@ h1 {
 
 .hero__actions { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 14px; }
 
+.hero__card { display: flex; justify-content: flex-end; }
+
 .btn {
   display: inline-flex;
   align-items: center;
@@ -361,7 +363,7 @@ h1 {
   width: min(380px, 100%);
   aspect-ratio: 9 / 19.5;
   margin-left: auto;
-  margin-right: auto;
+  margin-right: 0;
 
   border-radius: 46px;
   border: 10px solid rgba(8, 10, 16, 0.96);
@@ -425,13 +427,36 @@ h1 {
   z-index: 2;
 
   height: 100%;
-  padding-top: 18px; /* keep content away from notch */
+  padding: 56px 22px 28px; /* space for notch + comfy edges */
   overflow: auto;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 
   /* subtle, app-like */
   scrollbar-width: none;
 }
 .phoneContent::-webkit-scrollbar { width: 0; height: 0; }
+
+.hero__card .card__title {
+  font-size: 20px;
+  margin-bottom: 14px;
+}
+
+.hero__card .checklist {
+  width: 100%;
+  max-width: 26ch;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.hero__card .checklist li {
+  font-size: 15px;
+  line-height: 1.35;
+}
 
 .hero__card .card,
 .hero__card .card * {
@@ -763,8 +788,8 @@ input:focus, textarea:focus { border-color: rgba(14, 165, 233, 0.55); box-shadow
   position: relative;
   overflow: hidden;
 
-  /* No "card" look: integrated into page background */
-  width: min(var(--container), calc(100% - (var(--gutter) * 2)));
+  /* back to where it was (slightly wider, simpler gutter) */
+  width: min(var(--container), calc(100% - 24px));
   margin: 0 auto;
 
   display: flex;
@@ -835,6 +860,7 @@ input:focus, textarea:focus { border-color: rgba(14, 165, 233, 0.55); box-shadow
 
 @media (max-width: 960px) {
   .hero__grid { grid-template-columns: 1fr; }
+  .hero__card { justify-content: center; }
   .grid--4 { grid-template-columns: 1fr; }
   .grid--3 { grid-template-columns: 1fr; }
   .grid--2 { grid-template-columns: 1fr; }
