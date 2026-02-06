@@ -1083,33 +1083,37 @@ h1 {
   list-style: none;
 }
 
-/* Soft FAQ open/close animation */
-.faq details p {
-  margin: 10px 0 0;
-  color: var(--muted);
-
-  overflow: hidden;
-  max-height: 0;
-  opacity: 0;
-  transform: translateY(-4px);
-
-  transition:
-    max-height 260ms var(--ease),
-    opacity 220ms var(--ease),
-    transform 260ms var(--ease);
+/* Soft FAQ open/close animation (no hardcoded heights) */
+.faq__content {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 260ms var(--ease);
 }
 
-.faq details[open] p {
-  max-height: 220px; /* enough for our current answers */
+.faq__content > p {
+  margin: 10px 0 0;
+  color: var(--muted);
+  overflow: hidden;
+
+  opacity: 0;
+  transform: translateY(-4px);
+  transition: opacity 220ms var(--ease), transform 260ms var(--ease);
+}
+
+.faq details[open] .faq__content {
+  grid-template-rows: 1fr;
+}
+
+.faq details[open] .faq__content > p {
   opacity: 1;
   transform: translateY(0);
 }
 
-/* Keep it snappy if user prefers reduced motion */
 @media (prefers-reduced-motion: reduce) {
-  .faq details p {
+  .faq__content,
+  .faq__content > p {
     transition: none;
-    max-height: none;
+    grid-template-rows: 1fr;
     opacity: 1;
     transform: none;
   }

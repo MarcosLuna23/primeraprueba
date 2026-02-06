@@ -648,28 +648,36 @@ function Faq() {
       <div className="faq">
         <details>
           <summary>¿Cuánto cuesta una web?</summary>
-          <p>
-            Depende del alcance. Podemos trabajar por proyecto (presupuesto cerrado) o con una bolsa de
-            horas/mantenimiento mensual.
-          </p>
+          <div className="faq__content">
+            <p>
+              Depende del alcance. Podemos trabajar por proyecto (presupuesto cerrado) o con una bolsa de
+              horas/mantenimiento mensual.
+            </p>
+          </div>
         </details>
         <details>
           <summary>¿En cuánto tiempo estará lista?</summary>
-          <p>
-            Una landing sencilla puede estar en 1–2 semanas; una web completa suele ser 3–6 semanas. Las
-            aplicaciones dependen de módulos.
-          </p>
+          <div className="faq__content">
+            <p>
+              Una landing sencilla puede estar en 1–2 semanas; una web completa suele ser 3–6 semanas. Las
+              aplicaciones dependen de módulos.
+            </p>
+          </div>
         </details>
         <details>
           <summary>¿Incluye SEO?</summary>
-          <p>
-            Incluimos SEO técnico y on-page básico (estructura, metadatos, rendimiento). Si quieres
-            posicionamiento continuo, lo planteamos como servicio mensual.
-          </p>
+          <div className="faq__content">
+            <p>
+              Incluimos SEO técnico y on-page básico (estructura, metadatos, rendimiento). Si quieres
+              posicionamiento continuo, lo planteamos como servicio mensual.
+            </p>
+          </div>
         </details>
         <details>
           <summary>¿Hacéis mantenimiento?</summary>
-          <p>Sí: actualizaciones, seguridad, backups, monitorización y mejoras.</p>
+          <div className="faq__content">
+            <p>Sí: actualizaciones, seguridad, backups, monitorización y mejoras.</p>
+          </div>
         </details>
       </div>
     </Section>
