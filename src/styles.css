@@ -119,9 +119,7 @@ a { color: inherit; }
 
   transform: translateY(0px) scale(1);
   opacity: 1;
-  /* NOTE: backdrop-filter on a fixed header can be expensive while scrolling.
-     Keep it off by default and enable only where supported (and on larger screens). */
-  backdrop-filter: none;
+  backdrop-filter: blur(12px) saturate(1.2);
 
   transition:
     background 240ms var(--ease),
@@ -141,16 +139,10 @@ a { color: inherit; }
     0 22px 60px rgba(2, 8, 23, 0.12),
     0 4px 12px rgba(2, 8, 23, 0.06),
     inset 0 1px 0 rgba(255, 255, 255, 0.78);
-  backdrop-filter: none;
+  backdrop-filter: blur(14px) saturate(1.25);
 }
 
-/* Enable blur only on larger screens where perf is usually better */
-@media (min-width: 980px) {
-  @supports ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
-    .header--float .header__inner { backdrop-filter: blur(12px) saturate(1.2); }
-    .header--float.is-scrolled .header__inner { backdrop-filter: blur(14px) saturate(1.25); }
-  }
-}
+/* blur enabled globally */
 
 .header__inner {
   /* Use a 3-column grid so the island stays truly centered */
