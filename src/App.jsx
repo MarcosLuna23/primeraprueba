@@ -80,8 +80,16 @@ function Header({ onNav }) {
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
+    // rAF-throttle scroll state updates to avoid re-rendering on every scroll event
+    let ticking = false;
     const onScroll = () => {
-      setScrolled(window.scrollY > 8);
+      if (ticking) return;
+      ticking = true;
+      window.requestAnimationFrame(() => {
+        const next = window.scrollY > 8;
+        setScrolled((prev) => (prev === next ? prev : next));
+        ticking = false;
+      });
     };
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
