@@ -850,8 +850,13 @@ function SponsorsMarquee() {
 
   return (
     <section ref={marqueeRef} className="sponsors" aria-label="Empresas con las que colaboramos">
-      <div className="sponsors__title">Empresas con las que colaboramos</div>
-      <div className="sponsors__subtitle">Herramientas y partners habituales en nuestros proyectos.</div>
+      <div className="container">
+        <header className="section__header">
+          <h2>Empresas con las que colaboramos</h2>
+          <p className="section__sub">Herramientas y partners habituales en nuestros proyectos.</p>
+        </header>
+      </div>
+
       <div className="sponsors__viewport">
         {/* Two identical strips, shifted by 100% + gap. */}
         <div className="sponsors__group" aria-hidden="true">
