@@ -788,17 +788,32 @@ function Contact() {
 }
 
 function SponsorsMarquee() {
-  const [isScrolling, setIsScrolling] = useState(false);
+  const marqueeRef = useRef(null);
 
   useEffect(() => {
-    // If the marquee is animating while the page scrolls, some devices will drop frames.
-    // Pause the marquee briefly during scroll for smoother UX.
+    // Pause the marquee during scroll WITHOUT triggering React re-renders.
+    // (State updates on scroll can cause jank on desktop too.)
     let t = null;
-    const onScroll = () => {
-      setIsScrolling(true);
-      if (t) window.clearTimeout(t);
-      t = window.setTimeout(() => setIsScrolling(false), 140);
+    let ticking = false;
+
+    const setPaused = (paused) => {
+      const el = marqueeRef.current;
+      if (!el) return;
+      el.classList.toggle("is-scrolling", paused);
     };
+
+    const onScroll = () => {
+      if (t) window.clearTimeout(t);
+      if (!ticking) {
+        ticking = true;
+        window.requestAnimationFrame(() => {
+          setPaused(true);
+          ticking = false;
+        });
+      }
+      t = window.setTimeout(() => setPaused(false), 140);
+    };
+
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => {
       window.removeEventListener("scroll", onScroll);
@@ -834,7 +849,7 @@ function SponsorsMarquee() {
   const strip = Array.from({ length: 3 }, () => base).flat();
 
   return (
-    <section className={cn("sponsors", isScrolling && "is-scrolling")} aria-label="Sponsors y colaboradores">
+    <section ref={marqueeRef} className="sponsors" aria-label="Sponsors y colaboradores">
       <div className="sponsors__viewport">
         {/* Two identical strips, shifted by 100% + gap. */}
         <div className="sponsors__group" aria-hidden="true">
