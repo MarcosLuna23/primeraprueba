@@ -476,7 +476,7 @@ h1 {
 .hero__card {
   /* Make the phone overlay the hero instead of pushing layout */
   position: absolute;
-  right: -14px; /* slightly off the container for a more "edge" look */
+  right: -120px; /* much further right */
   top: -42px;
   display: flex;
   justify-content: flex-end;
