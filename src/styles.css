@@ -288,154 +288,111 @@ h1 {
   z-index: 20;
 }
 
-.hero__card .iphone14pro { pointer-events: auto; }
+.hero__card .iphoneFrame { pointer-events: auto; }
 
-/* iPhone 14 Pro (light) mock — pure CSS (no Apple assets) */
-.iphone14pro {
-  width: min(360px, 100%);
-  aspect-ratio: 9 / 19.5;
-  border-radius: 56px;
-  background: linear-gradient(180deg, rgba(22,22,24,0.96), rgba(10,10,12,0.96));
-  padding: 10px;
-  box-shadow:
-    0 30px 90px rgba(2, 8, 23, 0.28),
-    0 12px 34px rgba(2, 8, 23, 0.14);
-}
-.iphone14pro__bezel {
-  height: 100%;
-  border-radius: 46px;
-  padding: 10px;
-  background: linear-gradient(180deg, rgba(0,0,0,0.55), rgba(0,0,0,0.35));
-}
-.iphone14pro__screen {
-  height: 100%;
-  border-radius: 38px;
-  overflow: hidden;
-  background: #f2f2f7;
+/* iPhone 14 Pro Silver SVG frame + screen overlay */
+.iphoneFrame {
   position: relative;
-  box-shadow: inset 0 0 0 1px rgba(0,0,0,0.08);
+  width: min(420px, 100%);
+  aspect-ratio: 432 / 881;
 }
-.iphone14pro__island {
+
+.iphoneFrame__img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* Screen bounds from the SVG:
+   viewBox: 432x881
+   screen rect: x=21 y=18 w=390 h=844
+*/
+.iphoneFrame__screen {
+  position: absolute;
+  left: 4.86%;
+  top: 2.04%;
+  width: 90.28%;
+  height: 95.80%;
+
+  border-radius: 40px;
+  overflow: hidden;
+
+  /* allow the SVG wallpaper to show */
+  background: transparent;
+}
+
+.iphoneFrame__status {
   position: absolute;
   top: 12px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 122px;
-  height: 30px;
-  border-radius: 999px;
-  background: #000;
-  box-shadow: 0 10px 28px rgba(0,0,0,0.22);
-  z-index: 3;
-}
-.iphone14pro__status {
-  position: absolute;
-  top: 10px;
   left: 18px;
   right: 18px;
   display: flex;
   align-items: center;
   justify-content: space-between;
+
   font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", system-ui, sans-serif;
   font-size: 12px;
   font-weight: 700;
   letter-spacing: -0.01em;
-  color: rgba(0,0,0,0.92);
-  z-index: 4;
-}
-.iphone14pro__statusIcons { display: inline-flex; align-items: center; gap: 8px; }
-
-/* Minimal iOS-ish icons (cleaner than the previous pixel ones) */
-.iosCell {
-  width: 18px;
-  height: 12px;
-  background:
-    linear-gradient(to top, rgba(0,0,0,0.80) 0 100%);
-  -webkit-mask:
-    linear-gradient(#000 0 0) left/3px 4px no-repeat,
-    linear-gradient(#000 0 0) 5px 8px/3px 8px no-repeat,
-    linear-gradient(#000 0 0) 10px 6px/3px 10px no-repeat,
-    linear-gradient(#000 0 0) right/3px 12px no-repeat;
-  mask:
-    linear-gradient(#000 0 0) left/3px 4px no-repeat,
-    linear-gradient(#000 0 0) 5px 8px/3px 8px no-repeat,
-    linear-gradient(#000 0 0) 10px 6px/3px 10px no-repeat,
-    linear-gradient(#000 0 0) right/3px 12px no-repeat;
-}
-.iosWifi {
-  width: 18px;
-  height: 12px;
-  background: rgba(0,0,0,0.82);
-  -webkit-mask: radial-gradient(circle at 50% 110%, transparent 0 6px, #000 6px 7.5px, transparent 7.5px),
-                 radial-gradient(circle at 50% 110%, transparent 0 3.5px, #000 3.5px 5px, transparent 5px),
-                 radial-gradient(circle at 50% 110%, #000 0 1.5px, transparent 1.5px);
-  mask: radial-gradient(circle at 50% 110%, transparent 0 6px, #000 6px 7.5px, transparent 7.5px),
-        radial-gradient(circle at 50% 110%, transparent 0 3.5px, #000 3.5px 5px, transparent 5px),
-        radial-gradient(circle at 50% 110%, #000 0 1.5px, transparent 1.5px);
-}
-.iosBattery {
-  position: relative;
-  width: 26px;
-  height: 12px;
-  border-radius: 3px;
-  box-shadow: inset 0 0 0 1.6px rgba(0,0,0,0.55);
-}
-.iosBattery::after {
-  content: "";
-  position: absolute;
-  right: -3.6px;
-  top: 3.2px;
-  width: 2.8px;
-  height: 5.6px;
-  border-radius: 1px;
-  background: rgba(0,0,0,0.38);
-}
-.iosBattery b {
-  position: absolute;
-  left: 2px;
-  top: 2px;
-  bottom: 2px;
-  width: 70%;
-  border-radius: 1.5px;
-  background: rgba(34, 197, 94, 0.92);
+  color: rgba(255, 255, 255, 0.92);
+  text-shadow: 0 1px 2px rgba(0,0,0,0.28);
 }
 
-.iphone14pro__content {
+.iphoneFrame__statusIcons { display: inline-flex; align-items: center; gap: 8px; }
+
+/* Reuse existing icon classes but tune for light-on-wallpaper */
+.iphoneFrame .sbIcon { width: 18px; height: 18px; fill: rgba(255,255,255,0.92); }
+.iphoneFrame .sbBattery { width: 26px; height: 14px; }
+.iphoneFrame .sbBattery rect { fill: rgba(255,255,255,0.70); }
+.iphoneFrame .sbBatteryFill { fill: rgba(34, 197, 94, 0.95) !important; }
+
+.iphoneFrame__content {
   position: absolute;
   left: 0;
   right: 0;
   top: 0;
   bottom: 0;
-  padding: 62px 18px 18px;
+  padding: 70px 18px 20px;
 }
 
-.iosTitle {
+.iphoneFrame__content .iosTitle {
   margin: 0 0 12px;
   font-size: 18px;
-  font-weight: 900;
+  font-weight: 950;
   letter-spacing: -0.02em;
-  color: rgba(0,0,0,0.92);
+  color: rgba(255, 255, 255, 0.95);
+  text-shadow: 0 2px 10px rgba(0,0,0,0.30);
 }
-.iosList {
+
+.iphoneFrame__content .iosList {
   list-style: none;
   padding: 0;
   margin: 0;
   border-radius: 16px;
   overflow: hidden;
-  border: 1px solid rgba(0,0,0,0.08);
-  background: rgba(255,255,255,0.92);
+  border: 1px solid rgba(255,255,255,0.22);
+  background: rgba(255,255,255,0.18);
+  backdrop-filter: blur(10px) saturate(1.2);
+  -webkit-backdrop-filter: blur(10px) saturate(1.2);
 }
-.iosList li {
+
+.iphoneFrame__content .iosList li {
   padding: 12px 14px;
-  border-top: 1px solid rgba(0,0,0,0.06);
+  border-top: 1px solid rgba(255,255,255,0.18);
   font-size: 13px;
-  font-weight: 800;
-  color: rgba(0,0,0,0.80);
+  font-weight: 900;
+  color: rgba(255,255,255,0.92);
 }
-.iosList li:first-child { border-top: 0; }
-.iosNote {
+
+.iphoneFrame__content .iosList li:first-child { border-top: 0; }
+
+.iphoneFrame__content .iosNote {
   margin: 12px 2px 0;
   font-size: 12px;
-  color: rgba(0,0,0,0.55);
+  color: rgba(255,255,255,0.70);
+  text-shadow: 0 1px 2px rgba(0,0,0,0.28);
 }
 
 .btn {
