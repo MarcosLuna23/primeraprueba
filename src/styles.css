@@ -1076,8 +1076,44 @@ h1 {
   margin-bottom: 12px;
   contain: layout paint;
 }
-.faq summary { cursor: pointer; font-weight: 900; }
-.faq p { margin: 10px 0 0; color: var(--muted); }
+
+.faq summary {
+  cursor: pointer;
+  font-weight: 900;
+  list-style: none;
+}
+
+/* Soft FAQ open/close animation */
+.faq details p {
+  margin: 10px 0 0;
+  color: var(--muted);
+
+  overflow: hidden;
+  max-height: 0;
+  opacity: 0;
+  transform: translateY(-4px);
+
+  transition:
+    max-height 260ms var(--ease),
+    opacity 220ms var(--ease),
+    transform 260ms var(--ease);
+}
+
+.faq details[open] p {
+  max-height: 220px; /* enough for our current answers */
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Keep it snappy if user prefers reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .faq details p {
+    transition: none;
+    max-height: none;
+    opacity: 1;
+    transform: none;
+  }
+}
 
 .form {
   display: grid;
@@ -1235,10 +1271,7 @@ input:focus, textarea:focus { border-color: rgba(14, 165, 233, 0.55); box-shadow
 }
 
 /* Pause during scroll to keep the page buttery on weaker devices */
-.sponsors.is-scrolling .sponsors__group,
-.is-scrolling .sponsors__group {
-  animation-play-state: paused;
-}
+/* keep marquee always running (do not pause on scroll) */
 
 /* Icons only: no pill/background per icon */
 .sponsors__item {

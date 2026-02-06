@@ -788,39 +788,6 @@ function Contact() {
 }
 
 function SponsorsMarquee() {
-  const marqueeRef = useRef(null);
-
-  useEffect(() => {
-    // Pause the marquee during scroll WITHOUT triggering React re-renders.
-    // (State updates on scroll can cause jank on desktop too.)
-    let t = null;
-    let ticking = false;
-
-    const setPaused = (paused) => {
-      const el = marqueeRef.current;
-      if (!el) return;
-      el.classList.toggle("is-scrolling", paused);
-    };
-
-    const onScroll = () => {
-      if (t) window.clearTimeout(t);
-      if (!ticking) {
-        ticking = true;
-        window.requestAnimationFrame(() => {
-          setPaused(true);
-          ticking = false;
-        });
-      }
-      t = window.setTimeout(() => setPaused(false), 140);
-    };
-
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => {
-      window.removeEventListener("scroll", onScroll);
-      if (t) window.clearTimeout(t);
-    };
-  }, []);
-
   // Nota: usamos iconos SVG open-source (Simple Icons). Algunas marcas (ej. Vicio, ChatGPT)
   // puede que no tengan icono oficial aquí: en ese caso mostramos texto.
   const sponsors = [
@@ -849,7 +816,7 @@ function SponsorsMarquee() {
   const strip = Array.from({ length: 3 }, () => base).flat();
 
   return (
-    <section ref={marqueeRef} className="sponsors" aria-label="Empresas con las que colaboramos">
+    <section className="sponsors" aria-label="Empresas con las que colaboramos">
       <div className="container">
         <header className="section__header">
           <h2>Empresas con las que colaboramos</h2>
