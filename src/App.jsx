@@ -560,6 +560,15 @@ function SponsorsMarquee() {
   // Nota: usamos iconos SVG open-source (Simple Icons). Algunas marcas (ej. Vicio, ChatGPT)
   // puede que no tengan icono oficial aquí: en ese caso mostramos texto.
   const sponsors = [
+    { name: "Vercel", logo: "/brands/vercel.svg" },
+    { name: "GitHub", logo: "/brands/github.svg" },
+    { name: "React", logo: "/brands/react.svg" },
+    { name: "Node.js", logo: "/brands/nodejs.svg" },
+    { name: "Next.js", logo: "/brands/nextjs.svg" },
+    { name: "Figma", logo: "/brands/figma.svg" },
+    { name: "Google Analytics", logo: "/brands/ga.svg" },
+    { name: "VS Code" },
+
     { name: "Coca‑Cola", logo: "/brands/cocacola.svg" },
     { name: "Revolut", logo: "/brands/revolut.svg" },
     { name: "Vicio" },
