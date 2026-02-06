@@ -441,19 +441,23 @@ input:focus, textarea:focus { border-color: rgba(14, 165, 233, 0.55); box-shadow
 /* Sponsors marquee (infinite, seamless) */
 .sponsors {
   width: 100%;
-  border-top: 1px solid rgba(15, 23, 42, 0.08);
-  border-bottom: 1px solid rgba(15, 23, 42, 0.08);
-  background: rgba(255, 255, 255, 0.72);
+  /* section stays full-width, the bar itself will be centered */
+  padding: 14px 0;
 }
 
 .sponsors__viewport {
   --gap: 22px;
-  --duration: 18s;
+  --duration: 32s; /* slower */
   position: relative;
   overflow: hidden;
-  width: 100%;
+  width: min(var(--container), calc(100% - 40px));
+  margin: 0 auto;
   display: flex;
   gap: var(--gap);
+  border-radius: 18px;
+  border: 1px solid rgba(15, 23, 42, 0.10);
+  background: rgba(255, 255, 255, 0.80);
+  padding: 10px 0; /* makes the bar taller */
 }
 
 /* fade edges */
@@ -469,11 +473,11 @@ input:focus, textarea:focus { border-color: rgba(14, 165, 233, 0.55); box-shadow
 }
 .sponsors__viewport::before {
   left: 0;
-  background: linear-gradient(90deg, rgba(246, 248, 252, 1), rgba(246, 248, 252, 0));
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0));
 }
 .sponsors__viewport::after {
   right: 0;
-  background: linear-gradient(270deg, rgba(246, 248, 252, 1), rgba(246, 248, 252, 0));
+  background: linear-gradient(270deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0));
 }
 
 .sponsors__group {
@@ -481,7 +485,7 @@ input:focus, textarea:focus { border-color: rgba(14, 165, 233, 0.55); box-shadow
   align-items: center;
   gap: var(--gap);
   flex-shrink: 0;
-  padding: 16px 0;
+  padding: 18px 0; /* taller bar */
   width: max-content;
   animation: marquee var(--duration) linear infinite;
   will-change: transform;
@@ -499,8 +503,8 @@ input:focus, textarea:focus { border-color: rgba(14, 165, 233, 0.55); box-shadow
 }
 
 .sponsors__logo {
-  width: 38px;
-  height: 38px;
+  width: 44px;
+  height: 44px;
   display: block;
   opacity: 0.92;
   filter: saturate(0.92);
