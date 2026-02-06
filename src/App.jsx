@@ -596,11 +596,7 @@ function SponsorsMarquee() {
             >
               {s.logo ? (
                 <img className="sponsors__logo" src={s.logo} alt={s.name} loading="lazy" />
-              ) : (
-                <span className="sponsors__fallback" aria-hidden="true">
-                  {s.name.slice(0, 2).toUpperCase()}
-                </span>
-              )}
+              ) : null}
             </div>
           ))}
         </div>
