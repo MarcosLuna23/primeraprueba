@@ -579,14 +579,18 @@ function SponsorsMarquee() {
     { name: "ChatGPT" },
   ];
 
+  const base = sponsors.filter((s) => s.logo);
+  // Repeat logos so the strip is always wider than the viewport (prevents blank gaps on large screens)
+  const strip = Array.from({ length: 5 }, () => base).flat();
+
   return (
     <section className="sponsors" aria-label="Sponsors y colaboradores">
       <div className="sponsors__viewport">
-        {/* Two identical groups, shifted by 100% + gap. This avoids jumps even if widths change. */}
+        {/* Two identical strips, shifted by 100% + gap. */}
         <div className="sponsors__group" aria-hidden="true">
-          {sponsors.filter((s) => s.logo).map((s) => (
+          {strip.map((s, idx) => (
             <div
-              key={`a-${s.name}`}
+              key={`a-${s.name}-${idx}`}
               className="sponsors__item"
               title={s.name}
               aria-label={s.name}
@@ -597,9 +601,9 @@ function SponsorsMarquee() {
           ))}
         </div>
         <div className="sponsors__group" aria-hidden="true">
-          {sponsors.filter((s) => s.logo).map((s) => (
+          {strip.map((s, idx) => (
             <div
-              key={`b-${s.name}`}
+              key={`b-${s.name}-${idx}`}
               className="sponsors__item"
               title={s.name}
               aria-label={s.name}

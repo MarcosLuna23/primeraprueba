@@ -482,7 +482,7 @@ input:focus, textarea:focus { border-color: rgba(14, 165, 233, 0.55); box-shadow
   gap: var(--gap);
   flex-shrink: 0;
   padding: 16px 0;
-  min-width: 100%;
+  width: max-content;
   animation: marquee var(--duration) linear infinite;
   will-change: transform;
 }
