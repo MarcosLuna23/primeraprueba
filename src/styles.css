@@ -143,9 +143,10 @@ a { color: inherit; }
 }
 
 .header__inner {
-  display: flex;
+  /* Use a 3-column grid so the island stays truly centered */
+  display: grid;
+  grid-template-columns: auto 1fr auto;
   align-items: center;
-  justify-content: space-between;
   gap: 14px;
 }
 
@@ -153,7 +154,8 @@ a { color: inherit; }
 .headerIsland {
   display: flex;
   justify-content: center;
-  flex: 1;
+  justify-self: center;
+  min-width: 0;
 }
 
 .headerIsland__pill {
@@ -243,6 +245,10 @@ a { color: inherit; }
 
 /* Keep it clean on small screens */
 @media (max-width: 860px) {
+  .header__inner {
+    display: flex;
+    justify-content: space-between;
+  }
   .headerIsland { display: none; }
 }
 
