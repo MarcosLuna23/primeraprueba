@@ -431,36 +431,45 @@ h1 {
   font-size: 13px;
 }
 
-.section { padding: 92px 0; }
-
-/* Full-width bands with a soft emotional tint */
-.section--alt {
+.section {
+  padding: 92px 0;
   position: relative;
-  background:
-    radial-gradient(900px 520px at 15% 10%, rgba(243, 214, 198, 0.55), transparent 62%),
-    radial-gradient(900px 520px at 85% 10%, rgba(14, 165, 233, 0.12), transparent 64%),
-    linear-gradient(180deg, rgba(255, 255, 255, 0.52), rgba(255, 255, 255, 0.20));
-  border-top: 0;
-  border-bottom: 0;
 }
 
-/* fade section edges into the page background (no hard color jumps) */
-.section--alt::before,
-.section--alt::after {
+/* Global fade on EVERY section: makes the background feel continuous */
+.section::before,
+.section::after {
   content: "";
   position: absolute;
   left: 0;
   right: 0;
-  height: 72px;
+  height: 88px;
   pointer-events: none;
+  z-index: 0;
 }
-.section--alt::before {
-  top: 0;
-  background: linear-gradient(180deg, rgba(247, 246, 242, 1), rgba(247, 246, 242, 0));
+.section::before {
+  top: -1px;
+  background: linear-gradient(180deg, var(--bg), rgba(247, 246, 242, 0));
 }
-.section--alt::after {
-  bottom: 0;
-  background: linear-gradient(0deg, rgba(247, 246, 242, 1), rgba(247, 246, 242, 0));
+.section::after {
+  bottom: -1px;
+  background: linear-gradient(0deg, var(--bg), rgba(247, 246, 242, 0));
+}
+
+/* Keep actual content above the fade layers */
+.section > .container {
+  position: relative;
+  z-index: 1;
+}
+
+/* Full-width bands with a soft emotional tint */
+.section--alt {
+  background:
+    radial-gradient(900px 520px at 15% 10%, rgba(243, 214, 198, 0.34), transparent 70%),
+    radial-gradient(900px 520px at 85% 10%, rgba(14, 165, 233, 0.09), transparent 72%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.26), rgba(255, 255, 255, 0.10));
+  border-top: 0;
+  border-bottom: 0;
 }
 
 .section__header { margin-bottom: 30px; }

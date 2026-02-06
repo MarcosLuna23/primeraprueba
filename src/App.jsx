@@ -432,9 +432,6 @@ function Services() {
         </div>
         <div className="ctaBand__right">
           <img className="sectionPhoto" src="/sections/services.jpg" alt="" loading="lazy" />
-          <Button className="btn--primary" href="#contacto">
-            Pedir presupuesto
-          </Button>
         </div>
       </motion.div>
     </Section>
