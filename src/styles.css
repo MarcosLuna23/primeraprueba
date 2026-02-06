@@ -38,17 +38,16 @@ body {
     "Apple Color Emoji", "Segoe UI Emoji";
   color: var(--text);
 
-  /* Global BLOBS background (continuous) */
+  /* Original soft background */
   background-image:
     url("/noise.svg"),
-    radial-gradient(1200px 700px at 12% 10%, rgba(243, 214, 198, 0.55), transparent 60%),
-    radial-gradient(1000px 650px at 88% 8%, rgba(14, 165, 233, 0.22), transparent 62%),
-    radial-gradient(1100px 720px at 60% 88%, rgba(37, 99, 235, 0.14), transparent 64%),
-    radial-gradient(900px 620px at 25% 78%, rgba(14, 165, 233, 0.10), transparent 62%),
+    radial-gradient(900px 520px at 12% 0%, rgba(243, 214, 198, 0.55), transparent 58%),
+    radial-gradient(860px 520px at 88% 10%, rgba(14, 165, 233, 0.18), transparent 62%),
+    radial-gradient(820px 520px at 55% 88%, rgba(37, 99, 235, 0.10), transparent 64%),
     linear-gradient(180deg, var(--bg), var(--bg2));
-  background-repeat: repeat, no-repeat, no-repeat, no-repeat, no-repeat, no-repeat;
-  background-size: 160px 160px, auto, auto, auto, auto, auto;
-  background-blend-mode: multiply, normal, normal, normal, normal, normal;
+  background-repeat: repeat, no-repeat, no-repeat, no-repeat, no-repeat;
+  background-size: 160px 160px, auto, auto, auto, auto;
+  background-blend-mode: multiply, normal, normal, normal, normal;
 
   line-height: 1.55;
   overflow-x: hidden;
@@ -434,15 +433,38 @@ h1 {
   position: relative;
 }
 
-/* With global blobs, sections should feel like part of the same canvas */
+/* Visible waves (the first version you liked) */
 .section::before,
 .section::after {
-  content: none;
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 96px;
+  pointer-events: none;
+  z-index: 0;
+}
+.section::before {
+  top: -1px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 120' preserveAspectRatio='none'%3E%3Cpath fill='%23f7f6f2' d='M0,64 C120,42 240,20 360,24 C480,28 600,62 720,72 C840,82 960,68 1080,52 C1200,36 1320,18 1440,20 L1440,0 L0,0 Z'/%3E%3C/svg%3E");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  opacity: 0.95;
+}
+.section::after {
+  bottom: -1px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 120' preserveAspectRatio='none'%3E%3Cpath fill='%23f7f6f2' d='M0,0 C120,22 240,44 360,40 C480,36 600,10 720,8 C840,6 960,20 1080,36 C1200,52 1320,70 1440,72 L1440,120 L0,120 Z'/%3E%3C/svg%3E");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  opacity: 0.95;
 }
 
-/* Full-width bands: keep SUPER subtle so background stays continuous */
+/* Full-width bands with a soft emotional tint */
 .section--alt {
-  background: rgba(255, 255, 255, 0.10);
+  background:
+    radial-gradient(900px 520px at 15% 10%, rgba(243, 214, 198, 0.34), transparent 70%),
+    radial-gradient(900px 520px at 85% 10%, rgba(14, 165, 233, 0.09), transparent 72%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.26), rgba(255, 255, 255, 0.10));
   border-top: 0;
   border-bottom: 0;
 }
