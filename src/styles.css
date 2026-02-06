@@ -159,6 +159,12 @@ a { color: inherit; }
 }
 
 .headerIsland__pill {
+  /* Tuning knobs */
+  --islandW: 170px;
+  --islandWOpen: 280px;
+  --rightPad: 12px;
+  --labelShift: 112px; /* how far “Disponible” slides left on hover */
+
   position: relative;
   display: inline-flex;
   align-items: center;
@@ -167,8 +173,6 @@ a { color: inherit; }
 
   height: 42px;
   padding: 0 12px;
-  /* keep space on the right so “Disponible” stays on the left even when actions appear */
-  padding-right: 54px;
   border-radius: 999px;
 
   /* dark island (classic iPhone vibe) */
@@ -180,15 +184,15 @@ a { color: inherit; }
 
   color: rgba(255, 255, 255, 0.92);
 
-  width: 170px;
-  max-width: 52vw;
+  width: var(--islandW);
+  max-width: 56vw;
   overflow: hidden;
   transition: width 220ms var(--ease), transform 220ms var(--ease), box-shadow 220ms var(--ease);
 }
 
 .headerIsland__pill:hover,
 .headerIsland__pill:focus-within {
-  width: 260px;
+  width: var(--islandWOpen);
   transform: translateY(-1px);
   box-shadow:
     0 24px 66px rgba(2, 8, 23, 0.22),
@@ -204,26 +208,36 @@ a { color: inherit; }
   flex: 0 0 8px;
 }
 
+/* Put “Disponible” at the far right */
 .headerIsland__label {
+  position: absolute;
+  right: var(--rightPad);
+  top: 50%;
+  transform: translateY(-50%);
+
   font-weight: 900;
   letter-spacing: -0.01em;
   font-size: 13px;
   line-height: 1;
   white-space: nowrap;
   opacity: 0.92;
+
+  transition: transform 220ms var(--ease);
 }
 
+/* Actions live to the left of the label, and fade in on hover */
 .headerIsland__actions {
   position: absolute;
-  right: 10px;
+  right: calc(var(--rightPad) + 78px); /* keep some space for the label */
   top: 50%;
-  transform: translateY(-50%) translateX(6px);
+  transform: translateY(-50%) translateX(10px);
 
   display: inline-flex;
   align-items: center;
   gap: 6px;
 
   opacity: 0;
+  pointer-events: none;
   transition: opacity 180ms var(--ease), transform 180ms var(--ease);
 }
 
@@ -231,6 +245,13 @@ a { color: inherit; }
 .headerIsland__pill:focus-within .headerIsland__actions {
   opacity: 1;
   transform: translateY(-50%) translateX(0);
+  pointer-events: auto;
+}
+
+/* When actions appear, slide “Disponible” left so everything fits */
+.headerIsland__pill:hover .headerIsland__label,
+.headerIsland__pill:focus-within .headerIsland__label {
+  transform: translateY(-50%) translateX(calc(-1 * var(--labelShift)));
 }
 
 .islandBtn {
