@@ -150,31 +150,14 @@ a { color: inherit; }
   gap: 14px;
 }
 
-/* Header dynamic island */
+/* Header dynamic island (right side) */
 .headerIsland {
-  display: flex;
-  justify-content: center;
-  justify-self: center;
+  display: inline-flex;
+  align-items: center;
   min-width: 0;
 }
 
-.headerIsland__wrap {
-  /* Tuning knobs */
-  --pillW: 168px;
-  --pillWOpen: 280px;
-
-  position: relative;
-  height: 42px;
-  width: var(--pillWOpen);
-  max-width: 56vw;
-}
-
 .headerIsland__pill {
-  position: absolute;
-  left: 50%;
-  top: 0;
-  transform: translateX(-50%);
-
   display: inline-flex;
   align-items: center;
   gap: 10px;
@@ -192,39 +175,27 @@ a { color: inherit; }
 
   color: rgba(255, 255, 255, 0.92);
 
-  width: var(--pillW);
+  width: 170px;
   overflow: hidden;
   transition: width 220ms var(--ease), transform 220ms var(--ease), box-shadow 220ms var(--ease);
 }
 
-.headerIsland__wrap:hover .headerIsland__pill,
-.headerIsland__wrap:focus-within .headerIsland__pill {
-  width: var(--pillWOpen);
+.headerIsland__pill:hover,
+.headerIsland__pill:focus-within {
+  width: 280px;
+  transform: translateY(-1px);
   box-shadow:
     0 24px 66px rgba(2, 8, 23, 0.22),
     inset 0 1px 0 rgba(255, 255, 255, 0.10);
 }
 
-.headerIsland__status {
-  position: absolute;
-  right: 0;
-  top: 0;
-
-  width: var(--statusW);
-  height: 42px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 999px;
-
+.headerIsland__label {
   font-weight: 900;
   letter-spacing: -0.01em;
   font-size: 13px;
   line-height: 1;
-
-  color: rgba(255, 255, 255, 0.92);
-  border: 1px solid rgba(255, 255, 255, 0.10);
-  background: rgba(255, 255, 255, 0.06);
+  white-space: nowrap;
+  opacity: 0.92;
 }
 
 .headerIsland__dot {
@@ -248,8 +219,8 @@ a { color: inherit; }
   transition: opacity 180ms var(--ease), transform 180ms var(--ease);
 }
 
-.headerIsland__wrap:hover .headerIsland__actions,
-.headerIsland__wrap:focus-within .headerIsland__actions {
+.headerIsland__pill:hover .headerIsland__actions,
+.headerIsland__pill:focus-within .headerIsland__actions {
   opacity: 1;
   transform: translateX(0);
   pointer-events: auto;
@@ -274,38 +245,12 @@ a { color: inherit; }
   border-color: rgba(255, 255, 255, 0.16);
 }
 
-/* Keep it clean on small screens */
-/* Right side (status + nav) */
+/* Right side (island + nav) */
 .headerRight {
   display: inline-flex;
   align-items: center;
   justify-content: flex-end;
   gap: 10px;
-}
-
-.headerStatus {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 10px 12px;
-  border-radius: 999px;
-  font-weight: 900;
-  letter-spacing: -0.01em;
-  font-size: 13px;
-  line-height: 1;
-
-  color: rgba(15, 23, 42, 0.92);
-  background: rgba(255, 255, 255, 0.58);
-  border: 1px solid rgba(15, 23, 42, 0.10);
-  backdrop-filter: blur(10px) saturate(1.1);
-}
-
-.headerStatus__dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 999px;
-  background: #22c55e;
-  box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.16);
 }
 
 @media (max-width: 860px) {
@@ -314,7 +259,6 @@ a { color: inherit; }
     justify-content: space-between;
   }
   .headerIsland { display: none; }
-  .headerStatus { display: none; }
 }
 
 .brand {

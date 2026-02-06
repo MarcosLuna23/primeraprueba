@@ -114,11 +114,12 @@ function Header({ onNav }) {
           <span className="brand__text">{BRAND.name}</span>
         </a>
 
-        {/* Dynamic island */}
-        <div className={cn("headerIsland", open && "is-open")} aria-label="Accesos rápidos">
-          <div className="headerIsland__wrap">
-            <div className="headerIsland__pill" aria-label="Acciones rápidas">
+        <div className="headerRight" aria-label="Zona derecha">
+          {/* Dynamic island (moved to the right, includes status) */}
+          <div className={cn("headerIsland", open && "is-open")} aria-label="Accesos rápidos">
+            <div className="headerIsland__pill" aria-label="Estado y acciones rápidas">
               <span className="headerIsland__dot" aria-hidden="true" />
+              <span className="headerIsland__label">Disponible</span>
 
               <div className="headerIsland__actions" aria-label="Acciones">
                 <a className="islandBtn" href={`mailto:${BRAND.email}`} aria-label="Enviar email">
@@ -146,13 +147,6 @@ function Header({ onNav }) {
               </div>
             </div>
           </div>
-        </div>
-
-        <div className="headerRight" aria-label="Zona derecha">
-          <span className="headerStatus" aria-label="Estado">
-            <span className="headerStatus__dot" aria-hidden="true" />
-            Disponible
-          </span>
 
           <nav className="nav" aria-label="Navegación principal">
           <button
