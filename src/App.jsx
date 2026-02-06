@@ -136,7 +136,16 @@ function Header({ onNav }) {
             <li><a className="nav__link" href="#proceso">Proceso</a></li>
             <li><a className="nav__link" href="#equipo">Equipo</a></li>
             <li><a className="nav__link" href="#faq">FAQ</a></li>
-            <li><a className="nav__cta" href="#contacto">Pedir presupuesto</a></li>
+            <li>
+              <a
+                className="nav__cta"
+                href={`https://wa.me/${BRAND.phoneWa}?text=${encodeURIComponent("Hola, quiero presupuesto para una web/app.")}`}
+                target="_blank"
+                rel="noreferrer"
+              >
+                Hablar por WhatsApp
+              </a>
+            </li>
           </ul>
         </nav>
       </div>
