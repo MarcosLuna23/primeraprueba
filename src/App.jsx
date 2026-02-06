@@ -205,27 +205,60 @@ function Hero() {
               loading="lazy"
             />
 
-            <div className="phoneContent">
-              <div className="phoneStatus" aria-hidden="true">
-                <span className="phoneTime">9:41</span>
+            <div className="phoneContent" aria-hidden="true">
+              <div className="phoneStatus">
+                <span className="phoneTime">15:48</span>
                 <span className="phoneIcons">
-                  <span className="pxSignal" aria-hidden="true">
-                    <i /><i /><i /><i />
-                  </span>
-                  <span className="pxWifi" aria-hidden="true" />
-                  <span className="pxBattery" aria-hidden="true"><b /></span>
+                  <span className="pxSignal"><i /><i /><i /><i /></span>
+                  <span className="pxWifi" />
+                  <span className="pxBattery"><b /></span>
                 </span>
               </div>
 
-              <h2 className="card__title">Lo que entregamos</h2>
-              <ul className="checklist">
-                <li>Web optimizada (Core Web Vitals)</li>
-                <li>SEO técnico + on-page</li>
-                <li>Analítica (GA4/Matomo) y eventos</li>
-                <li>Formularios + WhatsApp</li>
-                <li>Seguridad y backups</li>
-              </ul>
-              <p className="muted">*Adaptamos la propuesta a tu caso (pyme, clínica, inmobiliaria, startup…).</p>
+              <div className="phoneIsland" />
+
+              <div className="phoneHeader">Ajustes</div>
+
+              <div className="phoneList">
+                <div className="phoneRow">
+                  <span className="phoneIcon i-red">🔔</span>
+                  <span className="phoneRowText">Notificaciones</span>
+                  <span className="phoneChevron">›</span>
+                </div>
+                <div className="phoneRow">
+                  <span className="phoneIcon i-pink">🔊</span>
+                  <span className="phoneRowText">Sonidos y vibraciones</span>
+                  <span className="phoneChevron">›</span>
+                </div>
+                <div className="phoneRow">
+                  <span className="phoneIcon i-blue">🌙</span>
+                  <span className="phoneRowText">Modos</span>
+                  <span className="phoneChevron">›</span>
+                </div>
+                <div className="phoneRow">
+                  <span className="phoneIcon i-gray">⏱</span>
+                  <span className="phoneRowText">Tiempo de uso</span>
+                  <span className="phoneChevron">›</span>
+                </div>
+
+                <div className="phoneGroupLabel">GENERAL</div>
+
+                <div className="phoneRow">
+                  <span className="phoneIcon i-gray">⚙️</span>
+                  <span className="phoneRowText">General</span>
+                  <span className="phoneChevron">›</span>
+                </div>
+                <div className="phoneRow">
+                  <span className="phoneIcon i-blue">🔆</span>
+                  <span className="phoneRowText">Pantalla y brillo</span>
+                  <span className="phoneChevron">›</span>
+                </div>
+                <div className="phoneRow">
+                  <span className="phoneIcon i-green">🔋</span>
+                  <span className="phoneRowText">Batería</span>
+                  <span className="phoneChevron">›</span>
+                </div>
+              </div>
             </div>
           </div>
         </motion.div>
