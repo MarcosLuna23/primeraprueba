@@ -119,7 +119,7 @@ function Header({ onNav }) {
           <div className={cn("headerIsland", open && "is-open")} aria-label="Accesos rápidos">
             <div className="headerIsland__pill" aria-label="Estado y acciones rápidas">
               <span className="headerIsland__dot" aria-hidden="true" />
-              <span className="headerIsland__label">Disponible</span>
+              <a className="headerIsland__label" href="#contacto">Disponible</a>
 
               <div className="headerIsland__actions" aria-label="Acciones">
                 <a className="islandBtn" href={`mailto:${BRAND.email}`} aria-label="Enviar email">
