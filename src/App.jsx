@@ -793,22 +793,49 @@ function Footer() {
   const year = new Date().getFullYear();
   return (
     <footer className="footer">
-      <div className="container footer__grid">
-        <div>
-          <div className="brand brand--footer">
-            <span className="brand__mark" aria-hidden="true" />
-            <span className="brand__text">{BRAND.name}</span>
+      <div className="container">
+        <div className="footer__top">
+          <div>
+            <div className="brand brand--footer">
+              <span className="brand__mark" aria-hidden="true" />
+              <span className="brand__text">{BRAND.name}</span>
+            </div>
+            <p className="muted small">
+              {BRAND.tagline} · {BRAND.city} / {BRAND.country}
+            </p>
+            <p className="muted small" style={{ marginTop: 10 }}>
+              Respuesta en menos de 24h. Presupuesto claro y por escrito.
+            </p>
           </div>
-          <p className="muted small">{BRAND.tagline} · {BRAND.city} / {BRAND.country}</p>
+
+          <div className="footer__col">
+            <p className="footer__label">Contacto</p>
+            <a className="footer__link" href={`mailto:${BRAND.email}`}>{BRAND.email}</a>
+            <span className="footer__meta">Tel: {BRAND.phoneDisplay}</span>
+          </div>
+
+          <div className="footer__col">
+            <p className="footer__label">Enlaces</p>
+            <a className="footer__link" href="#servicios">Servicios</a>
+            <a className="footer__link" href="#proyectos">Proyectos</a>
+            <a className="footer__link" href="#contacto">Contacto</a>
+          </div>
+
+          <div className="footer__col footer__cta">
+            <p className="footer__label">¿Hablamos?</p>
+            <Button className="btn--primary" href="#contacto">Pedir presupuesto</Button>
+            <span className="footer__meta">Sin compromiso · 10 min</span>
+          </div>
         </div>
 
-        <div className="footer__links">
-          <a href="#">Aviso legal</a>
-          <a href="#">Privacidad</a>
-          <a href="#">Cookies</a>
+        <div className="footer__bottom">
+          <div className="footer__legal">
+            <a className="footer__link" href="#">Aviso legal</a>
+            <a className="footer__link" href="#">Privacidad</a>
+            <a className="footer__link" href="#">Cookies</a>
+          </div>
+          <div className="footer__copy muted small">© {year} {BRAND.name}. Todos los derechos reservados.</div>
         </div>
-
-        <div className="footer__copy muted small">© {year} {BRAND.name}. Todos los derechos reservados.</div>
       </div>
     </footer>
   );
