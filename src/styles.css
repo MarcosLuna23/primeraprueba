@@ -162,11 +162,13 @@ a { color: inherit; }
   position: relative;
   display: inline-flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
+  gap: 10px;
 
   height: 42px;
-  /* reserve room for dot (left) and actions (right) so the label can be truly centered */
-  padding: 0 44px;
+  padding: 0 12px;
+  /* keep space on the right so “Disponible” stays on the left even when actions appear */
+  padding-right: 54px;
   border-radius: 999px;
 
   /* dark island (classic iPhone vibe) */
@@ -194,16 +196,12 @@ a { color: inherit; }
 }
 
 .headerIsland__dot {
-  position: absolute;
-  left: 14px;
-  top: 50%;
-  transform: translateY(-50%);
-
   width: 8px;
   height: 8px;
   border-radius: 999px;
   background: #22c55e;
   box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.18);
+  flex: 0 0 8px;
 }
 
 .headerIsland__label {
@@ -213,7 +211,6 @@ a { color: inherit; }
   line-height: 1;
   white-space: nowrap;
   opacity: 0.92;
-  text-align: center;
 }
 
 .headerIsland__actions {
