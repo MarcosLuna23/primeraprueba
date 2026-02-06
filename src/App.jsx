@@ -579,24 +579,33 @@ function SponsorsMarquee() {
     { name: "ChatGPT" },
   ];
 
-  // Duplicate in the same track. Animation will translate -50% for a seamless loop.
-  const items = [...sponsors, ...sponsors];
-
   return (
     <section className="sponsors" aria-label="Sponsors y colaboradores">
       <div className="sponsors__viewport">
-        <div className="sponsors__track" aria-hidden="true">
-          {items.map((s, i) => (
+        {/* Two identical groups, shifted by 100% + gap. This avoids jumps even if widths change. */}
+        <div className="sponsors__group" aria-hidden="true">
+          {sponsors.filter((s) => s.logo).map((s) => (
             <div
-              key={`${s.name}-${i}`}
+              key={`a-${s.name}`}
               className="sponsors__item"
               title={s.name}
               aria-label={s.name}
               role="img"
             >
-              {s.logo ? (
-                <img className="sponsors__logo" src={s.logo} alt={s.name} loading="lazy" />
-              ) : null}
+              <img className="sponsors__logo" src={s.logo} alt={s.name} loading="lazy" />
+            </div>
+          ))}
+        </div>
+        <div className="sponsors__group" aria-hidden="true">
+          {sponsors.filter((s) => s.logo).map((s) => (
+            <div
+              key={`b-${s.name}`}
+              className="sponsors__item"
+              title={s.name}
+              aria-label={s.name}
+              role="img"
+            >
+              <img className="sponsors__logo" src={s.logo} alt={s.name} loading="lazy" />
             </div>
           ))}
         </div>

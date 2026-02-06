@@ -447,9 +447,13 @@ input:focus, textarea:focus { border-color: rgba(14, 165, 233, 0.55); box-shadow
 }
 
 .sponsors__viewport {
+  --gap: 22px;
+  --duration: 18s;
   position: relative;
   overflow: hidden;
   width: 100%;
+  display: flex;
+  gap: var(--gap);
 }
 
 /* fade edges */
@@ -472,12 +476,14 @@ input:focus, textarea:focus { border-color: rgba(14, 165, 233, 0.55); box-shadow
   background: linear-gradient(270deg, rgba(246, 248, 252, 1), rgba(246, 248, 252, 0));
 }
 
-.sponsors__track {
+.sponsors__group {
   display: flex;
-  width: max-content;
-  gap: 22px;
-  padding: 16px 0; /* no padding left/right -> avoids loop "gap" */
-  animation: marquee 16s linear infinite;
+  align-items: center;
+  gap: var(--gap);
+  flex-shrink: 0;
+  padding: 16px 0;
+  min-width: 100%;
+  animation: marquee var(--duration) linear infinite;
   will-change: transform;
 }
 
@@ -493,26 +499,20 @@ input:focus, textarea:focus { border-color: rgba(14, 165, 233, 0.55); box-shadow
 }
 
 .sponsors__logo {
-  width: 36px;
-  height: 36px;
+  width: 38px;
+  height: 38px;
   display: block;
   opacity: 0.92;
   filter: saturate(0.92);
 }
 
-.sponsors__name { display: none; }
-
-/* If a sponsor has no SVG, we hide the fallback (no boxes). */
-.sponsors__fallback { display: none; }
-
 @keyframes marquee {
   from { transform: translateX(0); }
-  /* move by half because the content is duplicated once */
-  to { transform: translateX(-50%); }
+  to { transform: translateX(calc(-100% - var(--gap))); }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .sponsors__track { animation: none; }
+  .sponsors__group { animation: none; }
 }
 .footer__links a { text-decoration: none; }
 .footer__links a:hover { text-decoration: underline; }
