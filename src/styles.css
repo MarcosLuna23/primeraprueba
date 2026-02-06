@@ -449,11 +449,18 @@ h1 {
 }
 .section::before {
   top: -1px;
-  background: linear-gradient(180deg, var(--bg), rgba(247, 246, 242, 0));
+  /* curved fade (less rectangular) */
+  background:
+    radial-gradient(120% 90px at 50% 0%, var(--bg) 0%, rgba(247, 246, 242, 0) 70%),
+    radial-gradient(55% 70px at 0% 0%, var(--bg) 0%, rgba(247, 246, 242, 0) 72%),
+    radial-gradient(55% 70px at 100% 0%, var(--bg) 0%, rgba(247, 246, 242, 0) 72%);
 }
 .section::after {
   bottom: -1px;
-  background: linear-gradient(0deg, var(--bg), rgba(247, 246, 242, 0));
+  background:
+    radial-gradient(120% 90px at 50% 100%, var(--bg) 0%, rgba(247, 246, 242, 0) 70%),
+    radial-gradient(55% 70px at 0% 100%, var(--bg) 0%, rgba(247, 246, 242, 0) 72%),
+    radial-gradient(55% 70px at 100% 100%, var(--bg) 0%, rgba(247, 246, 242, 0) 72%);
 }
 
 /* Keep actual content above the fade layers */
@@ -687,16 +694,20 @@ input:focus, textarea:focus { border-color: rgba(14, 165, 233, 0.55); box-shadow
   --duration: 38s; /* slower + calmer */
   position: relative;
   overflow: hidden;
-  width: min(var(--container), calc(100% - 24px));
+
+  /* No "card" look: integrated into page background */
+  width: min(var(--container), calc(100% - (var(--gutter) * 2)));
   margin: 0 auto;
+
   display: flex;
   gap: var(--gap);
-  border-radius: 22px;
+
+  border-radius: 0;
   border: 0;
-  background: rgba(255, 255, 255, 0.50);
-  padding: 14px 0; /* taller */
-  backdrop-filter: blur(12px) saturate(1.15);
-  box-shadow: 0 10px 30px rgba(2, 8, 23, 0.06);
+  background: transparent;
+  padding: 14px 0; /* keep height */
+  backdrop-filter: none;
+  box-shadow: none;
 }
 
 /* fade edges */
@@ -719,6 +730,12 @@ input:focus, textarea:focus { border-color: rgba(14, 165, 233, 0.55); box-shadow
   right: 0;
   /* fade into the page background */
   background: linear-gradient(270deg, var(--bg), rgba(246, 248, 252, 0));
+}
+
+/* (Optional) Slight vertical fade so it melts into the background */
+.sponsors__viewport {
+  -webkit-mask-image: linear-gradient(180deg, transparent 0, #000 18%, #000 82%, transparent 100%);
+  mask-image: linear-gradient(180deg, transparent 0, #000 18%, #000 82%, transparent 100%);
 }
 
 .sponsors__group {
