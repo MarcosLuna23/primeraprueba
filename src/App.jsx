@@ -44,6 +44,11 @@ function useMotion() {
   return { reduce, fadeUp, stagger, inView };
 }
 
+function waLink(text) {
+  const t = encodeURIComponent(text);
+  return `https://wa.me/${BRAND.phoneWa}?text=${t}`;
+}
+
 function Button({ as = "a", className, ...props }) {
   const Comp = as;
   return <Comp className={cn("btn", className)} {...props} />;
@@ -139,7 +144,7 @@ function Header({ onNav }) {
             <li>
               <a
                 className="nav__cta"
-                href={`https://wa.me/${BRAND.phoneWa}?text=${encodeURIComponent("Hola, quiero presupuesto para una web/app.")}`}
+                href={waLink("Hola, quiero presupuesto para una web/app. ¿Me haces unas preguntas para orientarlo?")}
                 target="_blank"
                 rel="noreferrer"
               >
@@ -176,12 +181,20 @@ function Hero() {
             Diseño + desarrollo + mantenimiento, sin líos.
           </motion.p>
           <motion.div className="hero__actions" variants={m.fadeUp}>
-            <Button className="btn--primary" href="#contacto">Pedir presupuesto</Button>
+            <Button
+              className="btn--primary"
+              href={waLink("Hola, vengo desde la web. Quiero presupuesto para una tienda online / web.")}
+              target="_blank"
+              rel="noreferrer"
+            >
+              Hablar por WhatsApp
+            </Button>
             <Button className="btn--ghost" href="#proyectos">Ver proyectos</Button>
           </motion.div>
           <motion.ul className="trust" variants={m.fadeUp}>
             <li>Respuesta &lt; 24h</li>
-            <li>Plazos realistas</li>
+            <li>Rendimiento (Core Web Vitals)</li>
+            <li>SEO técnico + analítica</li>
             <li>Soporte y evolución</li>
           </motion.ul>
         </motion.div>
@@ -219,6 +232,68 @@ function Hero() {
         </div>
       </motion.div>
     </section>
+  );
+}
+
+function Results() {
+  const m = useMotion();
+
+  return (
+    <Section
+      id="resultados"
+      alt
+      title="Resultados que importan"
+      subtitle="No vendemos ‘páginas bonitas’. Diseñamos y desarrollamos para que el producto rinda y convierta."
+    >
+      <motion.div
+        className="grid grid--3"
+        variants={m.stagger}
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true, amount: 0.2 }}
+      >
+        <motion.article className="box" variants={m.fadeUp}>
+          <h3>Velocidad y rendimiento</h3>
+          <p className="muted">Webs rápidas = mejor SEO + mejor conversión. Optimizamos Core Web Vitals desde el principio.</p>
+          <ul className="mini">
+            <li>Lazy-loading e imágenes optimizadas</li>
+            <li>Bundle y CSS controlados</li>
+            <li>Buenas prácticas de accesibilidad</li>
+          </ul>
+        </motion.article>
+
+        <motion.article className="box" variants={m.fadeUp}>
+          <h3>Conversión y claridad</h3>
+          <p className="muted">Estructura, copy y CTAs pensados para guiar al usuario y generar contactos.</p>
+          <ul className="mini">
+            <li>Jerarquía visual premium</li>
+            <li>CTAs con intención</li>
+            <li>Fricción mínima (WhatsApp + formulario)</li>
+          </ul>
+        </motion.article>
+
+        <motion.article className="box" variants={m.fadeUp}>
+          <h3>Medición y mejora continua</h3>
+          <p className="muted">Sin datos no hay decisiones. Dejamos eventos y analítica listos para iterar.</p>
+          <ul className="mini">
+            <li>GA4/Matomo + eventos</li>
+            <li>Embudo y seguimiento</li>
+            <li>Roadmap de mejoras</li>
+          </ul>
+        </motion.article>
+      </motion.div>
+
+      <div style={{ marginTop: 18 }}>
+        <Button
+          className="btn--primary"
+          href={waLink("Hola, quiero mejorar mi web para vender más. ¿Podemos hablar?")}
+          target="_blank"
+          rel="noreferrer"
+        >
+          Hablar por WhatsApp
+        </Button>
+      </div>
+    </Section>
   );
 }
 
@@ -282,7 +357,14 @@ function Services() {
         </div>
         <div className="ctaBand__right">
           <img className="sectionPhoto" src="/sections/services.jpg" alt="" loading="lazy" />
-          <Button className="btn--primary" href="#contacto">Hablar con el equipo</Button>
+          <Button
+            className="btn--primary"
+            href={waLink("Hola, vengo desde Servicios. Quiero presupuesto y recomendaciones para mi caso.")}
+            target="_blank"
+            rel="noreferrer"
+          >
+            Hablar por WhatsApp
+          </Button>
         </div>
       </motion.div>
     </Section>
@@ -297,7 +379,7 @@ function Projects() {
       id="proyectos"
       alt
       title="Proyectos"
-      subtitle="Plantillas de caso para que los sustituyas por vuestros proyectos reales."
+      subtitle="Selección de trabajos reales y ejemplos de lo que podemos construir."
     >
       <motion.div
         className="grid grid--3"
@@ -309,43 +391,43 @@ function Projects() {
         <motion.article className="case" variants={m.fadeUp}>
           <img className="casePhoto" src="/sections/projects.jpg" alt="" loading="lazy" />
           <div className="case__top">
-            <h3>Web corporativa + captación</h3>
-            <p className="muted">Objetivo: generar leads</p>
+            <h3>Tienda de vinilos (Loopers)</h3>
+            <p className="muted">Objetivo: ventas</p>
           </div>
           <ul className="case__list">
-            <li>Landing orientada a conversión</li>
-            <li>SEO on-page + velocidad</li>
-            <li>Formulario + WhatsApp</li>
+            <li>E-commerce en PHP/HTML/CSS/JS</li>
+            <li>Catálogo + experiencia de compra</li>
+            <li>Base para SEO + analítica</li>
           </ul>
-          <p className="case__result"><strong>Resultado:</strong> + conversiones (sustituir por dato real)</p>
+          <p className="case__result"><strong>Enlace:</strong> <a href="https://loopers-ten.vercel.app/" target="_blank" rel="noreferrer">ver proyecto</a></p>
         </motion.article>
 
         <motion.article className="case" variants={m.fadeUp}>
-          <img className="casePhoto" src="/sections/projects.jpg" alt="" loading="lazy" />
+          <img className="casePhoto" src="/sections/team.jpg" alt="" loading="lazy" />
           <div className="case__top">
-            <h3>Aplicación web / panel</h3>
-            <p className="muted">Objetivo: ahorrar tiempo</p>
+            <h3>Plataforma de entrenamiento cognitivo</h3>
+            <p className="muted">Objetivo: ayudar a usuarios y cuidadores</p>
           </div>
           <ul className="case__list">
-            <li>Automatización de procesos</li>
-            <li>Roles y permisos</li>
-            <li>Integración con APIs</li>
+            <li>Ejercicios y contenidos guiados</li>
+            <li>UX accesible y calmada</li>
+            <li>Iteración con feedback real</li>
           </ul>
-          <p className="case__result"><strong>Resultado:</strong> menos tareas manuales</p>
+          <p className="case__result"><strong>Estado:</strong> privado (demo bajo solicitud)</p>
         </motion.article>
 
         <motion.article className="case" variants={m.fadeUp}>
-          <img className="casePhoto" src="/sections/projects.jpg" alt="" loading="lazy" />
+          <img className="casePhoto" src="/sections/services.jpg" alt="" loading="lazy" />
           <div className="case__top">
-            <h3>E-commerce / catálogo</h3>
-            <p className="muted">Objetivo: vender online</p>
+            <h3>Landing de captación + SEO</h3>
+            <p className="muted">Objetivo: leads cualificados</p>
           </div>
           <ul className="case__list">
-            <li>Checkout y pagos</li>
-            <li>Catálogo optimizado</li>
-            <li>Tracking de conversiones</li>
+            <li>Copy orientado a conversión</li>
+            <li>Core Web Vitals + SEO técnico</li>
+            <li>WhatsApp + eventos</li>
           </ul>
-          <p className="case__result"><strong>Resultado:</strong> mejor experiencia de compra</p>
+          <p className="case__result"><strong>Resultado:</strong> más contactos con menos fricción</p>
         </motion.article>
       </motion.div>
     </Section>
@@ -681,6 +763,7 @@ export default function App() {
         <main id="contenido">
           <Hero />
           <SponsorsMarquee />
+          <Results />
           <Services />
           <Projects />
           <Process />
