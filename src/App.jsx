@@ -202,22 +202,7 @@ function Hero() {
 
             {/* Screen overlay: aligned to the SVG screen cutout */}
             <div className="iphoneFrame__screen">
-              <div className="iphoneFrame__status">
-                <span className="iphoneFrame__time">9:41</span>
-                <span className="iphoneFrame__statusIcons">
-                  <svg className="sbIcon" viewBox="0 0 24 24" aria-hidden="true">
-                    <path d="M3 17h2v4H3v-4zm4-4h2v8H7v-8zm4-4h2v12h-2V9zm4-4h2v16h-2V5zm4-2h2v18h-2V3z" />
-                  </svg>
-                  <svg className="sbIcon" viewBox="0 0 24 24" aria-hidden="true">
-                    <path d="M12 18.5l2.1 2.1-2.1 2.1-2.1-2.1L12 18.5zm7.2-4.6a12.2 12.2 0 0 0-14.4 0l1.7 1.7a9.7 9.7 0 0 1 11 0l1.7-1.7zM22 11.1a16.7 16.7 0 0 0-20 0l1.7 1.7a14.2 14.2 0 0 1 16.6 0L22 11.1z" />
-                  </svg>
-                  <svg className="sbBattery" viewBox="0 0 28 14" aria-hidden="true">
-                    <rect x="1" y="2" width="22" height="10" rx="2" />
-                    <rect x="24" y="5" width="3" height="4" rx="1" />
-                    <rect className="sbBatteryFill" x="3" y="4" width="14" height="6" rx="1" />
-                  </svg>
-                </span>
-              </div>
+              {/* status icons removed (already in the SVG mock) */}
 
               <div className="iphoneFrame__content">
                 <h2 className="iosTitle">Lo que entregamos</h2>
