@@ -587,11 +587,20 @@ function SponsorsMarquee() {
       <div className="sponsors__viewport">
         <div className="sponsors__track" aria-hidden="true">
           {items.map((s, i) => (
-            <div key={`${s.name}-${i}`} className="sponsors__item">
+            <div
+              key={`${s.name}-${i}`}
+              className="sponsors__item"
+              title={s.name}
+              aria-label={s.name}
+              role="img"
+            >
               {s.logo ? (
-                <img className="sponsors__logo" src={s.logo} alt="" loading="lazy" />
-              ) : null}
-              <span className="sponsors__name">{s.name}</span>
+                <img className="sponsors__logo" src={s.logo} alt={s.name} loading="lazy" />
+              ) : (
+                <span className="sponsors__fallback" aria-hidden="true">
+                  {s.name.slice(0, 2).toUpperCase()}
+                </span>
+              )}
             </div>
           ))}
         </div>
