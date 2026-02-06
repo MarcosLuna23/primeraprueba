@@ -246,6 +246,7 @@ a { color: inherit; }
   grid-template-columns: 1.25fr 0.75fr;
   gap: 44px;
   align-items: start;
+  overflow: visible;
 }
 
 .pill {
@@ -279,11 +280,12 @@ h1 {
 .hero__card {
   /* Make the phone overlay the hero instead of pushing layout */
   position: absolute;
-  right: 0;
-  top: 0;
+  right: -42px; /* push further to the right */
+  top: -10px;
   display: flex;
   justify-content: flex-end;
   pointer-events: none; /* allow selecting/clicking content under it */
+  z-index: 10; /* above waves + section decorations */
 }
 
 .hero__card .card { pointer-events: auto; }
