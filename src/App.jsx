@@ -75,6 +75,16 @@ function Section({ id, alt, title, subtitle, children }) {
 
 function Header({ onNav }) {
   const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => {
+      setScrolled(window.scrollY > 8);
+    };
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   useEffect(() => {
     const onDocClick = (e) => {
@@ -90,9 +100,13 @@ function Header({ onNav }) {
   }, [open]);
 
   return (
-    <header className="header">
+    <header className={cn("header header--float", scrolled && "is-scrolled")}>
       <div className="container header__inner">
-        <a className="brand" href="#inicio" aria-label="Ir al inicio" onClick={() => onNav?.("inicio")}
+        <a
+          className="brand"
+          href="#inicio"
+          aria-label="Ir al inicio"
+          onClick={() => onNav?.("inicio")}
         >
           <span className="brand__mark" aria-hidden="true" />
           <span className="brand__text">{BRAND.name}</span>
@@ -110,7 +124,9 @@ function Header({ onNav }) {
             <span className="sr-only">Abrir menú</span>
           </button>
 
-          <ul id="menu" className={cn("nav__menu", open && "is-open")}
+          <ul
+            id="menu"
+            className={cn("nav__menu", open && "is-open")}
             onClick={(e) => {
               if (e.target?.closest?.("a")) setOpen(false);
             }}
@@ -652,17 +668,19 @@ export default function App() {
     <>
       <a className="skip" href="#contenido">Saltar al contenido</a>
       <Header />
-      <main id="contenido">
-        <Hero />
-        <SponsorsMarquee />
-        <Services />
-        <Projects />
-        <Process />
-        <Team />
-        <Faq />
-        <Contact />
-      </main>
-      <Footer />
+      <div className="page">
+        <main id="contenido">
+          <Hero />
+          <SponsorsMarquee />
+          <Services />
+          <Projects />
+          <Process />
+          <Team />
+          <Faq />
+          <Contact />
+        </main>
+        <Footer />
+      </div>
     </>
   );
 }

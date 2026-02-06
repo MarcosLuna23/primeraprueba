@@ -62,19 +62,41 @@ a { color: inherit; }
 }
 .skip:focus { left: 12px; }
 
+.page { padding-top: 86px; }
+
 .header {
-  position: sticky;
-  top: 0;
   z-index: 50;
-  /* backdrop-filter can cause scroll lag on some devices; keep it off */
-  background: rgba(255, 255, 255, 0.82);
-  border-bottom: 1px solid rgba(15, 23, 42, 0.10);
 }
+
+/* Floating, centered header */
+.header--float {
+  position: fixed;
+  top: 12px;
+  left: 0;
+  right: 0;
+  background: transparent;
+}
+
+.header--float .header__inner {
+  width: min(var(--container), calc(100% - 40px));
+  margin: 0 auto;
+  padding: 12px 14px;
+  border-radius: 999px;
+  border: 1px solid rgba(15, 23, 42, 0.0);
+  background: rgba(255, 255, 255, 0.0);
+  transition: background 200ms ease, border-color 200ms ease, box-shadow 200ms ease;
+}
+
+.header--float.is-scrolled .header__inner {
+  background: rgba(255, 255, 255, 0.86);
+  border-color: rgba(15, 23, 42, 0.10);
+  box-shadow: 0 12px 30px rgba(2, 8, 23, 0.10);
+}
+
 .header__inner {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 14px 0;
 }
 
 .brand {
