@@ -255,13 +255,18 @@ function Services() {
           <h3>¿Buscas una web que te traiga clientes?</h3>
           <p className="muted">Te decimos qué haríamos en tu caso y cuánto tardaríamos.</p>
         </div>
-        <Button className="btn--primary" href="#contacto">Hablar con el equipo</Button>
+        <div className="ctaBand__right">
+          <img className="sectionPhoto" src="/sections/services.jpg" alt="" loading="lazy" />
+          <Button className="btn--primary" href="#contacto">Hablar con el equipo</Button>
+        </div>
       </motion.div>
     </Section>
   );
 }
 
 function Projects() {
+  const m = useMotion();
+
   return (
     <Section
       id="proyectos"
@@ -269,8 +274,15 @@ function Projects() {
       title="Proyectos"
       subtitle="Plantillas de caso para que los sustituyas por vuestros proyectos reales."
     >
-      <div className="grid grid--3">
-        <article className="case">
+      <motion.div
+        className="grid grid--3"
+        variants={m.stagger}
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true, amount: 0.2 }}
+      >
+        <motion.article className="case" variants={m.fadeUp}>
+          <img className="casePhoto" src="/sections/projects.jpg" alt="" loading="lazy" />
           <div className="case__top">
             <h3>Web corporativa + captación</h3>
             <p className="muted">Objetivo: generar leads</p>
@@ -281,9 +293,10 @@ function Projects() {
             <li>Formulario + WhatsApp</li>
           </ul>
           <p className="case__result"><strong>Resultado:</strong> + conversiones (sustituir por dato real)</p>
-        </article>
+        </motion.article>
 
-        <article className="case">
+        <motion.article className="case" variants={m.fadeUp}>
+          <img className="casePhoto" src="/sections/projects.jpg" alt="" loading="lazy" />
           <div className="case__top">
             <h3>Aplicación web / panel</h3>
             <p className="muted">Objetivo: ahorrar tiempo</p>
@@ -294,9 +307,10 @@ function Projects() {
             <li>Integración con APIs</li>
           </ul>
           <p className="case__result"><strong>Resultado:</strong> menos tareas manuales</p>
-        </article>
+        </motion.article>
 
-        <article className="case">
+        <motion.article className="case" variants={m.fadeUp}>
+          <img className="casePhoto" src="/sections/projects.jpg" alt="" loading="lazy" />
           <div className="case__top">
             <h3>E-commerce / catálogo</h3>
             <p className="muted">Objetivo: vender online</p>
@@ -307,8 +321,8 @@ function Projects() {
             <li>Tracking de conversiones</li>
           </ul>
           <p className="case__result"><strong>Resultado:</strong> mejor experiencia de compra</p>
-        </article>
-      </div>
+        </motion.article>
+      </motion.div>
     </Section>
   );
 }
@@ -351,6 +365,8 @@ function Process() {
 }
 
 function Team() {
+  const m = useMotion();
+
   return (
     <Section
       id="equipo"
@@ -358,8 +374,15 @@ function Team() {
       title="Sobre el equipo"
       subtitle={`Somos un equipo técnico, cercano y orientado a resultados. Trabajamos desde ${BRAND.city} y damos servicio a toda ${BRAND.country}.`}
     >
-      <div className="grid grid--2">
-        <div className="box">
+      <motion.div
+        className="grid grid--2"
+        variants={m.stagger}
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true, amount: 0.2 }}
+      >
+        <motion.div className="box" variants={m.fadeUp}>
+          <img className="sectionPhoto" src="/sections/team.jpg" alt="" loading="lazy" />
           <h3>Lo que valoran nuestros clientes</h3>
           <ul className="mini">
             <li>Comunicación clara</li>
@@ -367,8 +390,8 @@ function Team() {
             <li>Velocidad (en la web y en la ejecución)</li>
             <li>Enfoque negocio (no “features por hacer”)</li>
           </ul>
-        </div>
-        <div className="box">
+        </motion.div>
+        <motion.div className="box" variants={m.fadeUp}>
           <h3>Áreas</h3>
           <ul className="mini">
             <li>Front-end y UX</li>
@@ -376,8 +399,8 @@ function Team() {
             <li>Bases de datos</li>
             <li>DevOps básico (deploy, backups, monitorización)</li>
           </ul>
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
     </Section>
   );
 }
@@ -508,6 +531,7 @@ function Contact() {
         </form>
 
         <aside className="box">
+          <img className="sectionPhoto" src="/sections/contact.jpg" alt="" loading="lazy" />
           <h3>Zona de trabajo</h3>
           <p>
             Estamos en <strong>{BRAND.city}</strong> y trabajamos también en remoto para <strong>toda {BRAND.country}</strong>.
@@ -533,31 +557,33 @@ function Contact() {
 }
 
 function SponsorsMarquee() {
+  // Nota: usamos iconos SVG open-source (Simple Icons). Algunas marcas (ej. Vicio, ChatGPT)
+  // puede que no tengan icono oficial aquí: en ese caso mostramos texto.
   const sponsors = [
-    "Google Analytics",
-    "Vercel",
-    "React",
-    "Node.js",
-    "Stripe",
-    "Zapier",
-    "WordPress",
-    "Matomo",
+    { name: "Coca‑Cola", logo: "/brands/cocacola.svg" },
+    { name: "Revolut", logo: "/brands/revolut.svg" },
+    { name: "Vicio" },
+    { name: "Twitch", logo: "/brands/twitch.svg" },
+    { name: "YouTube", logo: "/brands/youtube.svg" },
+    { name: "Kick", logo: "/brands/kick.svg" },
+    { name: "Instagram", logo: "/brands/instagram.svg" },
+    { name: "ChatGPT" },
   ];
 
-  // duplicate list for seamless loop
+  // Duplicate in the same track. Animation will translate -50% for a seamless loop.
   const items = [...sponsors, ...sponsors];
 
   return (
     <section className="sponsors" aria-label="Sponsors y colaboradores">
-      <div className="sponsors__inner">
+      <div className="sponsors__viewport">
         <div className="sponsors__track" aria-hidden="true">
           {items.map((s, i) => (
-            <div key={`${s}-${i}`} className="sponsors__item">{s}</div>
-          ))}
-        </div>
-        <div className="sponsors__track" aria-hidden="true">
-          {items.map((s, i) => (
-            <div key={`b-${s}-${i}`} className="sponsors__item">{s}</div>
+            <div key={`${s.name}-${i}`} className="sponsors__item">
+              {s.logo ? (
+                <img className="sponsors__logo" src={s.logo} alt="" loading="lazy" />
+              ) : null}
+              <span className="sponsors__name">{s.name}</span>
+            </div>
           ))}
         </div>
       </div>

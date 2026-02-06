@@ -244,6 +244,24 @@ h1 {
   margin-bottom: 14px;
 }
 
+.sectionPhoto {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  border-radius: 16px;
+  border: 1px solid rgba(15, 23, 42, 0.10);
+  margin: 0 0 14px;
+}
+
+.casePhoto {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  border-radius: 14px;
+  border: 1px solid rgba(15, 23, 42, 0.10);
+  margin-bottom: 12px;
+}
+
 .card__title { margin: 0 0 10px; font-size: 18px; }
 
 .checklist {
@@ -318,13 +336,19 @@ h1 {
 .ctaBand {
   margin-top: 16px;
   border-radius: var(--radius2);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  background: linear-gradient(135deg, rgba(14, 165, 233, 0.10), rgba(34, 197, 94, 0.08));
+  border: 1px solid rgba(15, 23, 42, 0.10);
+  background: linear-gradient(135deg, rgba(14, 165, 233, 0.10), rgba(37, 99, 235, 0.08));
   padding: 18px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 16px;
+}
+
+.ctaBand__right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
 }
 
 .case {
@@ -414,45 +438,54 @@ input:focus, textarea:focus { border-color: rgba(14, 165, 233, 0.55); box-shadow
   * { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; scroll-behavior: auto !important; }
 }
 
-/* Sponsors marquee (infinite) */
+/* Sponsors marquee (infinite, seamless) */
 .sponsors {
   width: 100%;
   border-top: 1px solid rgba(15, 23, 42, 0.08);
   border-bottom: 1px solid rgba(15, 23, 42, 0.08);
-  background: rgba(255, 255, 255, 0.65);
-  overflow: hidden;
+  background: rgba(255, 255, 255, 0.72);
 }
-.sponsors__inner {
-  position: relative;
-  display: flex;
-  align-items: center;
-  gap: 28px;
-  padding: 14px 0;
+.sponsors__viewport {
+  overflow: hidden;
   width: 100%;
 }
 .sponsors__track {
   display: flex;
+  width: max-content;
   gap: 14px;
-  flex: 0 0 auto;
-  min-width: 100%;
-  animation: marquee 26s linear infinite;
+  padding: 14px 0;
+  animation: marquee 22s linear infinite;
   will-change: transform;
 }
 .sponsors__item {
   flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
   padding: 10px 14px;
   border-radius: 999px;
   border: 1px solid rgba(15, 23, 42, 0.10);
-  background: rgba(255, 255, 255, 0.88);
+  background: rgba(255, 255, 255, 0.90);
   color: rgba(15, 23, 42, 0.78);
-  font-weight: 800;
+  font-weight: 900;
   font-size: 13px;
   letter-spacing: 0.1px;
+  white-space: nowrap;
 }
+.sponsors__logo {
+  width: 18px;
+  height: 18px;
+  display: block;
+  opacity: 0.86;
+}
+.sponsors__name { line-height: 1; }
+
 @keyframes marquee {
   from { transform: translateX(0); }
-  to { transform: translateX(-100%); }
+  /* move by half because the content is duplicated once */
+  to { transform: translateX(-50%); }
 }
+
 @media (prefers-reduced-motion: reduce) {
   .sponsors__track { animation: none; }
 }

@@ -1,3 +1,12 @@
 Hero photo: Unsplash (royalty-free under Unsplash License).
-Source URL (downloaded): https://images.unsplash.com/photo-1521737604893-d14cc237f11d
-Photographer credit is recommended for attribution where possible.
+https://images.unsplash.com/photo-1521737604893-d14cc237f11d
+
+Section photos: Unsplash (royalty-free under Unsplash License).
+Services: https://images.unsplash.com/photo-1556155092-8707de31f9c4
+Projects: https://images.unsplash.com/photo-1552664730-d307ca884978
+Team: https://images.unsplash.com/photo-1522071820081-009f0129c71c
+Contact: https://images.unsplash.com/photo-1517248135467-4c7edcad34c4
+
+Brand icons: Simple Icons (open-source icon set).
+https://github.com/simple-icons/simple-icons
+Note: brand/trademark rights belong to their owners.
