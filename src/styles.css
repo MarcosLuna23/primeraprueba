@@ -119,21 +119,21 @@ a { color: inherit; }
 
   transform: translateY(0px) scale(1);
   opacity: 1;
-  backdrop-filter: blur(12px) saturate(1.2);
+  /* backdrop-filter is one of the biggest causes of scroll jank on Chromium.
+     Keep the glass look using translucency + subtle border/shadow instead. */
+  backdrop-filter: none;
 
   transition:
     background 240ms var(--ease),
     border-color 240ms var(--ease),
     box-shadow 240ms var(--ease),
     transform 240ms var(--ease),
-    opacity 240ms var(--ease),
-    backdrop-filter 240ms var(--ease);
+    opacity 240ms var(--ease);
 }
 
-/* While scrolling: disable expensive effects globally */
+/* While scrolling: also reduce shadow work */
 .is-scrolling .header--float .header__inner {
-  backdrop-filter: none !important;
-  box-shadow: 0 12px 30px rgba(2, 8, 23, 0.08) !important;
+  box-shadow: 0 10px 24px rgba(2, 8, 23, 0.06) !important;
 }
 
 /* Subtle “tighten up” on scroll (more contrast) */
@@ -145,7 +145,7 @@ a { color: inherit; }
     0 22px 60px rgba(2, 8, 23, 0.12),
     0 4px 12px rgba(2, 8, 23, 0.06),
     inset 0 1px 0 rgba(255, 255, 255, 0.78);
-  backdrop-filter: blur(14px) saturate(1.25);
+  backdrop-filter: none;
 }
 
 /* blur enabled globally */
@@ -900,8 +900,8 @@ h1 {
   height: 110px; /* softer */
   pointer-events: none;
   z-index: 0;
-  opacity: 0.55; /* less noticeable edges */
-  filter: blur(0.6px);
+  opacity: 0.52; /* less noticeable edges */
+  filter: none; /* cheaper than blur */
 }
 
 /* Reduce extra paint during scroll */
