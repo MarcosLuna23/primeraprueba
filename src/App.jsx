@@ -2,14 +2,14 @@ import { useEffect, useMemo, useState } from "react";
 import "./styles.css";
 
 const BRAND = {
-  name: "Tu Equipo",
-  tagline: "Desarrollo web y apps a medida",
+  name: "Marcos Tomás Dev",
+  tagline: "Webs rápidas y apps a medida",
   city: "Valencia",
   country: "España",
-  email: "hola@tudominio.es",
-  phoneDisplay: "+34 XXX XXX XXX",
-  phoneWa: "34XXXXXXXXX", // sin + y sin espacios. Ej: 34600111222
-  domain: "https://tudominio.es",
+  email: "marcostomascampos@gmail.com",
+  phoneDisplay: "+34 646 737 527",
+  phoneWa: "34646737527", // sin + y sin espacios. Ej: 34600111222
+  domain: "", // opcional (si tienes dominio, ponlo aquí)
 };
 
 function cn(...xs) {
