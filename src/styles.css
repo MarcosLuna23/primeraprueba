@@ -163,7 +163,9 @@ a { color: inherit; }
   --pillWOpen: 280px;
   --padL: 14px;
   --padR: 12px;
-  --labelShift: 96px; /* how much “Disponible” slides left on hover */
+  --dotLeft: 14px;
+  --dotSize: 8px;
+  --dotGap: 10px;
 
   position: relative;
   display: inline-flex;
@@ -200,12 +202,12 @@ a { color: inherit; }
 /* dot sits at the left edge (doesn't affect centering) */
 .headerIsland__dot {
   position: absolute;
-  left: 14px;
+  left: var(--dotLeft);
   top: 50%;
   transform: translateY(-50%);
 
-  width: 8px;
-  height: 8px;
+  width: var(--dotSize);
+  height: var(--dotSize);
   border-radius: 999px;
   background: #22c55e;
   box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.18);
@@ -288,7 +290,8 @@ a { color: inherit; }
 /* On hover, move the button-label left (without overlapping the green dot) */
 .headerIsland__pill:hover .headerIsland__label,
 .headerIsland__pill:focus-within .headerIsland__label {
-  left: 58px; /* dot (14px) + breathing room */
+  /* dot + gap, so it sits beside the green dot without overlapping */
+  left: calc(var(--dotLeft) + var(--dotSize) + var(--dotGap));
   transform: translate(0, -50%);
 }
 
