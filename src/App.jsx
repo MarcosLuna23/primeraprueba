@@ -207,58 +207,37 @@ function Hero() {
 
             <div className="phoneContent" aria-hidden="true">
               <div className="phoneStatus">
-                <span className="phoneTime">15:48</span>
+                <span className="phoneTime">9:41</span>
                 <span className="phoneIcons">
-                  <span className="pxSignal"><i /><i /><i /><i /></span>
-                  <span className="pxWifi" />
-                  <span className="pxBattery"><b /></span>
+                  {/* Cellular */}
+                  <svg className="sbIcon" viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M3 17h2v4H3v-4zm4-4h2v8H7v-8zm4-4h2v12h-2V9zm4-4h2v16h-2V5zm4-2h2v18h-2V3z" />
+                  </svg>
+                  {/* Wi‑Fi */}
+                  <svg className="sbIcon" viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M12 18.5l2.1 2.1-2.1 2.1-2.1-2.1L12 18.5zm7.2-4.6a12.2 12.2 0 0 0-14.4 0l1.7 1.7a9.7 9.7 0 0 1 11 0l1.7-1.7zM22 11.1a16.7 16.7 0 0 0-20 0l1.7 1.7a14.2 14.2 0 0 1 16.6 0L22 11.1z" />
+                  </svg>
+                  {/* Battery */}
+                  <svg className="sbBattery" viewBox="0 0 28 14" aria-hidden="true">
+                    <rect x="1" y="2" width="22" height="10" rx="2" />
+                    <rect x="24" y="5" width="3" height="4" rx="1" />
+                    <rect className="sbBatteryFill" x="3" y="4" width="14" height="6" rx="1" />
+                  </svg>
                 </span>
               </div>
 
               <div className="phoneIsland" />
 
-              <div className="phoneHeader">Ajustes</div>
-
-              <div className="phoneList">
-                <div className="phoneRow">
-                  <span className="phoneIcon i-red">🔔</span>
-                  <span className="phoneRowText">Notificaciones</span>
-                  <span className="phoneChevron">›</span>
-                </div>
-                <div className="phoneRow">
-                  <span className="phoneIcon i-pink">🔊</span>
-                  <span className="phoneRowText">Sonidos y vibraciones</span>
-                  <span className="phoneChevron">›</span>
-                </div>
-                <div className="phoneRow">
-                  <span className="phoneIcon i-blue">🌙</span>
-                  <span className="phoneRowText">Modos</span>
-                  <span className="phoneChevron">›</span>
-                </div>
-                <div className="phoneRow">
-                  <span className="phoneIcon i-gray">⏱</span>
-                  <span className="phoneRowText">Tiempo de uso</span>
-                  <span className="phoneChevron">›</span>
-                </div>
-
-                <div className="phoneGroupLabel">GENERAL</div>
-
-                <div className="phoneRow">
-                  <span className="phoneIcon i-gray">⚙️</span>
-                  <span className="phoneRowText">General</span>
-                  <span className="phoneChevron">›</span>
-                </div>
-                <div className="phoneRow">
-                  <span className="phoneIcon i-blue">🔆</span>
-                  <span className="phoneRowText">Pantalla y brillo</span>
-                  <span className="phoneChevron">›</span>
-                </div>
-                <div className="phoneRow">
-                  <span className="phoneIcon i-green">🔋</span>
-                  <span className="phoneRowText">Batería</span>
-                  <span className="phoneChevron">›</span>
-                </div>
-              </div>
+              <h2 className="card__title">Lo que entregamos</h2>
+              <ul className="checklist">
+                <li>Web optimizada (Core Web Vitals)</li>
+                <li>SEO técnico + on-page</li>
+                <li>Analítica (GA4/Matomo) y eventos</li>
+                <li>Seguridad y backups</li>
+              </ul>
+              <p className="muted">
+                *Adaptamos la propuesta a tu caso (pyme, clínica, inmobiliaria, startup…).
+              </p>
             </div>
           </div>
         </motion.div>
