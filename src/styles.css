@@ -450,7 +450,8 @@ input:focus, textarea:focus { border-color: rgba(14, 165, 233, 0.55); box-shadow
   --duration: 32s; /* slower */
   position: relative;
   overflow: hidden;
-  width: min(var(--container), calc(100% - 40px));
+  /* slightly wider than before (still centered) */
+  width: min(var(--container), calc(100% - 24px));
   margin: 0 auto;
   display: flex;
   gap: var(--gap);
@@ -473,11 +474,13 @@ input:focus, textarea:focus { border-color: rgba(14, 165, 233, 0.55); box-shadow
 }
 .sponsors__viewport::before {
   left: 0;
-  background: linear-gradient(90deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0));
+  /* fade into the page background */
+  background: linear-gradient(90deg, var(--bg), rgba(246, 248, 252, 0));
 }
 .sponsors__viewport::after {
   right: 0;
-  background: linear-gradient(270deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0));
+  /* fade into the page background */
+  background: linear-gradient(270deg, var(--bg), rgba(246, 248, 252, 0));
 }
 
 .sponsors__group {
