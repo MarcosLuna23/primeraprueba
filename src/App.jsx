@@ -49,6 +49,17 @@ function waLink(text) {
   return `https://wa.me/${BRAND.phoneWa}?text=${t}`;
 }
 
+function WhatsAppIcon({ className }) {
+  return (
+    <svg className={className} viewBox="0 0 32 32" aria-hidden="true" focusable="false">
+      <path
+        fill="currentColor"
+        d="M19.11 17.73c-.27-.14-1.6-.79-1.85-.88-.25-.09-.43-.14-.61.14-.18.27-.7.88-.86 1.06-.16.18-.32.21-.59.07-.27-.14-1.13-.42-2.15-1.34-.79-.7-1.32-1.56-1.48-1.83-.16-.27-.02-.41.12-.55.12-.12.27-.32.41-.48.14-.16.18-.27.27-.45.09-.18.05-.34-.02-.48-.07-.14-.61-1.47-.83-2.01-.22-.53-.44-.46-.61-.46h-.52c-.18 0-.48.07-.73.34-.25.27-.95.93-.95 2.26s.97 2.62 1.11 2.8c.14.18 1.9 2.9 4.6 4.06.64.28 1.14.44 1.53.57.64.2 1.22.17 1.68.1.51-.08 1.6-.66 1.82-1.29.23-.63.23-1.17.16-1.29-.07-.12-.25-.2-.52-.34zM16.02 5.33c-5.83 0-10.57 4.74-10.57 10.57 0 1.86.49 3.68 1.42 5.29l-.93 3.4 3.48-.91c1.56.85 3.31 1.3 5.09 1.3h.01c5.83 0 10.57-4.74 10.57-10.57S21.85 5.33 16.02 5.33zm0 18.33h-.01c-1.6 0-3.17-.43-4.54-1.24l-.33-.2-2.07.54.55-2.02-.21-.35a8.91 8.91 0 0 1-1.37-4.77c0-4.95 4.03-8.98 8.98-8.98 4.95 0 8.98 4.03 8.98 8.98 0 4.95-4.03 8.98-8.98 8.98z"
+      />
+    </svg>
+  );
+}
+
 function Button({ as = "a", className, ...props }) {
   const Comp = as;
   return <Comp className={cn("btn", className)} {...props} />;
@@ -155,6 +166,7 @@ function Header({ onNav }) {
                     target="_blank"
                     rel="noreferrer"
                   >
+                    <WhatsAppIcon className="waIcon" />
                     Hablar por WhatsApp
                   </a>
                 </li>
@@ -191,11 +203,12 @@ function Hero() {
           </motion.p>
           <motion.div className="hero__actions" variants={m.fadeUp}>
             <Button
-              className="btn--primary"
+              className="btn--wa"
               href={waLink("Hola, vengo desde la web. Quiero presupuesto para una tienda online / web.")}
               target="_blank"
               rel="noreferrer"
             >
+              <WhatsAppIcon className="waIcon" />
               Hablar por WhatsApp
             </Button>
             <Button className="btn--ghost" href="#proyectos">Ver proyectos</Button>
@@ -294,11 +307,12 @@ function Results() {
 
       <div style={{ marginTop: 18 }}>
         <Button
-          className="btn--primary"
+          className="btn--wa"
           href={waLink("Hola, quiero mejorar mi web para vender más. ¿Podemos hablar?")}
           target="_blank"
           rel="noreferrer"
         >
+          <WhatsAppIcon className="waIcon" />
           Hablar por WhatsApp
         </Button>
       </div>
@@ -382,11 +396,12 @@ function Pricing() {
 
       <div style={{ marginTop: 14 }}>
         <Button
-          className="btn--primary"
+          className="btn--wa"
           href={waLink("Hola, he visto los precios orientativos. Quiero presupuesto para mi caso (objetivo + plazo).")}
           target="_blank"
           rel="noreferrer"
         >
+          <WhatsAppIcon className="waIcon" />
           Pedir presupuesto por WhatsApp
         </Button>
       </div>
@@ -455,11 +470,12 @@ function Services() {
         <div className="ctaBand__right">
           <img className="sectionPhoto" src="/sections/services.jpg" alt="" loading="lazy" />
           <Button
-            className="btn--primary"
+            className="btn--wa"
             href={waLink("Hola, vengo desde Servicios. Quiero presupuesto y recomendaciones para mi caso.")}
             target="_blank"
             rel="noreferrer"
           >
+            <WhatsAppIcon className="waIcon" />
             Hablar por WhatsApp
           </Button>
         </div>
