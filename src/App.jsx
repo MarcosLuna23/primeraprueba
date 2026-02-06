@@ -947,7 +947,6 @@ export default function App() {
       <div className="page">
         <main id="contenido">
           <Hero />
-          <SponsorsMarquee />
           <Results />
           <Services />
           <Pricing />
@@ -955,6 +954,7 @@ export default function App() {
           <Process />
           <Team />
           <Faq />
+          <SponsorsMarquee />
           <Contact />
         </main>
         <Footer />
