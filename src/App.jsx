@@ -198,7 +198,7 @@ function Hero() {
 
         <motion.div className="hero__card" aria-label="Resumen de servicios" {...m.inView}>
           <div className="iphoneFrame" aria-hidden="true">
-            <img className="iphoneFrame__img" src="/Model=Silver.svg" alt="" />
+            <img className="iphoneFrame__img" src="/iphone-14-pro-silver.svg" alt="" />
 
             {/* Screen overlay: aligned to the SVG screen cutout */}
             <div className="iphoneFrame__screen">
