@@ -149,38 +149,33 @@ a { color: inherit; }
 
 .nav__link {
   text-decoration: none;
-  padding: 8px 8px;
-  border-radius: 10px;
+  padding: 10px 10px;
+  border-radius: 12px;
   color: var(--muted);
-  transition: color 160ms ease;
+  transition: background 160ms ease, color 160ms ease;
 }
 .nav__link:hover {
+  background: rgba(15, 23, 42, 0.05);
   color: rgba(15, 23, 42, 0.92);
 }
 
-/* CTA as a clean link (no button look) */
+/* Revolut-like CTA (pill, solid) */
 .nav__cta {
   text-decoration: none;
-  padding: 8px 8px;
-  border-radius: 10px;
+  padding: 10px 14px;
+  border-radius: 999px;
   font-weight: 900;
-  color: rgba(14, 165, 233, 1);
-  position: relative;
+  background: rgba(15, 23, 42, 0.92);
+  color: #fff;
+  border: 1px solid rgba(15, 23, 42, 0.92);
+  transition: transform 160ms ease, background 160ms ease, box-shadow 200ms ease;
 }
-.nav__cta::after {
-  content: "";
-  position: absolute;
-  left: 8px;
-  right: 8px;
-  bottom: 4px;
-  height: 2px;
-  border-radius: 2px;
-  background: rgba(14, 165, 233, 0.9);
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform 180ms ease;
+.nav__cta:hover {
+  background: rgba(2, 6, 23, 0.98);
+  transform: translateY(-1px);
+  box-shadow: 0 16px 34px rgba(2, 8, 23, 0.16);
 }
-.nav__cta:hover::after { transform: scaleX(1); }
+.nav__cta:active { transform: translateY(0px) scale(0.99); }
 
 .hero { padding: 54px 0 20px; }
 .hero__grid {
@@ -222,40 +217,48 @@ h1 {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
-  padding: 8px 0;
-  border: 0;
-  border-radius: 0;
-  background: transparent;
+  gap: 10px;
+  padding: 12px 18px;
+  border-radius: 999px;
+  border: 1px solid rgba(15, 23, 42, 0.14);
+  background: rgba(255, 255, 255, 0.92);
   text-decoration: none;
   cursor: pointer;
   font-weight: 900;
   font-size: 14px;
   color: rgba(15, 23, 42, 0.92);
-  position: relative;
+  transition: transform 160ms ease, background 160ms ease, border-color 160ms ease, box-shadow 200ms ease;
+  will-change: transform;
+}
+.btn:hover {
+  transform: translateY(-1px);
+  background: rgba(255, 255, 255, 1);
+  border-color: rgba(15, 23, 42, 0.20);
+  box-shadow: 0 16px 34px rgba(2, 8, 23, 0.10);
+}
+.btn:active { transform: translateY(0px) scale(0.99); box-shadow: none; }
+
+/* Primary: solid dark pill (Revolut-ish) */
+.btn--primary {
+  background: rgba(15, 23, 42, 0.92);
+  color: #fff;
+  border-color: rgba(15, 23, 42, 0.92);
+}
+.btn--primary:hover {
+  background: rgba(2, 6, 23, 0.98);
+  border-color: rgba(2, 6, 23, 0.98);
+  box-shadow: 0 18px 38px rgba(2, 8, 23, 0.18);
 }
 
-/* Underline hover, no "button" feel */
-.btn::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 4px;
-  height: 2px;
-  border-radius: 2px;
-  background: rgba(15, 23, 42, 0.25);
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform 180ms ease;
+/* Ghost: clean outline */
+.btn--ghost {
+  background: transparent;
+  color: rgba(15, 23, 42, 0.92);
 }
-.btn:hover::after { transform: scaleX(1); }
-
-.btn--primary { color: rgba(14, 165, 233, 1); }
-.btn--primary::after { background: rgba(14, 165, 233, 0.85); }
-
-.btn--ghost { color: rgba(15, 23, 42, 0.80); }
-.btn--ghost::after { background: rgba(15, 23, 42, 0.18); }
+.btn--ghost:hover {
+  background: rgba(15, 23, 42, 0.04);
+  box-shadow: none;
+}
 
 .trust {
   list-style: none;
