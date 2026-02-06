@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
-import { motion, useReducedMotion } from "framer-motion";
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import "./styles.css";
 
 const BRAND = {
@@ -129,30 +129,38 @@ function Header({ onNav }) {
             <span className="sr-only">Abrir menú</span>
           </button>
 
-          <ul
-            id="menu"
-            className={cn("nav__menu", open && "is-open")}
-            onClick={(e) => {
-              if (e.target?.closest?.("a")) setOpen(false);
-            }}
-          >
-            <li><a className="nav__link" href="#servicios">Servicios</a></li>
-            <li><a className="nav__link" href="#proyectos">Proyectos</a></li>
-            <li><a className="nav__link" href="#proceso">Proceso</a></li>
-            <li><a className="nav__link" href="#equipo">Equipo</a></li>
-            <li><a className="nav__link" href="#precios">Precios</a></li>
-            <li><a className="nav__link" href="#faq">FAQ</a></li>
-            <li>
-              <a
-                className="nav__cta"
-                href={waLink("Hola, quiero presupuesto para una web/app. ¿Me haces unas preguntas para orientarlo?")}
-                target="_blank"
-                rel="noreferrer"
+          <AnimatePresence>
+            {open ? (
+              <motion.ul
+                id="menu"
+                className={cn("nav__menu", open && "is-open")}
+                onClick={(e) => {
+                  if (e.target?.closest?.("a")) setOpen(false);
+                }}
+                initial={{ opacity: 0, y: 6, scale: 0.98 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                exit={{ opacity: 0, y: 6, scale: 0.98 }}
+                transition={{ duration: 0.22, ease: [0.2, 0.8, 0.2, 1] }}
               >
-                Hablar por WhatsApp
-              </a>
-            </li>
-          </ul>
+                <li><a className="nav__link" href="#servicios">Servicios</a></li>
+                <li><a className="nav__link" href="#proyectos">Proyectos</a></li>
+                <li><a className="nav__link" href="#proceso">Proceso</a></li>
+                <li><a className="nav__link" href="#equipo">Equipo</a></li>
+                <li><a className="nav__link" href="#precios">Precios</a></li>
+                <li><a className="nav__link" href="#faq">FAQ</a></li>
+                <li>
+                  <a
+                    className="nav__cta"
+                    href={waLink("Hola, quiero presupuesto para una web/app. ¿Me haces unas preguntas para orientarlo?")}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    Hablar por WhatsApp
+                  </a>
+                </li>
+              </motion.ul>
+            ) : null}
+          </AnimatePresence>
         </nav>
       </div>
     </header>
