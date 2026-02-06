@@ -64,9 +64,10 @@ function Section({ id, alt, title, subtitle, children }) {
           {subtitle ? <p className="section__sub">{subtitle}</p> : null}
         </motion.header>
 
-        <motion.div {...m.inView}>
+        {/* Keep scroll animations lightweight: only animate the header by default */}
+        <div>
           {children}
-        </motion.div>
+        </div>
       </div>
     </section>
   );
