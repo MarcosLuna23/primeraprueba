@@ -1077,17 +1077,35 @@ h1 {
   contain: layout paint;
 }
 
-.faq summary {
+.faq details > summary {
   cursor: pointer;
   font-weight: 900;
   list-style: none;
+  user-select: none;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+
+  /* bigger hit area */
+  padding: 2px 2px;
 }
+
+.faq details > summary::-webkit-details-marker { display: none; }
+.faq details > summary::marker { content: ""; }
 
 /* Soft FAQ open/close animation (no hardcoded heights) */
 .faq__content {
   display: grid;
   grid-template-rows: 0fr;
   transition: grid-template-rows 260ms var(--ease);
+  overflow: hidden;
+}
+
+/* Prevent the collapsed content area from stealing clicks */
+.faq details:not([open]) .faq__content {
+  pointer-events: none;
 }
 
 .faq__content > p {
