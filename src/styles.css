@@ -449,20 +449,40 @@ h1 {
 }
 .section::before {
   top: -1px;
-  /* organic fade (non-rectangular) */
-  background:
-    radial-gradient(70% 110px at 10% 0%, rgba(247, 246, 242, 0.95) 0%, rgba(247, 246, 242, 0) 68%),
-    radial-gradient(80% 120px at 55% 0%, rgba(247, 246, 242, 0.95) 0%, rgba(247, 246, 242, 0) 70%),
-    radial-gradient(70% 110px at 95% 0%, rgba(247, 246, 242, 0.95) 0%, rgba(247, 246, 242, 0) 68%);
-  opacity: 0.95;
+  background: var(--bg);
+
+  /* organic fade using MASKS (non-rectangular) */
+  -webkit-mask-image:
+    radial-gradient(70% 120px at 12% 0%, #000 0%, transparent 72%),
+    radial-gradient(85% 140px at 55% 0%, #000 0%, transparent 74%),
+    radial-gradient(70% 120px at 92% 0%, #000 0%, transparent 72%),
+    linear-gradient(180deg, #000 0%, transparent 100%);
+  -webkit-mask-composite: source-over;
+  mask-image:
+    radial-gradient(70% 120px at 12% 0%, #000 0%, transparent 72%),
+    radial-gradient(85% 140px at 55% 0%, #000 0%, transparent 74%),
+    radial-gradient(70% 120px at 92% 0%, #000 0%, transparent 72%),
+    linear-gradient(180deg, #000 0%, transparent 100%);
+
+  opacity: 0.92;
 }
 .section::after {
   bottom: -1px;
-  background:
-    radial-gradient(70% 110px at 10% 100%, rgba(247, 246, 242, 0.95) 0%, rgba(247, 246, 242, 0) 68%),
-    radial-gradient(80% 120px at 55% 100%, rgba(247, 246, 242, 0.95) 0%, rgba(247, 246, 242, 0) 70%),
-    radial-gradient(70% 110px at 95% 100%, rgba(247, 246, 242, 0.95) 0%, rgba(247, 246, 242, 0) 68%);
-  opacity: 0.95;
+  background: var(--bg);
+
+  -webkit-mask-image:
+    radial-gradient(70% 120px at 12% 100%, #000 0%, transparent 72%),
+    radial-gradient(85% 140px at 55% 100%, #000 0%, transparent 74%),
+    radial-gradient(70% 120px at 92% 100%, #000 0%, transparent 72%),
+    linear-gradient(0deg, #000 0%, transparent 100%);
+  -webkit-mask-composite: source-over;
+  mask-image:
+    radial-gradient(70% 120px at 12% 100%, #000 0%, transparent 72%),
+    radial-gradient(85% 140px at 55% 100%, #000 0%, transparent 74%),
+    radial-gradient(70% 120px at 92% 100%, #000 0%, transparent 72%),
+    linear-gradient(0deg, #000 0%, transparent 100%);
+
+  opacity: 0.92;
 }
 
 /* Keep actual content above the fade layers */
