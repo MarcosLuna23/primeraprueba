@@ -878,6 +878,10 @@ h1 {
 .section {
   padding: 92px 0;
   position: relative;
+
+  /* Big perf win: skip rendering/painting offscreen sections until needed */
+  content-visibility: auto;
+  contain-intrinsic-size: 900px;
 }
 
 /* Visible waves (the first version you liked) */
@@ -916,7 +920,7 @@ h1 {
   border-bottom: 0;
 }
 
-.section__header { margin-bottom: 30px; }
+.section__header { margin-bottom: 30px; contain: layout paint; }
 .section__header h2 {
   margin: 0 0 10px;
   font-size: clamp(28px, 2.2vw, 38px);
