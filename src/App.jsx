@@ -449,8 +449,8 @@ function Services() {
         variants={m.fadeUp}
       >
         <div>
-          <h3>¿Buscas una web que te traiga clientes?</h3>
-          <p className="muted">Te decimos qué haríamos en tu caso y cuánto tardaríamos.</p>
+          <h3>Cuéntanos tu objetivo. Nosotros ponemos el plan.</h3>
+          <p className="muted">En 10 minutos entendemos tu caso y te decimos enfoque, plazos y presupuesto orientativo.</p>
         </div>
         <div className="ctaBand__right">
           <img className="sectionPhoto" src="/sections/services.jpg" alt="" loading="lazy" />
