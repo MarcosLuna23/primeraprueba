@@ -908,7 +908,21 @@ h1 {
 .is-scrolling .section::before,
 .is-scrolling .section::after {
   filter: none;
-  opacity: 0.35;
+  opacity: 0.28;
+}
+
+/* Reduce heavy shadows/filters while scrolling */
+.is-scrolling .box,
+.is-scrolling .steps li,
+.is-scrolling .faq details,
+.is-scrolling .hero__card .card,
+.is-scrolling .hero__card .iphoneFrame__screen {
+  box-shadow: none !important;
+}
+
+.is-scrolling .sponsors__logo {
+  filter: none !important;
+  opacity: 0.9;
 }
 .section::before {
   top: -1px;
@@ -1048,6 +1062,7 @@ h1 {
   border: 1px solid rgba(15, 23, 42, 0.10);
   background: var(--surface);
   transition: transform 220ms var(--ease), box-shadow 260ms var(--ease);
+  contain: layout paint;
 }
 .steps li:hover { transform: translateY(-2px); box-shadow: 0 16px 44px rgba(2, 8, 23, 0.08); }
 .steps h3 { margin: 0 0 8px; letter-spacing: -0.01em; }
@@ -1059,6 +1074,7 @@ h1 {
   padding: 16px 16px;
   background: rgba(255, 255, 255, 0.70);
   margin-bottom: 12px;
+  contain: layout paint;
 }
 .faq summary { cursor: pointer; font-weight: 900; }
 .faq p { margin: 10px 0 0; color: var(--muted); }
