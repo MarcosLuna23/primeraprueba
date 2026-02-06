@@ -788,6 +788,24 @@ function Contact() {
 }
 
 function SponsorsMarquee() {
+  const [isScrolling, setIsScrolling] = useState(false);
+
+  useEffect(() => {
+    // If the marquee is animating while the page scrolls, some devices will drop frames.
+    // Pause the marquee briefly during scroll for smoother UX.
+    let t = null;
+    const onScroll = () => {
+      setIsScrolling(true);
+      if (t) window.clearTimeout(t);
+      t = window.setTimeout(() => setIsScrolling(false), 140);
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      if (t) window.clearTimeout(t);
+    };
+  }, []);
+
   // Nota: usamos iconos SVG open-source (Simple Icons). Algunas marcas (ej. Vicio, ChatGPT)
   // puede que no tengan icono oficial aquí: en ese caso mostramos texto.
   const sponsors = [
@@ -812,10 +830,11 @@ function SponsorsMarquee() {
 
   const base = sponsors.filter((s) => s.logo);
   // Repeat logos so the strip is always wider than the viewport (prevents blank gaps on large screens)
-  const strip = Array.from({ length: 5 }, () => base).flat();
+  // Keep it reasonably small to avoid too many DOM nodes.
+  const strip = Array.from({ length: 3 }, () => base).flat();
 
   return (
-    <section className="sponsors" aria-label="Sponsors y colaboradores">
+    <section className={cn("sponsors", isScrolling && "is-scrolling")} aria-label="Sponsors y colaboradores">
       <div className="sponsors__viewport">
         {/* Two identical strips, shifted by 100% + gap. */}
         <div className="sponsors__group" aria-hidden="true">
