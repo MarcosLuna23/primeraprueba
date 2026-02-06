@@ -158,12 +158,20 @@ a { color: inherit; }
 }
 
 .headerIsland__pill {
+  /* knobs */
+  --pillW: 170px;
+  --pillWOpen: 280px;
+  --padL: 14px;
+  --padR: 12px;
+  --labelShift: 96px; /* how much “Disponible” slides left on hover */
+
+  position: relative;
   display: inline-flex;
   align-items: center;
-  gap: 10px;
+  justify-content: center;
 
   height: 42px;
-  padding: 0 12px;
+  padding: 0 var(--padR) 0 var(--padL);
   border-radius: 999px;
 
   /* dark island (classic iPhone vibe) */
@@ -175,46 +183,63 @@ a { color: inherit; }
 
   color: rgba(255, 255, 255, 0.92);
 
-  width: 170px;
+  width: var(--pillW);
   overflow: hidden;
   transition: width 220ms var(--ease), transform 220ms var(--ease), box-shadow 220ms var(--ease);
 }
 
 .headerIsland__pill:hover,
 .headerIsland__pill:focus-within {
-  width: 280px;
+  width: var(--pillWOpen);
   transform: translateY(-1px);
   box-shadow:
     0 24px 66px rgba(2, 8, 23, 0.22),
     inset 0 1px 0 rgba(255, 255, 255, 0.10);
 }
 
+/* dot sits at the left edge (doesn't affect centering) */
+.headerIsland__dot {
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: #22c55e;
+  box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.18);
+}
+
+/* centered label by default */
 .headerIsland__label {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+
   font-weight: 900;
   letter-spacing: -0.01em;
   font-size: 13px;
   line-height: 1;
   white-space: nowrap;
   opacity: 0.92;
+
+  transition: transform 220ms var(--ease);
 }
 
-.headerIsland__dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 999px;
-  background: #22c55e;
-  box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.18);
-  flex: 0 0 8px;
-}
-
+/* actions are on the right; appear on hover */
 .headerIsland__actions {
-  margin-left: auto;
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%) translateX(10px);
+
   display: inline-flex;
   align-items: center;
   gap: 6px;
 
   opacity: 0;
-  transform: translateX(10px);
   pointer-events: none;
   transition: opacity 180ms var(--ease), transform 180ms var(--ease);
 }
@@ -222,8 +247,14 @@ a { color: inherit; }
 .headerIsland__pill:hover .headerIsland__actions,
 .headerIsland__pill:focus-within .headerIsland__actions {
   opacity: 1;
-  transform: translateX(0);
+  transform: translateY(-50%) translateX(0);
   pointer-events: auto;
+}
+
+/* slide the label left on hover to make room for actions */
+.headerIsland__pill:hover .headerIsland__label,
+.headerIsland__pill:focus-within .headerIsland__label {
+  transform: translate(-50%, -50%) translateX(calc(-1 * var(--labelShift)));
 }
 
 .islandBtn {
