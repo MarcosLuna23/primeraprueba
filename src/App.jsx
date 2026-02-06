@@ -21,17 +21,17 @@ function useMotion() {
   const reduce = useReducedMotion();
 
   const fadeUp = {
-    hidden: { opacity: 0, y: reduce ? 0 : 14 },
+    hidden: { opacity: 0, y: reduce ? 0 : 10 },
     show: {
       opacity: 1,
       y: 0,
-      transition: { duration: 0.6, ease: [0.2, 0.8, 0.2, 1] },
+      transition: { duration: 0.65, ease: [0.2, 0.8, 0.2, 1] },
     },
   };
 
   const stagger = {
     hidden: {},
-    show: { transition: { staggerChildren: 0.08, delayChildren: 0.08 } },
+    show: { transition: { staggerChildren: 0.07, delayChildren: 0.06 } },
   };
 
   const inView = {
@@ -49,7 +49,7 @@ function Button({ as = "a", className, ...props }) {
   return <Comp className={cn("btn", className)} {...props} />;
 }
 
-function Section({ id, alt, title, subtitle, children }) {
+function Section({ id, alt, narrow, title, subtitle, children }) {
   const m = useMotion();
 
   return (
@@ -58,7 +58,7 @@ function Section({ id, alt, title, subtitle, children }) {
       className={cn("section", alt && "section--alt")}
       aria-label={title}
     >
-      <div className="container">
+      <div className={cn("container", narrow && "container--narrow")}>
         <motion.header className="section__header" {...m.inView}>
           <h2>{title}</h2>
           {subtitle ? <p className="section__sub">{subtitle}</p> : null}
@@ -432,7 +432,7 @@ function Team() {
 
 function Faq() {
   return (
-    <Section id="faq" title="FAQ" subtitle="Respuestas rápidas a lo que más nos preguntan.">
+    <Section id="faq" narrow title="FAQ" subtitle="Respuestas rápidas a lo que más nos preguntan.">
       <div className="faq">
         <details>
           <summary>¿Cuánto cuesta una web?</summary>
