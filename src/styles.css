@@ -234,6 +234,16 @@ h1 {
   box-shadow: var(--shadow);
   padding: 18px;
 }
+
+.heroPhoto {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  border-radius: 16px;
+  border: 1px solid rgba(15, 23, 42, 0.10);
+  margin-bottom: 14px;
+}
+
 .card__title { margin: 0 0 10px; font-size: 18px; }
 
 .checklist {
@@ -402,6 +412,49 @@ input:focus, textarea:focus { border-color: rgba(14, 165, 233, 0.55); box-shadow
 /* accessibility: avoid any leftover animations for users who prefer it */
 @media (prefers-reduced-motion: reduce) {
   * { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; scroll-behavior: auto !important; }
+}
+
+/* Sponsors marquee (infinite) */
+.sponsors {
+  width: 100%;
+  border-top: 1px solid rgba(15, 23, 42, 0.08);
+  border-bottom: 1px solid rgba(15, 23, 42, 0.08);
+  background: rgba(255, 255, 255, 0.65);
+  overflow: hidden;
+}
+.sponsors__inner {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  padding: 14px 0;
+  width: 100%;
+}
+.sponsors__track {
+  display: flex;
+  gap: 14px;
+  flex: 0 0 auto;
+  min-width: 100%;
+  animation: marquee 26s linear infinite;
+  will-change: transform;
+}
+.sponsors__item {
+  flex: 0 0 auto;
+  padding: 10px 14px;
+  border-radius: 999px;
+  border: 1px solid rgba(15, 23, 42, 0.10);
+  background: rgba(255, 255, 255, 0.88);
+  color: rgba(15, 23, 42, 0.78);
+  font-weight: 800;
+  font-size: 13px;
+  letter-spacing: 0.1px;
+}
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-100%); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .sponsors__track { animation: none; }
 }
 .footer__links a { text-decoration: none; }
 .footer__links a:hover { text-decoration: underline; }

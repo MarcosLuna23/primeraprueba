@@ -163,6 +163,12 @@ function Hero() {
 
         <motion.div className="hero__card" aria-label="Resumen de servicios" {...m.inView}>
           <div className="card">
+            <img
+              className="heroPhoto"
+              src="/hero.jpg"
+              alt="Equipo trabajando en un proyecto digital"
+              loading="lazy"
+            />
             <h2 className="card__title">Lo que entregamos</h2>
             <ul className="checklist">
               <li>Web optimizada (Core Web Vitals)</li>
@@ -192,14 +198,22 @@ function Hero() {
 }
 
 function Services() {
+  const m = useMotion();
+
   return (
     <Section
       id="servicios"
       title="Servicios"
       subtitle={`Web, apps y software a medida desde ${BRAND.city} para toda ${BRAND.country}.`}
     >
-      <div className="grid grid--3">
-        <article className="box">
+      <motion.div
+        className="grid grid--3"
+        variants={m.stagger}
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true, amount: 0.2 }}
+      >
+        <motion.article className="box" variants={m.fadeUp}>
           <h3>Diseño y desarrollo web</h3>
           <p>Web corporativa, landing pages y e-commerce. Rápidas, accesibles y listas para posicionar.</p>
           <ul className="mini">
@@ -207,9 +221,9 @@ function Services() {
             <li>Copy + estructura de conversión</li>
             <li>Optimización de velocidad</li>
           </ul>
-        </article>
+        </motion.article>
 
-        <article className="box">
+        <motion.article className="box" variants={m.fadeUp}>
           <h3>Aplicaciones web</h3>
           <p>Paneles de administración, CRMs, automatizaciones, integraciones y productos tipo SaaS.</p>
           <ul className="mini">
@@ -217,9 +231,9 @@ function Services() {
             <li>Integración con herramientas</li>
             <li>APIs seguras</li>
           </ul>
-        </article>
+        </motion.article>
 
-        <article className="box">
+        <motion.article className="box" variants={m.fadeUp}>
           <h3>Mantenimiento y mejora</h3>
           <p>Actualizaciones, seguridad, copias de seguridad, monitorización y mejoras continuas.</p>
           <ul className="mini">
@@ -227,16 +241,22 @@ function Services() {
             <li>Backups y recuperación</li>
             <li>Roadmap mensual</li>
           </ul>
-        </article>
-      </div>
+        </motion.article>
+      </motion.div>
 
-      <div className="ctaBand">
+      <motion.div
+        className="ctaBand"
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true, amount: 0.2 }}
+        variants={m.fadeUp}
+      >
         <div>
           <h3>¿Buscas una web que te traiga clientes?</h3>
           <p className="muted">Te decimos qué haríamos en tu caso y cuánto tardaríamos.</p>
         </div>
         <Button className="btn--primary" href="#contacto">Hablar con el equipo</Button>
-      </div>
+      </motion.div>
     </Section>
   );
 }
@@ -512,6 +532,39 @@ function Contact() {
   );
 }
 
+function SponsorsMarquee() {
+  const sponsors = [
+    "Google Analytics",
+    "Vercel",
+    "React",
+    "Node.js",
+    "Stripe",
+    "Zapier",
+    "WordPress",
+    "Matomo",
+  ];
+
+  // duplicate list for seamless loop
+  const items = [...sponsors, ...sponsors];
+
+  return (
+    <section className="sponsors" aria-label="Sponsors y colaboradores">
+      <div className="sponsors__inner">
+        <div className="sponsors__track" aria-hidden="true">
+          {items.map((s, i) => (
+            <div key={`${s}-${i}`} className="sponsors__item">{s}</div>
+          ))}
+        </div>
+        <div className="sponsors__track" aria-hidden="true">
+          {items.map((s, i) => (
+            <div key={`b-${s}-${i}`} className="sponsors__item">{s}</div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function Footer() {
   const year = new Date().getFullYear();
   return (
@@ -548,6 +601,7 @@ export default function App() {
       <Header />
       <main id="contenido">
         <Hero />
+        <SponsorsMarquee />
         <Services />
         <Projects />
         <Process />
