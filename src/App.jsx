@@ -1,9 +1,10 @@
 import { useEffect, useMemo, useState } from "react";
+import { motion, useReducedMotion } from "framer-motion";
 import "./styles.css";
 
 const BRAND = {
-  name: "Marcos Tomás Dev",
-  tagline: "Webs rápidas y apps a medida",
+  name: "Axon Web Studio",
+  tagline: "Webs rápidas y apps a medida", 
   city: "Valencia",
   country: "España",
   email: "marcostomascampos@gmail.com",
@@ -16,22 +17,56 @@ function cn(...xs) {
   return xs.filter(Boolean).join(" ");
 }
 
+function useMotion() {
+  const reduce = useReducedMotion();
+
+  const fadeUp = {
+    hidden: { opacity: 0, y: reduce ? 0 : 14 },
+    show: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.6, ease: [0.2, 0.8, 0.2, 1] },
+    },
+  };
+
+  const stagger = {
+    hidden: {},
+    show: { transition: { staggerChildren: 0.08, delayChildren: 0.08 } },
+  };
+
+  const inView = {
+    initial: "hidden",
+    whileInView: "show",
+    viewport: { once: true, amount: 0.22, margin: "-40px" },
+    variants: fadeUp,
+  };
+
+  return { reduce, fadeUp, stagger, inView };
+}
+
 function Button({ as = "a", className, ...props }) {
   const Comp = as;
   return <Comp className={cn("btn", className)} {...props} />;
 }
 
 function Section({ id, alt, title, subtitle, children }) {
+  const m = useMotion();
+
   return (
-    <section id={id} className={cn("section", alt && "section--alt")}
+    <section
+      id={id}
+      className={cn("section", alt && "section--alt")}
       aria-label={title}
     >
       <div className="container">
-        <header className="section__header">
+        <motion.header className="section__header" {...m.inView}>
           <h2>{title}</h2>
           {subtitle ? <p className="section__sub">{subtitle}</p> : null}
-        </header>
-        {children}
+        </motion.header>
+
+        <motion.div {...m.inView}>
+          {children}
+        </motion.div>
       </div>
     </section>
   );
@@ -93,28 +128,39 @@ function Header({ onNav }) {
 }
 
 function Hero() {
+  const m = useMotion();
+
   return (
     <section id="inicio" className="hero">
       <div className="container hero__grid">
-        <div className="hero__copy">
-          <p className="pill">{BRAND.city} · Toda {BRAND.country} · Presupuesto en 24h</p>
-          <h1>Desarrollo web y apps a medida para captar clientes</h1>
-          <p className="lead">
+        <motion.div
+          className="hero__copy"
+          variants={m.stagger}
+          initial="hidden"
+          animate="show"
+        >
+          <motion.p className="pill" variants={m.fadeUp}>
+            {BRAND.city} · Toda {BRAND.country} · Presupuesto en 24h
+          </motion.p>
+          <motion.h1 variants={m.fadeUp}>
+            Desarrollo web y apps a medida para captar clientes
+          </motion.h1>
+          <motion.p className="lead" variants={m.fadeUp}>
             Creamos webs rápidas, modernas y orientadas a convertir: desde landings hasta aplicaciones web complejas.
             Diseño + desarrollo + mantenimiento, sin líos.
-          </p>
-          <div className="hero__actions">
+          </motion.p>
+          <motion.div className="hero__actions" variants={m.fadeUp}>
             <Button className="btn--primary" href="#contacto">Pedir presupuesto</Button>
             <Button className="btn--ghost" href="#proyectos">Ver proyectos</Button>
-          </div>
-          <ul className="trust">
+          </motion.div>
+          <motion.ul className="trust" variants={m.fadeUp}>
             <li>Respuesta &lt; 24h</li>
             <li>Plazos realistas</li>
             <li>Soporte y evolución</li>
-          </ul>
-        </div>
+          </motion.ul>
+        </motion.div>
 
-        <div className="hero__card" aria-label="Resumen de servicios">
+        <motion.div className="hero__card" aria-label="Resumen de servicios" {...m.inView}>
           <div className="card">
             <h2 className="card__title">Lo que entregamos</h2>
             <ul className="checklist">
@@ -126,10 +172,10 @@ function Hero() {
             </ul>
             <p className="muted">*Adaptamos la propuesta a tu caso (pyme, clínica, inmobiliaria, startup…).</p>
           </div>
-        </div>
+        </motion.div>
       </div>
 
-      <div className="container logos" aria-label="Tecnologías">
+      <motion.div className="container logos" aria-label="Tecnologías" {...m.inView}>
         <p className="logos__label">Trabajamos con:</p>
         <div className="logos__row">
           <span className="chip">HTML/CSS/JS</span>
@@ -139,7 +185,7 @@ function Hero() {
           <span className="chip">WordPress (si encaja)</span>
           <span className="chip">SEO</span>
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 }
