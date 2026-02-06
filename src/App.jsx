@@ -242,7 +242,13 @@ function Hero() {
 
         <motion.div className="hero__card" aria-label="Resumen de servicios" {...m.inView}>
           <div className="iphoneFrame" aria-hidden="true">
-            <img className="iphoneFrame__img" src="/iphone-14-pro-silver.svg" alt="" />
+            <img
+              className="iphoneFrame__img"
+              src="/iphone-14-pro-silver.svg"
+              alt=""
+              decoding="async"
+              fetchpriority="high"
+            />
 
             {/* Screen overlay: aligned to the SVG screen cutout */}
             <div className="iphoneFrame__screen">
@@ -480,7 +486,7 @@ function Services() {
           <p className="muted">En 10 minutos entendemos tu caso y te decimos enfoque, plazos y presupuesto orientativo.</p>
         </div>
         <div className="ctaBand__right">
-          <img className="sectionPhoto" src="/sections/services.jpg" alt="" loading="lazy" />
+          <img className="sectionPhoto" src="/sections/services.jpg" alt="" loading="lazy" decoding="async" />
         </div>
       </motion.div>
     </Section>
@@ -505,7 +511,7 @@ function Projects() {
         viewport={{ once: true, amount: 0.2 }}
       >
         <motion.article className="case" variants={m.fadeUp}>
-          <img className="casePhoto" src="/sections/projects.jpg" alt="" loading="lazy" />
+          <img className="casePhoto" src="/sections/projects.jpg" alt="" loading="lazy" decoding="async" />
           <div className="case__top">
             <h3>Tienda de vinilos (Loopers)</h3>
             <p className="muted">Objetivo: ventas</p>
@@ -519,7 +525,7 @@ function Projects() {
         </motion.article>
 
         <motion.article className="case" variants={m.fadeUp}>
-          <img className="casePhoto" src="/sections/team.jpg" alt="" loading="lazy" />
+          <img className="casePhoto" src="/sections/team.jpg" alt="" loading="lazy" decoding="async" />
           <div className="case__top">
             <h3>Plataforma de entrenamiento cognitivo</h3>
             <p className="muted">Objetivo: ayudar a usuarios y cuidadores</p>
@@ -533,7 +539,7 @@ function Projects() {
         </motion.article>
 
         <motion.article className="case" variants={m.fadeUp}>
-          <img className="casePhoto" src="/sections/services.jpg" alt="" loading="lazy" />
+          <img className="casePhoto" src="/sections/services.jpg" alt="" loading="lazy" decoding="async" />
           <div className="case__top">
             <h3>Landing de captación + SEO</h3>
             <p className="muted">Objetivo: leads cualificados</p>
@@ -605,7 +611,7 @@ function Team() {
         viewport={{ once: true, amount: 0.2 }}
       >
         <motion.div className="box" variants={m.fadeUp}>
-          <img className="sectionPhoto" src="/sections/team.jpg" alt="" loading="lazy" />
+          <img className="sectionPhoto" src="/sections/team.jpg" alt="" loading="lazy" decoding="async" />
           <h3>Lo que valoran nuestros clientes</h3>
           <ul className="mini">
             <li>Comunicación clara</li>
@@ -748,7 +754,7 @@ function Contact() {
         </form>
 
         <aside className="box">
-          <img className="sectionPhoto" src="/sections/contact.jpg" alt="" loading="lazy" />
+          <img className="sectionPhoto" src="/sections/contact.jpg" alt="" loading="lazy" decoding="async" />
           <h3>Zona de trabajo</h3>
           <p>
             Estamos en <strong>{BRAND.city}</strong> y trabajamos también en remoto para <strong>toda {BRAND.country}</strong>.
@@ -813,7 +819,7 @@ function SponsorsMarquee() {
               aria-label={s.name}
               role="img"
             >
-              <img className="sponsors__logo" src={s.logo} alt={s.name} loading="lazy" />
+              <img className="sponsors__logo" src={s.logo} alt={s.name} loading="lazy" decoding="async" />
             </div>
           ))}
         </div>
@@ -826,7 +832,7 @@ function SponsorsMarquee() {
               aria-label={s.name}
               role="img"
             >
-              <img className="sponsors__logo" src={s.logo} alt={s.name} loading="lazy" />
+              <img className="sponsors__logo" src={s.logo} alt={s.name} loading="lazy" decoding="async" />
             </div>
           ))}
         </div>
