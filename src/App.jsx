@@ -116,34 +116,37 @@ function Header({ onNav }) {
 
         {/* Dynamic island */}
         <div className={cn("headerIsland", open && "is-open")} aria-label="Accesos rápidos">
-          <div className="headerIsland__pill">
-            <span className="headerIsland__dot" aria-hidden="true" />
-            <span className="headerIsland__label">Disponible</span>
+          <div className="headerIsland__wrap">
+            <div className="headerIsland__pill" aria-label="Acciones rápidas">
+              <span className="headerIsland__dot" aria-hidden="true" />
 
-            <div className="headerIsland__actions" aria-label="Acciones">
-              <a className="islandBtn" href={`mailto:${BRAND.email}`} aria-label="Enviar email">
-                <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
-                  <path fill="currentColor" d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2Zm0 4-8 5-8-5V6l8 5 8-5v2Z"/>
-                </svg>
-              </a>
-              <a className="islandBtn" href={`tel:+${BRAND.phoneWa}`} aria-label="Llamar">
-                <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
-                  <path fill="currentColor" d="M6.6 10.8c1.3 2.4 3.2 4.3 5.6 5.6l1.9-1.9c.2-.2.6-.3.9-.2 1 .3 2.1.5 3.2.5.5 0 .9.4.9.9V20c0 .5-.4.9-.9.9C10.4 20.9 3.1 13.6 3.1 4.9c0-.5.4-.9.9-.9h3.4c.5 0 .9.4.9.9 0 1.1.2 2.2.5 3.2.1.3 0 .7-.2.9l-2 1.9Z"/>
-                </svg>
-              </a>
-              <a
-                className="islandBtn"
-                href={`https://wa.me/${BRAND.phoneWa}?text=${encodeURIComponent("Hola, quiero presupuesto")}`}
-                target="_blank"
-                rel="noreferrer"
-                aria-label="WhatsApp"
-              >
-                <svg viewBox="0 0 32 32" width="18" height="18" aria-hidden="true">
-                  <path fill="currentColor" d="M19.11 17.53c-.26-.13-1.51-.75-1.75-.84-.23-.09-.4-.13-.56.13-.16.26-.65.84-.8 1.01-.15.17-.29.2-.55.07-.26-.13-1.08-.4-2.05-1.28-.76-.67-1.27-1.5-1.42-1.76-.15-.26-.02-.4.11-.53.12-.12.26-.29.39-.43.13-.14.17-.23.26-.39.09-.16.04-.3-.02-.43-.06-.13-.56-1.36-.77-1.86-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.43.06-.66.3-.23.26-.87.85-.87 2.07 0 1.22.89 2.4 1.01 2.57.13.17 1.75 2.67 4.25 3.75.59.26 1.05.41 1.41.52.59.19 1.12.16 1.54.1.47-.07 1.51-.62 1.72-1.22.21-.6.21-1.12.15-1.22-.06-.1-.23-.16-.49-.29Z"/>
-                  <path fill="currentColor" d="M16.02 3C9.39 3 4 8.38 4 15c0 2.31.65 4.47 1.78 6.31L4.6 29l7.87-1.99A12 12 0 0 0 16.02 27c6.63 0 12.02-5.38 12.02-12S22.65 3 16.02 3Zm0 21.84c-2.03 0-3.9-.6-5.47-1.63l-.39-.25-4.67 1.18 1.25-4.55-.26-.41A9.79 9.79 0 0 1 6.2 15c0-5.42 4.4-9.82 9.82-9.82s9.82 4.4 9.82 9.82-4.4 9.84-9.82 9.84Z"/>
-                </svg>
-              </a>
+              <div className="headerIsland__actions" aria-label="Acciones">
+                <a className="islandBtn" href={`mailto:${BRAND.email}`} aria-label="Enviar email">
+                  <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+                    <path fill="currentColor" d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2Zm0 4-8 5-8-5V6l8 5 8-5v2Z"/>
+                  </svg>
+                </a>
+                <a className="islandBtn" href={`tel:+${BRAND.phoneWa}`} aria-label="Llamar">
+                  <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+                    <path fill="currentColor" d="M6.6 10.8c1.3 2.4 3.2 4.3 5.6 5.6l1.9-1.9c.2-.2.6-.3.9-.2 1 .3 2.1.5 3.2.5.5 0 .9.4.9.9V20c0 .5-.4.9-.9.9C10.4 20.9 3.1 13.6 3.1 4.9c0-.5.4-.9.9-.9h3.4c.5 0 .9.4.9.9 0 1.1.2 2.2.5 3.2.1.3 0 .7-.2.9l-2 1.9Z"/>
+                  </svg>
+                </a>
+                <a
+                  className="islandBtn"
+                  href={`https://wa.me/${BRAND.phoneWa}?text=${encodeURIComponent("Hola, quiero presupuesto")}`}
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label="WhatsApp"
+                >
+                  <svg viewBox="0 0 32 32" width="18" height="18" aria-hidden="true">
+                    <path fill="currentColor" d="M19.11 17.53c-.26-.13-1.51-.75-1.75-.84-.23-.09-.4-.13-.56.13-.16.26-.65.84-.8 1.01-.15.17-.29.2-.55.07-.26-.13-1.08-.4-2.05-1.28-.76-.67-1.27-1.5-1.42-1.76-.15-.26-.02-.4.11-.53.12-.12.26-.29.39-.43.13-.14.17-.23.26-.39.09-.16.04-.3-.02-.43-.06-.13-.56-1.36-.77-1.86-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.43.06-.66.3-.23.26-.87.85-.87 2.07 0 1.22.89 2.4 1.01 2.57.13.17 1.75 2.67 4.25 3.75.59.26 1.05.41 1.41.52.59.19 1.12.16 1.54.1.47-.07 1.51-.62 1.72-1.22.21-.6.21-1.12.15-1.22-.06-.1-.23-.16-.49-.29Z"/>
+                    <path fill="currentColor" d="M16.02 3C9.39 3 4 8.38 4 15c0 2.31.65 4.47 1.78 6.31L4.6 29l7.87-1.99A12 12 0 0 0 16.02 27c6.63 0 12.02-5.38 12.02-12S22.65 3 16.02 3Zm0 21.84c-2.03 0-3.9-.6-5.47-1.63l-.39-.25-4.67 1.18 1.25-4.55-.26-.41A9.79 9.79 0 0 1 6.2 15c0-5.42 4.4-9.82 9.82-9.82s9.82 4.4 9.82 9.82-4.4 9.84-9.82 9.84Z"/>
+                  </svg>
+                </a>
+              </div>
             </div>
+
+            <span className="headerIsland__status" aria-label="Estado">Disponible</span>
           </div>
         </div>
 

@@ -158,17 +158,25 @@ a { color: inherit; }
   min-width: 0;
 }
 
-.headerIsland__pill {
+.headerIsland__wrap {
   /* Tuning knobs */
-  --islandW: 170px;
-  --islandWOpen: 280px;
-  --rightPad: 12px;
-  --labelShift: 112px; /* how far “Disponible” slides left on hover */
+  --pillW: 168px;
+  --pillWOpen: 280px;
+  --statusW: 108px; /* width for the “Disponible” chip */
+  --gap: 10px;
 
   position: relative;
+  height: 42px;
+  width: calc(var(--pillW) + var(--statusW) + var(--gap));
+}
+
+.headerIsland__pill {
+  position: absolute;
+  right: calc(var(--statusW) + var(--gap));
+  top: 0;
+
   display: inline-flex;
   align-items: center;
-  justify-content: flex-start;
   gap: 10px;
 
   height: 42px;
@@ -184,19 +192,40 @@ a { color: inherit; }
 
   color: rgba(255, 255, 255, 0.92);
 
-  width: var(--islandW);
-  max-width: 56vw;
+  width: var(--pillW);
   overflow: hidden;
   transition: width 220ms var(--ease), transform 220ms var(--ease), box-shadow 220ms var(--ease);
 }
 
-.headerIsland__pill:hover,
-.headerIsland__pill:focus-within {
-  width: var(--islandWOpen);
+.headerIsland__wrap:hover .headerIsland__pill,
+.headerIsland__wrap:focus-within .headerIsland__pill {
+  width: var(--pillWOpen);
   transform: translateY(-1px);
   box-shadow:
     0 24px 66px rgba(2, 8, 23, 0.22),
     inset 0 1px 0 rgba(255, 255, 255, 0.10);
+}
+
+.headerIsland__status {
+  position: absolute;
+  right: 0;
+  top: 0;
+
+  width: var(--statusW);
+  height: 42px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+
+  font-weight: 900;
+  letter-spacing: -0.01em;
+  font-size: 13px;
+  line-height: 1;
+
+  color: rgba(255, 255, 255, 0.92);
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  background: rgba(255, 255, 255, 0.06);
 }
 
 .headerIsland__dot {
@@ -208,50 +237,23 @@ a { color: inherit; }
   flex: 0 0 8px;
 }
 
-/* Put “Disponible” at the far right */
-.headerIsland__label {
-  position: absolute;
-  right: var(--rightPad);
-  top: 50%;
-  transform: translateY(-50%);
-
-  font-weight: 900;
-  letter-spacing: -0.01em;
-  font-size: 13px;
-  line-height: 1;
-  white-space: nowrap;
-  opacity: 0.92;
-
-  transition: transform 220ms var(--ease);
-}
-
-/* Actions live to the left of the label, and fade in on hover */
 .headerIsland__actions {
-  position: absolute;
-  right: calc(var(--rightPad) + 78px); /* keep some space for the label */
-  top: 50%;
-  transform: translateY(-50%) translateX(10px);
-
+  margin-left: auto;
   display: inline-flex;
   align-items: center;
   gap: 6px;
 
   opacity: 0;
+  transform: translateX(10px);
   pointer-events: none;
   transition: opacity 180ms var(--ease), transform 180ms var(--ease);
 }
 
-.headerIsland__pill:hover .headerIsland__actions,
-.headerIsland__pill:focus-within .headerIsland__actions {
+.headerIsland__wrap:hover .headerIsland__actions,
+.headerIsland__wrap:focus-within .headerIsland__actions {
   opacity: 1;
-  transform: translateY(-50%) translateX(0);
+  transform: translateX(0);
   pointer-events: auto;
-}
-
-/* When actions appear, slide “Disponible” left so everything fits */
-.headerIsland__pill:hover .headerIsland__label,
-.headerIsland__pill:focus-within .headerIsland__label {
-  transform: translateY(-50%) translateX(calc(-1 * var(--labelShift)));
 }
 
 .islandBtn {
