@@ -202,14 +202,17 @@ function Hero() {
             Diseño + desarrollo + mantenimiento, sin líos.
           </motion.p>
           <motion.div className="hero__actions" variants={m.fadeUp}>
+            <Button className="btn--primary" href="#contacto">
+              Pedir presupuesto
+            </Button>
             <Button
               className="btn--wa"
-              href={waLink("Hola, vengo desde la web. Quiero presupuesto para una tienda online / web.")}
+              href={waLink("Hola, vengo desde la web. Quiero presupuesto para una web/app.")}
               target="_blank"
               rel="noreferrer"
             >
               <WhatsAppIcon className="waIcon" />
-              Hablar por WhatsApp
+              WhatsApp
             </Button>
             <Button className="btn--ghost" href="#proyectos">Ver proyectos</Button>
           </motion.div>
@@ -306,14 +309,8 @@ function Results() {
       </motion.div>
 
       <div style={{ marginTop: 18 }}>
-        <Button
-          className="btn--wa"
-          href={waLink("Hola, quiero mejorar mi web para vender más. ¿Podemos hablar?")}
-          target="_blank"
-          rel="noreferrer"
-        >
-          <WhatsAppIcon className="waIcon" />
-          Hablar por WhatsApp
+        <Button className="btn--primary" href="#contacto">
+          Pedir presupuesto
         </Button>
       </div>
     </Section>
@@ -395,14 +392,8 @@ function Pricing() {
       </p>
 
       <div style={{ marginTop: 14 }}>
-        <Button
-          className="btn--wa"
-          href={waLink("Hola, he visto los precios orientativos. Quiero presupuesto para mi caso (objetivo + plazo).")}
-          target="_blank"
-          rel="noreferrer"
-        >
-          <WhatsAppIcon className="waIcon" />
-          Pedir presupuesto por WhatsApp
+        <Button className="btn--primary" href="#contacto">
+          Pedir presupuesto
         </Button>
       </div>
     </Section>

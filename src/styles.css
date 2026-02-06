@@ -221,11 +221,15 @@ a { color: inherit; }
   transition: transform 160ms var(--ease), box-shadow 240ms var(--ease), filter 200ms var(--ease);
 }
 .nav__cta:hover {
+  background: linear-gradient(135deg, #1DB954, #128C7E);
+  color: #fff;
   transform: translateY(-1px);
   box-shadow: 0 16px 34px rgba(0, 0, 0, 0.14);
   filter: saturate(1.05);
 }
 .nav__cta:active {
+  background: linear-gradient(135deg, #199E49, #0F6F64);
+  color: #fff;
   transform: translateY(0);
   box-shadow: 0 10px 24px rgba(0, 0, 0, 0.12);
 }
@@ -313,8 +317,16 @@ h1 {
   color: #fff;
   border-color: rgba(18, 140, 126, 0.25);
 }
+/* Override generic .btn:hover (which lightens bg) */
 .btn--wa:hover {
+  background: linear-gradient(135deg, #1DB954, #128C7E); /* darker on hover */
+  color: #fff;
+  border-color: rgba(18, 140, 126, 0.32);
   box-shadow: 0 18px 42px rgba(0, 0, 0, 0.14);
+}
+.btn--wa:active {
+  background: linear-gradient(135deg, #199E49, #0F6F64);
+  color: #fff;
 }
 
 /* Ghost: glassy */
@@ -613,6 +625,20 @@ input:focus, textarea:focus { border-color: rgba(14, 165, 233, 0.55); box-shadow
   gap: 14px;
   color: var(--muted);
 }
+
+/* First-load micro-animation (subtle) */
+@keyframes popInSoft {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Add a gentle first-load entrance to key CTAs */
+.nav__cta,
+.btn--wa {
+  animation: popInSoft 520ms var(--ease) both;
+}
+.nav__cta { animation-delay: 120ms; }
+.btn--wa { animation-delay: 220ms; }
 
 /* accessibility: avoid any leftover animations for users who prefer it */
 @media (prefers-reduced-motion: reduce) {
