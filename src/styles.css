@@ -280,7 +280,7 @@ h1 {
 .hero__card {
   /* Make the phone overlay the hero instead of pushing layout */
   position: absolute;
-  right: clamp(-140px, -8vw, -40px);
+  right: 0; /* keep it on-screen (body has overflow-x hidden) */
   top: -12px;
   display: flex;
   justify-content: flex-end;
@@ -293,7 +293,7 @@ h1 {
 /* iPhone 14 Pro Silver SVG frame + screen overlay */
 .iphoneFrame {
   position: relative;
-  width: min(420px, 100%);
+  width: min(360px, 42vw);
   aspect-ratio: 432 / 881;
 }
 
