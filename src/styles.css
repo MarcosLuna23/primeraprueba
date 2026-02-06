@@ -241,6 +241,7 @@ a { color: inherit; }
 
 .hero { padding: 86px 0 34px; }
 .hero__grid {
+  position: relative;
   display: grid;
   grid-template-columns: 1.25fr 0.75fr;
   gap: 44px;
@@ -275,7 +276,17 @@ h1 {
 
 .hero__actions { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 14px; }
 
-.hero__card { display: flex; justify-content: flex-end; }
+.hero__card {
+  /* Make the phone overlay the hero instead of pushing layout */
+  position: absolute;
+  right: 0;
+  top: 0;
+  display: flex;
+  justify-content: flex-end;
+  pointer-events: none; /* allow selecting/clicking content under it */
+}
+
+.hero__card .card { pointer-events: auto; }
 
 .btn {
   display: inline-flex;
@@ -360,7 +371,7 @@ h1 {
   position: relative;
   overflow: hidden;
 
-  width: min(380px, 100%);
+  width: min(420px, 100%);
   aspect-ratio: 9 / 19.5;
   margin-left: auto;
   margin-right: 0;
@@ -860,7 +871,7 @@ input:focus, textarea:focus { border-color: rgba(14, 165, 233, 0.55); box-shadow
 
 @media (max-width: 960px) {
   .hero__grid { grid-template-columns: 1fr; }
-  .hero__card { justify-content: center; }
+  .hero__card { position: static; justify-content: center; pointer-events: auto; }
   .grid--4 { grid-template-columns: 1fr; }
   .grid--3 { grid-template-columns: 1fr; }
   .grid--2 { grid-template-columns: 1fr; }
