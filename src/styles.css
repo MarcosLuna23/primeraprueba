@@ -280,12 +280,12 @@ h1 {
 .hero__card {
   /* Make the phone overlay the hero instead of pushing layout */
   position: absolute;
-  right: -42px; /* push further to the right */
-  top: -10px;
+  right: -120px; /* keep it further right than the marquee width */
+  top: -12px;
   display: flex;
   justify-content: flex-end;
   pointer-events: none; /* allow selecting/clicking content under it */
-  z-index: 10; /* above waves + section decorations */
+  z-index: 20; /* above waves + section decorations */
 }
 
 .hero__card .card { pointer-events: auto; }
@@ -296,60 +296,60 @@ h1 {
   justify-content: center;
   gap: 10px;
   padding: 12px 18px;
-  border-radius: 16px; /* less "pill", more premium product */
-  border: 1px solid rgba(15, 23, 42, 0.12);
-  background: rgba(255, 255, 255, 0.72);
+  border-radius: 18px;
+
+  /* iOS-style glass */
+  border: 1px solid rgba(255, 255, 255, 0.40);
+  background: rgba(255, 255, 255, 0.38);
+  backdrop-filter: blur(14px) saturate(1.25);
+  -webkit-backdrop-filter: blur(14px) saturate(1.25);
+
   text-decoration: none;
   cursor: pointer;
   font-weight: 900;
   font-size: 14px;
   letter-spacing: -0.01em;
   color: rgba(15, 23, 42, 0.92);
-  transition: background 200ms var(--ease), border-color 200ms var(--ease), box-shadow 240ms var(--ease);
+
+  box-shadow:
+    0 10px 28px rgba(2, 8, 23, 0.10),
+    inset 0 1px 0 rgba(255, 255, 255, 0.55);
+  transition:
+    transform 180ms var(--ease),
+    background 200ms var(--ease),
+    border-color 200ms var(--ease),
+    box-shadow 240ms var(--ease);
 }
 .btn:hover {
-  background: rgba(255, 255, 255, 0.86);
-  border-color: rgba(15, 23, 42, 0.16);
-  box-shadow: 0 14px 34px rgba(2, 8, 23, 0.10);
+  transform: translateY(-1px);
+  background: rgba(255, 255, 255, 0.46);
+  border-color: rgba(255, 255, 255, 0.55);
+  box-shadow:
+    0 16px 44px rgba(2, 8, 23, 0.14),
+    inset 0 1px 0 rgba(255, 255, 255, 0.60);
 }
-.btn:active { box-shadow: 0 8px 18px rgba(2, 8, 23, 0.10); }
+.btn:active {
+  transform: translateY(0);
+  box-shadow:
+    0 10px 28px rgba(2, 8, 23, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.50);
+}
 
-/* Primary: calm gradient, no jump */
+/* Primary: tinted glass (no hard gradient) */
 .btn--primary {
-  background: linear-gradient(135deg, rgba(14, 165, 233, 0.90), rgba(37, 99, 235, 0.86));
-  color: #fff;
-  border-color: rgba(14, 165, 233, 0.18);
+  background: rgba(37, 99, 235, 0.20);
+  border-color: rgba(37, 99, 235, 0.28);
+  color: rgba(15, 23, 42, 0.95);
 }
 .btn--primary:hover {
-  /* Override generic .btn:hover which would turn it white */
-  background: linear-gradient(135deg, rgba(14, 165, 233, 0.94), rgba(37, 99, 235, 0.90));
-  color: #fff;
-  border-color: rgba(14, 165, 233, 0.22);
-  box-shadow: 0 18px 42px rgba(37, 99, 235, 0.16);
+  background: rgba(37, 99, 235, 0.26);
+  border-color: rgba(37, 99, 235, 0.34);
 }
 
-/* WhatsApp buttons */
-.btn--wa {
-  background: linear-gradient(135deg, #25D366, #1ebe5b);
-  color: #fff;
-  border-color: rgba(18, 140, 126, 0.25);
-}
-/* Override generic .btn:hover (which lightens bg) */
-.btn--wa:hover {
-  background: linear-gradient(135deg, #1DB954, #128C7E); /* darker on hover */
-  color: #fff;
-  border-color: rgba(18, 140, 126, 0.32);
-  box-shadow: 0 18px 42px rgba(0, 0, 0, 0.14);
-}
-.btn--wa:active {
-  background: linear-gradient(135deg, #199E49, #0F6F64);
-  color: #fff;
-}
-
-/* Ghost: glassy */
+/* Ghost: extra light glass */
 .btn--ghost {
-  background: rgba(255, 255, 255, 0.45);
-  color: rgba(15, 23, 42, 0.92);
+  background: rgba(255, 255, 255, 0.22);
+  border-color: rgba(255, 255, 255, 0.30);
 }
 
 .trust {
@@ -741,14 +741,17 @@ input:focus, textarea:focus { border-color: rgba(14, 165, 233, 0.55); box-shadow
 .divider { height: 1px; background: rgba(15, 23, 42, 0.10); margin: 16px 0; }
 
 .footer {
-  padding: 44px 0 54px;
-  background: #05070b;
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 54px 0 62px;
+  background:
+    radial-gradient(900px 420px at 20% 0%, rgba(14, 165, 233, 0.16), transparent 60%),
+    radial-gradient(900px 420px at 80% 0%, rgba(243, 214, 198, 0.18), transparent 62%),
+    linear-gradient(180deg, #05070b, #03040a);
+  border-top: 1px solid rgba(255, 255, 255, 0.10);
   color: rgba(255, 255, 255, 0.92);
 }
 
-.footer .muted { color: rgba(255, 255, 255, 0.70); }
-.footer .small { color: rgba(255, 255, 255, 0.72); }
+.footer .muted { color: rgba(255, 255, 255, 0.72); }
+.footer .small { color: rgba(255, 255, 255, 0.74); }
 
 .footer__grid {
   display: grid;
