@@ -206,6 +206,17 @@ function Hero() {
             />
 
             <div className="phoneContent">
+              <div className="phoneStatus" aria-hidden="true">
+                <span className="phoneTime">9:41</span>
+                <span className="phoneIcons">
+                  <span className="pxSignal" aria-hidden="true">
+                    <i /><i /><i /><i />
+                  </span>
+                  <span className="pxWifi" aria-hidden="true" />
+                  <span className="pxBattery" aria-hidden="true"><b /></span>
+                </span>
+              </div>
+
               <h2 className="card__title">Lo que entregamos</h2>
               <ul className="checklist">
                 <li>Web optimizada (Core Web Vitals)</li>
