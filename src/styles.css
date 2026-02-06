@@ -223,10 +223,10 @@ a { color: inherit; }
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
 
-  padding: 8px 12px;
-  border-radius: 999px;
+  /* no pill background */
+  padding: 0;
+  border-radius: 0;
 
   text-decoration: none;
   font-weight: 950;
@@ -237,27 +237,26 @@ a { color: inherit; }
 
   color: rgba(255, 255, 255, 0.94);
 
-  /* no fill, but still button-y */
   background: transparent;
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.08),
-    0 10px 24px rgba(0, 0, 0, 0.16);
+  border: 0;
+  box-shadow: none;
+
+  /* still button-y: cursor + subtle underline + small lift */
+  cursor: pointer;
+  text-underline-offset: 4px;
+  text-decoration-thickness: 2px;
+  text-decoration-color: rgba(255, 255, 255, 0.18);
 
   transition:
     left 220ms var(--ease),
     transform 220ms var(--ease),
-    border-color 160ms ease,
-    box-shadow 160ms ease,
+    text-decoration-color 160ms ease,
     filter 160ms ease;
 }
 
 .headerIsland__label:hover {
-  border-color: rgba(255, 255, 255, 0.26);
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.10),
-    0 14px 34px rgba(0, 0, 0, 0.20);
-  filter: brightness(1.05);
+  text-decoration-color: rgba(255, 255, 255, 0.40);
+  filter: brightness(1.08);
 }
 
 .headerIsland__label:active {
