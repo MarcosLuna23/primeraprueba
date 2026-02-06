@@ -145,12 +145,16 @@ function Header({ onNav }) {
                 </a>
               </div>
             </div>
-
-            <span className="headerIsland__status" aria-label="Estado">Disponible</span>
           </div>
         </div>
 
-        <nav className="nav" aria-label="Navegación principal">
+        <div className="headerRight" aria-label="Zona derecha">
+          <span className="headerStatus" aria-label="Estado">
+            <span className="headerStatus__dot" aria-hidden="true" />
+            Disponible
+          </span>
+
+          <nav className="nav" aria-label="Navegación principal">
           <button
             className="nav__toggle"
             aria-expanded={open}
@@ -189,7 +193,8 @@ function Header({ onNav }) {
               </motion.ul>
             ) : null}
           </AnimatePresence>
-        </nav>
+          </nav>
+        </div>
       </div>
     </header>
   );

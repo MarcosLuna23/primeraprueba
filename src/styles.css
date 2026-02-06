@@ -162,18 +162,18 @@ a { color: inherit; }
   /* Tuning knobs */
   --pillW: 168px;
   --pillWOpen: 280px;
-  --statusW: 108px; /* width for the “Disponible” chip */
-  --gap: 10px;
 
   position: relative;
   height: 42px;
-  width: calc(var(--pillW) + var(--statusW) + var(--gap));
+  width: var(--pillWOpen);
+  max-width: 56vw;
 }
 
 .headerIsland__pill {
   position: absolute;
-  right: calc(var(--statusW) + var(--gap));
+  left: 50%;
   top: 0;
+  transform: translateX(-50%);
 
   display: inline-flex;
   align-items: center;
@@ -200,7 +200,6 @@ a { color: inherit; }
 .headerIsland__wrap:hover .headerIsland__pill,
 .headerIsland__wrap:focus-within .headerIsland__pill {
   width: var(--pillWOpen);
-  transform: translateY(-1px);
   box-shadow:
     0 24px 66px rgba(2, 8, 23, 0.22),
     inset 0 1px 0 rgba(255, 255, 255, 0.10);
@@ -276,12 +275,46 @@ a { color: inherit; }
 }
 
 /* Keep it clean on small screens */
+/* Right side (status + nav) */
+.headerRight {
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.headerStatus {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 12px;
+  border-radius: 999px;
+  font-weight: 900;
+  letter-spacing: -0.01em;
+  font-size: 13px;
+  line-height: 1;
+
+  color: rgba(15, 23, 42, 0.92);
+  background: rgba(255, 255, 255, 0.58);
+  border: 1px solid rgba(15, 23, 42, 0.10);
+  backdrop-filter: blur(10px) saturate(1.1);
+}
+
+.headerStatus__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: #22c55e;
+  box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.16);
+}
+
 @media (max-width: 860px) {
   .header__inner {
     display: flex;
     justify-content: space-between;
   }
   .headerIsland { display: none; }
+  .headerStatus { display: none; }
 }
 
 .brand {
