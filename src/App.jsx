@@ -140,6 +140,7 @@ function Header({ onNav }) {
             <li><a className="nav__link" href="#proyectos">Proyectos</a></li>
             <li><a className="nav__link" href="#proceso">Proceso</a></li>
             <li><a className="nav__link" href="#equipo">Equipo</a></li>
+            <li><a className="nav__link" href="#precios">Precios</a></li>
             <li><a className="nav__link" href="#faq">FAQ</a></li>
             <li>
               <a
@@ -291,6 +292,94 @@ function Results() {
           rel="noreferrer"
         >
           Hablar por WhatsApp
+        </Button>
+      </div>
+    </Section>
+  );
+}
+
+function Pricing() {
+  const m = useMotion();
+
+  return (
+    <Section
+      id="precios"
+      title="Precios orientativos"
+      subtitle="Rangos habituales para ayudarte a encajar alcance y prioridades. Cerramos presupuesto final tras un brief rápido."
+    >
+      <motion.div
+        className="grid grid--4"
+        variants={m.stagger}
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true, amount: 0.2 }}
+      >
+        <motion.article className="priceCard" variants={m.fadeUp}>
+          <div className="priceCard__top">
+            <h3>Landing</h3>
+            <p className="priceCard__price">700–1.200€</p>
+            <p className="muted">Ideal para captar leads rápido.</p>
+          </div>
+          <ul className="mini">
+            <li>Copy + estructura de conversión</li>
+            <li>SEO on-page básico</li>
+            <li>WhatsApp + eventos</li>
+          </ul>
+        </motion.article>
+
+        <motion.article className="priceCard" variants={m.fadeUp}>
+          <div className="priceCard__top">
+            <h3>Web corporativa</h3>
+            <p className="priceCard__price">1.400–2.800€</p>
+            <p className="muted">Marca, confianza y posicionamiento.</p>
+          </div>
+          <ul className="mini">
+            <li>5–8 secciones/páginas</li>
+            <li>Rendimiento + accesibilidad</li>
+            <li>Analítica lista</li>
+          </ul>
+        </motion.article>
+
+        <motion.article className="priceCard priceCard--featured" variants={m.fadeUp}>
+          <div className="priceCard__top">
+            <h3>E‑commerce</h3>
+            <p className="priceCard__price">2.500–6.000€</p>
+            <p className="muted">Vender online con experiencia premium.</p>
+          </div>
+          <ul className="mini">
+            <li>Catálogo + categorías</li>
+            <li>Pagos/checkout (según plataforma)</li>
+            <li>Tracking de conversiones</li>
+          </ul>
+        </motion.article>
+
+        <motion.article className="priceCard" variants={m.fadeUp}>
+          <div className="priceCard__top">
+            <h3>Mantenimiento</h3>
+            <p className="priceCard__price">120–350€/mes</p>
+            <p className="muted">Soporte, mejoras y seguridad.</p>
+          </div>
+          <ul className="mini">
+            <li>Actualizaciones + backups</li>
+            <li>Mejoras continuas</li>
+            <li>Monitorización básica</li>
+          </ul>
+        </motion.article>
+      </motion.div>
+
+      <p className="muted small" style={{ marginTop: 14 }}>
+        *Los rangos dependen de integraciones, contenido, idioma y nivel de diseño. Si me dices objetivo y plazo,
+        te doy una estimación cerrada.
+      </p>
+
+      <div style={{ marginTop: 14 }}>
+        <Button
+          className="btn--primary"
+          href={waLink("Hola, he visto los precios orientativos. Quiero presupuesto para mi caso (objetivo + plazo).")}
+          target="_blank"
+          rel="noreferrer"
+        >
+          Pedir presupuesto por WhatsApp
         </Button>
       </div>
     </Section>
@@ -765,6 +854,7 @@ export default function App() {
           <SponsorsMarquee />
           <Results />
           <Services />
+          <Pricing />
           <Projects />
           <Process />
           <Team />
