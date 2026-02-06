@@ -1159,6 +1159,21 @@ input:focus, textarea:focus { border-color: rgba(14, 165, 233, 0.55); box-shadow
   padding: 24px 0; /* more air */
 }
 
+.sponsors__title {
+  width: min(var(--container), calc(100% - 24px));
+  margin: 0 auto 10px;
+  font-weight: 950;
+  letter-spacing: -0.02em;
+  color: rgba(15, 23, 42, 0.92);
+}
+
+.sponsors__subtitle {
+  width: min(var(--container), calc(100% - 24px));
+  margin: 0 auto 14px;
+  color: var(--muted);
+  font-size: 14px;
+}
+
 .sponsors__viewport {
   --gap: 26px;
   --duration: 38s; /* slower + calmer */
@@ -1182,24 +1197,9 @@ input:focus, textarea:focus { border-color: rgba(14, 165, 233, 0.55); box-shadow
 }
 
 /* Fade edges (avoid masks; they can be expensive on some GPUs) */
+/* no edge fade */
 .sponsors__viewport::before,
-.sponsors__viewport::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  width: 92px; /* stronger fade */
-  pointer-events: none;
-  z-index: 2;
-}
-.sponsors__viewport::before {
-  left: 0;
-  background: linear-gradient(90deg, rgba(248, 250, 252, 1) 0%, rgba(248, 250, 252, 0.92) 30%, rgba(248, 250, 252, 0) 100%);
-}
-.sponsors__viewport::after {
-  right: 0;
-  background: linear-gradient(270deg, rgba(248, 250, 252, 1) 0%, rgba(248, 250, 252, 0.92) 30%, rgba(248, 250, 252, 0) 100%);
-}
+.sponsors__viewport::after { content: none; }
 
 .sponsors__group {
   display: flex;

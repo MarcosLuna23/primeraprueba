@@ -849,7 +849,9 @@ function SponsorsMarquee() {
   const strip = Array.from({ length: 3 }, () => base).flat();
 
   return (
-    <section ref={marqueeRef} className="sponsors" aria-label="Sponsors y colaboradores">
+    <section ref={marqueeRef} className="sponsors" aria-label="Empresas con las que colaboramos">
+      <div className="sponsors__title">Empresas con las que colaboramos</div>
+      <div className="sponsors__subtitle">Herramientas y partners habituales en nuestros proyectos.</div>
       <div className="sponsors__viewport">
         {/* Two identical strips, shifted by 100% + gap. */}
         <div className="sponsors__group" aria-hidden="true">
