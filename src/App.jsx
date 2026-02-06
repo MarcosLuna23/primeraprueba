@@ -204,15 +204,18 @@ function Hero() {
               alt="Equipo trabajando en un proyecto digital"
               loading="lazy"
             />
-            <h2 className="card__title">Lo que entregamos</h2>
-            <ul className="checklist">
-              <li>Web optimizada (Core Web Vitals)</li>
-              <li>SEO técnico + on-page</li>
-              <li>Analítica (GA4/Matomo) y eventos</li>
-              <li>Formularios + WhatsApp</li>
-              <li>Seguridad y backups</li>
-            </ul>
-            <p className="muted">*Adaptamos la propuesta a tu caso (pyme, clínica, inmobiliaria, startup…).</p>
+
+            <div className="phoneContent">
+              <h2 className="card__title">Lo que entregamos</h2>
+              <ul className="checklist">
+                <li>Web optimizada (Core Web Vitals)</li>
+                <li>SEO técnico + on-page</li>
+                <li>Analítica (GA4/Matomo) y eventos</li>
+                <li>Formularios + WhatsApp</li>
+                <li>Seguridad y backups</li>
+              </ul>
+              <p className="muted">*Adaptamos la propuesta a tu caso (pyme, clínica, inmobiliaria, startup…).</p>
+            </div>
           </div>
         </motion.div>
       </div>

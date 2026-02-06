@@ -354,11 +354,16 @@ h1 {
 }
 
 .hero__card .card {
-  /* Phone mock */
+  /* Phone mock (fixed device shape, not sized to content) */
   position: relative;
   overflow: hidden;
 
-  border-radius: 44px;
+  width: min(380px, 100%);
+  aspect-ratio: 9 / 19.5;
+  margin-left: auto;
+  margin-right: auto;
+
+  border-radius: 46px;
   border: 10px solid rgba(8, 10, 16, 0.96);
   background: rgba(8, 10, 16, 0.96);
 
@@ -415,10 +420,18 @@ h1 {
 }
 
 /* content above wallpaper/glow */
-.hero__card .card > *:not(img) {
+.phoneContent {
   position: relative;
   z-index: 2;
+
+  height: 100%;
+  padding-top: 18px; /* keep content away from notch */
+  overflow: auto;
+
+  /* subtle, app-like */
+  scrollbar-width: none;
 }
+.phoneContent::-webkit-scrollbar { width: 0; height: 0; }
 
 .hero__card .card,
 .hero__card .card * {
