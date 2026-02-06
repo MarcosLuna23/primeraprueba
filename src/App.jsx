@@ -947,6 +947,35 @@ export default function App() {
     document.title = `Desarrollo web y apps en ${BRAND.city} | ${BRAND.name}`;
   }, []);
 
+  useEffect(() => {
+    // Global scroll perf helper: temporarily reduce expensive effects while scrolling.
+    // This avoids layout/painters fighting the scroll thread on Chromium (Chrome/Brave).
+    const root = document.documentElement;
+    let t = null;
+    let ticking = false;
+
+    const setScrolling = (v) => root.classList.toggle("is-scrolling", v);
+
+    const onScroll = () => {
+      if (t) window.clearTimeout(t);
+      if (!ticking) {
+        ticking = true;
+        window.requestAnimationFrame(() => {
+          setScrolling(true);
+          ticking = false;
+        });
+      }
+      t = window.setTimeout(() => setScrolling(false), 140);
+    };
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      if (t) window.clearTimeout(t);
+      setScrolling(false);
+    };
+  }, []);
+
   return (
     <>
       <a className="skip" href="#contenido">Saltar al contenido</a>
