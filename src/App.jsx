@@ -1502,9 +1502,9 @@ function Footer() {
 
         <div className="siteFooter__bottom">
           <div className="siteFooter__legal">
-            <a className="siteFooter__legalLink" href="#aviso-legal">Aviso legal</a>
-            <a className="siteFooter__legalLink" href="#privacidad">Privacidad</a>
-            <a className="siteFooter__legalLink" href="#cookies">Cookies</a>
+            <a className="siteFooter__legalLink" href="/aviso-legal.html">Aviso legal</a>
+            <a className="siteFooter__legalLink" href="/privacidad.html">Privacidad</a>
+            <a className="siteFooter__legalLink" href="/cookies.html">Cookies</a>
           </div>
           <div className="siteFooter__copy">© {year} {BRAND.name}. Todos los derechos reservados.</div>
         </div>
@@ -1566,7 +1566,6 @@ export default function App() {
           <Faq />
           <SponsorsMarquee />
           <Contact />
-          <LegalPages />
         </main>
         <Footer />
       </div>
