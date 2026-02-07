@@ -643,61 +643,95 @@ function Team() {
 }
 
 function Faq() {
-  const prefersReduced =
-    typeof window !== "undefined" &&
-    window.matchMedia &&
-    window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const [prefersReduced, setPrefersReduced] = useState(false);
 
-  const animateDetails = (detailsEl) => {
-    if (!detailsEl || prefersReduced) return;
+  useEffect(() => {
+    if (!window.matchMedia) return;
+    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const set = () => setPrefersReduced(!!mq.matches);
+    set();
+    mq.addEventListener?.("change", set);
+    return () => mq.removeEventListener?.("change", set);
+  }, []);
+
+  const animateHeight = (el, from, to) => {
+    if (!el) return null;
+    if (el._anim) el._anim.cancel();
+    const anim = el.animate(
+      [{ height: `${from}px` }, { height: `${to}px` }],
+      { duration: 280, easing: "cubic-bezier(0.2, 0.8, 0.2, 1)" }
+    );
+    el._anim = anim;
+    anim.onfinish = () => {
+      el._anim = null;
+    };
+    anim.oncancel = () => {
+      el._anim = null;
+    };
+    return anim;
+  };
+
+  const toggleDetails = (detailsEl) => {
+    if (!detailsEl) return;
     const content = detailsEl.querySelector(".faq__content");
     if (!content) return;
 
-    // Cancel any in-flight animation
-    if (content._anim) content._anim.cancel();
+    if (prefersReduced) {
+      detailsEl.open = !detailsEl.open;
+      content.style.height = detailsEl.open ? "auto" : "0px";
+      return;
+    }
 
     const isOpen = detailsEl.open;
 
-    // Measure heights
-    const startH = content.getBoundingClientRect().height;
-    // Temporarily set height:auto to measure full height
-    const prevH = content.style.height;
-    content.style.height = "auto";
+    if (isOpen) {
+      // CLOSE: keep it open during animation, then close at the end.
+      const startH = content.getBoundingClientRect().height;
+      content.style.height = `${startH}px`;
+
+      const anim = animateHeight(content, startH, 0);
+      if (!anim) return;
+      anim.onfinish = () => {
+        content.style.height = "0px";
+        detailsEl.open = false;
+        content._anim = null;
+      };
+      return;
+    }
+
+    // OPEN: set open first so content is measurable, then animate 0 -> full.
+    detailsEl.open = true;
+
+    // Start closed
+    content.style.height = "0px";
+
+    // Measure target
     const fullH = content.scrollHeight;
-    content.style.height = prevH;
 
-    const endH = isOpen ? fullH : 0;
-
-    // Ensure we start from the current height
-    content.style.height = `${startH}px`;
-
-    // Animate height
-    const anim = content.animate(
-      [{ height: `${startH}px` }, { height: `${endH}px` }],
-      { duration: 280, easing: "cubic-bezier(0.2, 0.8, 0.2, 1)" }
-    );
-
-    content._anim = anim;
-
+    const anim = animateHeight(content, 0, fullH);
+    if (!anim) return;
     anim.onfinish = () => {
-      // When open, let it size naturally; when closed keep at 0.
-      content.style.height = isOpen ? "auto" : "0px";
-      content._anim = null;
-    };
-    anim.oncancel = () => {
+      content.style.height = "auto";
       content._anim = null;
     };
   };
 
-  const onToggle = (e) => {
-    // Toggle fires after the 'open' attribute has changed.
-    animateDetails(e.currentTarget);
+  const onFaqClickCapture = (e) => {
+    const summary = e.target?.closest?.("summary");
+    if (!summary) return;
+    const details = summary.closest("details");
+    if (!details) return;
+
+    // Prevent native <details> toggle (which skips close animation because it hides content immediately)
+    e.preventDefault();
+
+    toggleDetails(details);
   };
 
   return (
     <Section id="faq" narrow title="FAQ" subtitle="Respuestas rápidas a lo que más nos preguntan.">
-      <div className="faq">
-        <details onToggle={onToggle}>
+      <div className="faq" onClickCapture={onFaqClickCapture}>
+        <details>
           <summary>¿Cuánto cuesta una web?</summary>
           <div className="faq__content">
             <p>
@@ -706,7 +740,7 @@ function Faq() {
             </p>
           </div>
         </details>
-        <details onToggle={onToggle}>
+        <details>
           <summary>¿En cuánto tiempo estará lista?</summary>
           <div className="faq__content">
             <p>
@@ -715,7 +749,7 @@ function Faq() {
             </p>
           </div>
         </details>
-        <details onToggle={onToggle}>
+        <details>
           <summary>¿Incluye SEO?</summary>
           <div className="faq__content">
             <p>
@@ -724,7 +758,7 @@ function Faq() {
             </p>
           </div>
         </details>
-        <details onToggle={onToggle}>
+        <details>
           <summary>¿Hacéis mantenimiento?</summary>
           <div className="faq__content">
             <p>Sí: actualizaciones, seguridad, backups, monitorización y mejoras.</p>
