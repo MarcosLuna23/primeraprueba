@@ -247,9 +247,9 @@ function LegalApp() {
   return (
     <>
       <a className="skip" href="#contenido">Saltar al contenido</a>
-      <HeaderLite />
-      <div className="page">
-        <main id="contenido">
+      <div className="legalPage">
+        <HeaderLite />
+        <main id="contenido" className="legalPage__main">
           <LegalContent kind={kind} />
         </main>
         <FooterLite />

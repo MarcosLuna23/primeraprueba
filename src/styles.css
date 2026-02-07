@@ -1725,6 +1725,14 @@ input:focus, textarea:focus { border-color: rgba(14, 165, 233, 0.55); box-shadow
   .siteFooter__grid { grid-template-columns: 1fr; padding: 20px; }
 }
 
+/* Legal pages layout: keep footer anchored at the bottom */
+.legalPage {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+.legalPage__main { flex: 1; }
+
 /* Legal pages footer */
 .legalFooter {
   padding: 26px 0 36px;
