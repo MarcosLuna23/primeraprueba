@@ -442,43 +442,81 @@ function Services() {
     <Section
       id="servicios"
       title="Servicios"
-      subtitle={`Web, apps y software a medida desde ${BRAND.city} para toda ${BRAND.country}.`}
+      subtitle="Descubre cómo marcamos la diferencia, de la idea al lanzamiento."
     >
       <motion.div
-        className="grid grid--3"
+        className="grid grid--4"
         variants={m.stagger}
         initial="hidden"
         whileInView="show"
         viewport={{ once: true, amount: 0.2 }}
       >
-        <motion.article className="box" variants={m.fadeUp}>
-          <h3>Diseño y desarrollo web</h3>
-          <p>Web corporativa, landing pages y e-commerce. Rápidas, accesibles y listas para posicionar.</p>
-          <ul className="mini">
-            <li>Arquitectura de contenidos</li>
-            <li>Copy + estructura de conversión</li>
-            <li>Optimización de velocidad</li>
-          </ul>
+        <motion.article className="storyCard" variants={m.fadeUp}>
+          <div className="storyCard__media">
+            <img
+              loading="lazy"
+              decoding="async"
+              src="https://images.pexels.com/photos/1181376/pexels-photo-1181376.jpeg?auto=compress&cs=tinysrgb&w=1600"
+              alt="Equipo revisando un portátil"
+            />
+            <span className="storyCard__badge">Implementación</span>
+          </div>
+          <div className="storyCard__body">
+            <h3>Instalación y puesta en marcha</h3>
+            <p>Configuramos entornos, despliegues y herramientas para dejar tu proyecto listo para producir desde el día uno.</p>
+            <p className="storyCard__meta">1–3 días</p>
+          </div>
         </motion.article>
 
-        <motion.article className="box" variants={m.fadeUp}>
-          <h3>Aplicaciones web</h3>
-          <p>Paneles de administración, CRMs, automatizaciones, integraciones y productos tipo SaaS.</p>
-          <ul className="mini">
-            <li>Roles y permisos</li>
-            <li>Integración con herramientas</li>
-            <li>APIs seguras</li>
-          </ul>
+        <motion.article className="storyCard" variants={m.fadeUp}>
+          <div className="storyCard__media">
+            <img
+              loading="lazy"
+              decoding="async"
+              src="https://images.pexels.com/photos/8867472/pexels-photo-8867472.jpeg?auto=compress&cs=tinysrgb&w=1600"
+              alt="Soporte técnico revisando una pantalla"
+            />
+            <span className="storyCard__badge">Soporte</span>
+          </div>
+          <div className="storyCard__body">
+            <h3>Mantenimiento y soporte</h3>
+            <p>Monitorización, corrección de errores y mejoras continuas para mantener estabilidad, rendimiento y seguridad.</p>
+            <p className="storyCard__meta">24–48h</p>
+          </div>
         </motion.article>
 
-        <motion.article className="box" variants={m.fadeUp}>
-          <h3>Mantenimiento y mejora</h3>
-          <p>Actualizaciones, seguridad, copias de seguridad, monitorización y mejoras continuas.</p>
-          <ul className="mini">
-            <li>Soporte</li>
-            <li>Backups y recuperación</li>
-            <li>Roadmap mensual</li>
-          </ul>
+        <motion.article className="storyCard" variants={m.fadeUp}>
+          <div className="storyCard__media">
+            <img
+              loading="lazy"
+              decoding="async"
+              src="https://images.pexels.com/photos/8154790/pexels-photo-8154790.jpeg?auto=compress&cs=tinysrgb&w=1600"
+              alt="Planificación y actualizaciones"
+            />
+            <span className="storyCard__badge">Operación</span>
+          </div>
+          <div className="storyCard__body">
+            <h3>Actualizaciones y contenidos</h3>
+            <p>Actualizamos funcionalidades, contenidos y recursos digitales para que tu web, app y campañas estén siempre al día.</p>
+            <p className="storyCard__meta">Semanal / mensual</p>
+          </div>
+        </motion.article>
+
+        <motion.article className="storyCard" variants={m.fadeUp}>
+          <div className="storyCard__media">
+            <img
+              loading="lazy"
+              decoding="async"
+              src="https://images.pexels.com/photos/7013070/pexels-photo-7013070.png?auto=compress&cs=tinysrgb&w=1600"
+              alt="Análisis y optimización"
+            />
+            <span className="storyCard__badge">Estrategia</span>
+          </div>
+          <div className="storyCard__body">
+            <h3>Consultoría y optimización</h3>
+            <p>Auditoría, roadmap y optimización (CRO/SEO/performance) para mejorar conversión, costes y crecimiento.</p>
+            <p className="storyCard__meta">Mensual</p>
+          </div>
         </motion.article>
       </motion.div>
 
@@ -490,8 +528,8 @@ function Services() {
         variants={m.fadeUp}
       >
         <div>
-          <h3>Cuéntanos tu objetivo. Nosotros ponemos el plan.</h3>
-          <p className="muted">En 10 minutos entendemos tu caso y te decimos enfoque, plazos y presupuesto orientativo.</p>
+          <h3>¿Te lo aterrizamos a tu caso?</h3>
+          <p className="muted">Cuéntanos qué necesitas y te decimos el plan y el plazo.</p>
         </div>
         <div className="ctaBand__right">
           <img className="sectionPhoto" src="/sections/services.jpg" alt="" loading="lazy" decoding="async" />
