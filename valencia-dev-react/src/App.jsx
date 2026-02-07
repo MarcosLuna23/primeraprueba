@@ -1,0 +1,548 @@
+import { useEffect, useMemo, useState } from "react";
+import "./styles.css";
+
+const BRAND = {
+  name: "Tu Equipo",
+  tagline: "Desarrollo web y apps a medida",
+  city: "Valencia",
+  country: "España",
+  email: "hola@tudominio.es",
+  phoneDisplay: "+34 XXX XXX XXX",
+  phoneWa: "34XXXXXXXXX", // sin + y sin espacios. Ej: 34600111222
+  domain: "https://tudominio.es",
+};
+
+function cn(...xs) {
+  return xs.filter(Boolean).join(" ");
+}
+
+function Button({ as = "a", className, ...props }) {
+  const Comp = as;
+  return <Comp className={cn("btn", className)} {...props} />;
+}
+
+function Section({ id, alt, title, subtitle, children }) {
+  return (
+    <section id={id} className={cn("section", alt && "section--alt")}
+      aria-label={title}
+    >
+      <div className="container">
+        <header className="section__header">
+          <h2>{title}</h2>
+          {subtitle ? <p className="section__sub">{subtitle}</p> : null}
+        </header>
+        {children}
+      </div>
+    </section>
+  );
+}
+
+function Header({ onNav }) {
+  const [open, setOpen] = useState(false);
+
+  useEffect(() => {
+    const onDocClick = (e) => {
+      if (!open) return;
+      const menu = document.querySelector("#menu");
+      const toggle = document.querySelector(".nav__toggle");
+      if (!menu || !toggle) return;
+      if (menu.contains(e.target) || toggle.contains(e.target)) return;
+      setOpen(false);
+    };
+    document.addEventListener("click", onDocClick);
+    return () => document.removeEventListener("click", onDocClick);
+  }, [open]);
+
+  return (
+    <header className="header">
+      <div className="container header__inner">
+        <a className="brand" href="#inicio" aria-label="Ir al inicio" onClick={() => onNav?.("inicio")}
+        >
+          <span className="brand__mark" aria-hidden="true" />
+          <span className="brand__text">{BRAND.name}</span>
+        </a>
+
+        <nav className="nav" aria-label="Navegación principal">
+          <button
+            className="nav__toggle"
+            aria-expanded={open}
+            aria-controls="menu"
+            onClick={() => setOpen((v) => !v)}
+            type="button"
+          >
+            <span className="nav__toggleLines" aria-hidden="true" />
+            <span className="sr-only">Abrir menú</span>
+          </button>
+
+          <ul id="menu" className={cn("nav__menu", open && "is-open")}
+            onClick={(e) => {
+              if (e.target?.closest?.("a")) setOpen(false);
+            }}
+          >
+            <li><a className="nav__link" href="#servicios">Servicios</a></li>
+            <li><a className="nav__link" href="#proyectos">Proyectos</a></li>
+            <li><a className="nav__link" href="#proceso">Proceso</a></li>
+            <li><a className="nav__link" href="#equipo">Equipo</a></li>
+            <li><a className="nav__link" href="#faq">FAQ</a></li>
+            <li><a className="nav__cta" href="#contacto">Pedir presupuesto</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+  );
+}
+
+function Hero() {
+  return (
+    <section id="inicio" className="hero">
+      <div className="container hero__grid">
+        <div className="hero__copy">
+          <p className="pill">{BRAND.city} · Toda {BRAND.country} · Presupuesto en 24h</p>
+          <h1>Desarrollo web y apps a medida para captar clientes</h1>
+          <p className="lead">
+            Creamos webs rápidas, modernas y orientadas a convertir: desde landings hasta aplicaciones web complejas.
+            Diseño + desarrollo + mantenimiento, sin líos.
+          </p>
+          <div className="hero__actions">
+            <Button className="btn--primary" href="#contacto">Pedir presupuesto</Button>
+            <Button className="btn--ghost" href="#proyectos">Ver proyectos</Button>
+          </div>
+          <ul className="trust">
+            <li>Respuesta &lt; 24h</li>
+            <li>Plazos realistas</li>
+            <li>Soporte y evolución</li>
+          </ul>
+        </div>
+
+        <div className="hero__card" aria-label="Resumen de servicios">
+          <div className="card">
+            <h2 className="card__title">Lo que entregamos</h2>
+            <ul className="checklist">
+              <li>Web optimizada (Core Web Vitals)</li>
+              <li>SEO técnico + on-page</li>
+              <li>Analítica (GA4/Matomo) y eventos</li>
+              <li>Formularios + WhatsApp</li>
+              <li>Seguridad y backups</li>
+            </ul>
+            <p className="muted">*Adaptamos la propuesta a tu caso (pyme, clínica, inmobiliaria, startup…).</p>
+          </div>
+        </div>
+      </div>
+
+      <div className="container logos" aria-label="Tecnologías">
+        <p className="logos__label">Trabajamos con:</p>
+        <div className="logos__row">
+          <span className="chip">HTML/CSS/JS</span>
+          <span className="chip">React / Next.js</span>
+          <span className="chip">Node.js</span>
+          <span className="chip">APIs</span>
+          <span className="chip">WordPress (si encaja)</span>
+          <span className="chip">SEO</span>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Services() {
+  return (
+    <Section
+      id="servicios"
+      title="Servicios"
+      subtitle="Descubre cómo marcamos la diferencia, de la idea al lanzamiento."
+    >
+      <div className="grid grid--4">
+        <article className="storyCard">
+          <div className="storyCard__media">
+            <img
+              loading="lazy"
+              src="https://images.pexels.com/photos/1181376/pexels-photo-1181376.jpeg?auto=compress&cs=tinysrgb&w=1600"
+              alt="Equipo revisando un portátil"
+            />
+            <span className="storyCard__badge">Implementación</span>
+          </div>
+          <div className="storyCard__body">
+            <h3>Instalación y puesta en marcha</h3>
+            <p>Configuramos entornos, despliegues y herramientas para dejar tu proyecto listo para producir desde el día uno.</p>
+            <p className="storyCard__meta">1–3 días</p>
+          </div>
+        </article>
+
+        <article className="storyCard">
+          <div className="storyCard__media">
+            <img
+              loading="lazy"
+              src="https://images.pexels.com/photos/8867472/pexels-photo-8867472.jpeg?auto=compress&cs=tinysrgb&w=1600"
+              alt="Soporte técnico revisando una pantalla"
+            />
+            <span className="storyCard__badge">Soporte</span>
+          </div>
+          <div className="storyCard__body">
+            <h3>Mantenimiento y soporte</h3>
+            <p>Monitorización, corrección de errores y mejoras continuas para mantener estabilidad, rendimiento y seguridad.</p>
+            <p className="storyCard__meta">24–48h</p>
+          </div>
+        </article>
+
+        <article className="storyCard">
+          <div className="storyCard__media">
+            <img
+              loading="lazy"
+              src="https://images.pexels.com/photos/8154790/pexels-photo-8154790.jpeg?auto=compress&cs=tinysrgb&w=1600"
+              alt="Planificación de trabajo con libreta"
+            />
+            <span className="storyCard__badge">Operación</span>
+          </div>
+          <div className="storyCard__body">
+            <h3>Actualizaciones y contenidos</h3>
+            <p>Actualizamos funcionalidades, contenidos y recursos digitales para que tu web, app y campañas estén siempre al día.</p>
+            <p className="storyCard__meta">Semanal / mensual</p>
+          </div>
+        </article>
+
+        <article className="storyCard">
+          <div className="storyCard__media">
+            <img
+              loading="lazy"
+              src="https://images.pexels.com/photos/7013070/pexels-photo-7013070.png?auto=compress&cs=tinysrgb&w=1600"
+              alt="Análisis y optimización en portátil"
+            />
+            <span className="storyCard__badge">Estrategia</span>
+          </div>
+          <div className="storyCard__body">
+            <h3>Consultoría y optimización</h3>
+            <p>Auditoría, roadmap y optimización (CRO/SEO/performance) para mejorar conversión, costes y crecimiento.</p>
+            <p className="storyCard__meta">Mensual</p>
+          </div>
+        </article>
+      </div>
+
+      <div className="ctaBand">
+        <div>
+          <h3>¿Te lo aterrizamos a tu caso?</h3>
+          <p className="muted">Cuéntanos qué necesitas y te decimos el plan y el plazo.</p>
+        </div>
+        <Button className="btn--primary" href="#contacto">Pedir propuesta</Button>
+      </div>
+    </Section>
+  );
+}
+
+function Projects() {
+  return (
+    <Section
+      id="proyectos"
+      alt
+      title="Proyectos"
+      subtitle="Plantillas de caso para que los sustituyas por vuestros proyectos reales."
+    >
+      <div className="grid grid--3">
+        <article className="case">
+          <div className="case__top">
+            <h3>Web corporativa + captación</h3>
+            <p className="muted">Objetivo: generar leads</p>
+          </div>
+          <ul className="case__list">
+            <li>Landing orientada a conversión</li>
+            <li>SEO on-page + velocidad</li>
+            <li>Formulario + WhatsApp</li>
+          </ul>
+          <p className="case__result"><strong>Resultado:</strong> + conversiones (sustituir por dato real)</p>
+        </article>
+
+        <article className="case">
+          <div className="case__top">
+            <h3>Aplicación web / panel</h3>
+            <p className="muted">Objetivo: ahorrar tiempo</p>
+          </div>
+          <ul className="case__list">
+            <li>Automatización de procesos</li>
+            <li>Roles y permisos</li>
+            <li>Integración con APIs</li>
+          </ul>
+          <p className="case__result"><strong>Resultado:</strong> menos tareas manuales</p>
+        </article>
+
+        <article className="case">
+          <div className="case__top">
+            <h3>E-commerce / catálogo</h3>
+            <p className="muted">Objetivo: vender online</p>
+          </div>
+          <ul className="case__list">
+            <li>Checkout y pagos</li>
+            <li>Catálogo optimizado</li>
+            <li>Tracking de conversiones</li>
+          </ul>
+          <p className="case__result"><strong>Resultado:</strong> mejor experiencia de compra</p>
+        </article>
+      </div>
+    </Section>
+  );
+}
+
+function Process() {
+  return (
+    <Section
+      id="proceso"
+      title="Proceso"
+      subtitle="Así trabajamos para que sepas qué pasa en cada fase."
+    >
+      <ol className="steps">
+        <li>
+          <h3>Brief y objetivos</h3>
+          <p>Entendemos tu negocio, tus clientes y lo que quieres conseguir.</p>
+        </li>
+        <li>
+          <h3>Propuesta y alcance</h3>
+          <p>Definimos entregables, plazos y un presupuesto claro (sin sorpresas).</p>
+        </li>
+        <li>
+          <h3>Diseño y estructura</h3>
+          <p>Wireframes / prototipo. Copy y flujo orientado a conversión.</p>
+        </li>
+        <li>
+          <h3>Desarrollo</h3>
+          <p>Iteramos por hitos. Revisiones rápidas y comunicación directa.</p>
+        </li>
+        <li>
+          <h3>Publicación y medición</h3>
+          <p>SEO técnico, analítica, eventos y seguimiento de resultados.</p>
+        </li>
+        <li>
+          <h3>Mantenimiento</h3>
+          <p>Actualizaciones, mejoras y evolución del producto.</p>
+        </li>
+      </ol>
+    </Section>
+  );
+}
+
+function Team() {
+  return (
+    <Section
+      id="equipo"
+      alt
+      title="Sobre el equipo"
+      subtitle={`Somos un equipo técnico, cercano y orientado a resultados. Trabajamos desde ${BRAND.city} y damos servicio a toda ${BRAND.country}.`}
+    >
+      <div className="grid grid--2">
+        <div className="box">
+          <h3>Lo que valoran nuestros clientes</h3>
+          <ul className="mini">
+            <li>Comunicación clara</li>
+            <li>Calidad y orden</li>
+            <li>Velocidad (en la web y en la ejecución)</li>
+            <li>Enfoque negocio (no “features por hacer”)</li>
+          </ul>
+        </div>
+        <div className="box">
+          <h3>Áreas</h3>
+          <ul className="mini">
+            <li>Front-end y UX</li>
+            <li>Back-end y APIs</li>
+            <li>Bases de datos</li>
+            <li>DevOps básico (deploy, backups, monitorización)</li>
+          </ul>
+        </div>
+      </div>
+    </Section>
+  );
+}
+
+function Faq() {
+  return (
+    <Section id="faq" title="FAQ" subtitle="Respuestas rápidas a lo que más nos preguntan.">
+      <div className="faq">
+        <details>
+          <summary>¿Cuánto cuesta una web?</summary>
+          <p>
+            Depende del alcance. Podemos trabajar por proyecto (presupuesto cerrado) o con una bolsa de
+            horas/mantenimiento mensual.
+          </p>
+        </details>
+        <details>
+          <summary>¿En cuánto tiempo estará lista?</summary>
+          <p>
+            Una landing sencilla puede estar en 1–2 semanas; una web completa suele ser 3–6 semanas. Las
+            aplicaciones dependen de módulos.
+          </p>
+        </details>
+        <details>
+          <summary>¿Incluye SEO?</summary>
+          <p>
+            Incluimos SEO técnico y on-page básico (estructura, metadatos, rendimiento). Si quieres
+            posicionamiento continuo, lo planteamos como servicio mensual.
+          </p>
+        </details>
+        <details>
+          <summary>¿Hacéis mantenimiento?</summary>
+          <p>Sí: actualizaciones, seguridad, backups, monitorización y mejoras.</p>
+        </details>
+      </div>
+    </Section>
+  );
+}
+
+function Contact() {
+  const [note, setNote] = useState("");
+
+  const waLink = useMemo(() => {
+    const text = encodeURIComponent("Hola, quiero presupuesto para una web/app.");
+    return `https://wa.me/${BRAND.phoneWa}?text=${text}`;
+  }, []);
+
+  function onSubmit(e) {
+    e.preventDefault();
+    const fd = new FormData(e.currentTarget);
+
+    const name = (fd.get("name") || "").toString().trim();
+    const company = (fd.get("company") || "").toString().trim();
+    const email = (fd.get("email") || "").toString().trim();
+    const phone = (fd.get("phone") || "").toString().trim();
+    const message = (fd.get("message") || "").toString().trim();
+
+    const subject = encodeURIComponent(`Nuevo contacto web — ${name}`);
+    const body = encodeURIComponent(
+      [
+        `Nombre: ${name}`,
+        company ? `Empresa: ${company}` : null,
+        `Email: ${email}`,
+        phone ? `Tel: ${phone}` : null,
+        "",
+        "Mensaje:",
+        message,
+      ]
+        .filter(Boolean)
+        .join("\n")
+    );
+
+    setNote("Abriendo tu email para enviar el mensaje…");
+    window.location.href = `mailto:${BRAND.email}?subject=${subject}&body=${body}`;
+
+    setTimeout(() => {
+      e.currentTarget.reset();
+      setNote(`Si no se abrió tu cliente de correo, escríbenos a ${BRAND.email}.`);
+    }, 1200);
+  }
+
+  return (
+    <Section
+      id="contacto"
+      alt
+      title="Contacto"
+      subtitle="Cuéntanos qué necesitas (web/app, plazo y objetivo) y te respondemos con una propuesta."
+    >
+      <div className="grid grid--2">
+        <form className="form" onSubmit={onSubmit}>
+          <label>
+            Nombre
+            <input name="name" type="text" autoComplete="name" required />
+          </label>
+          <label>
+            Empresa (opcional)
+            <input name="company" type="text" autoComplete="organization" />
+          </label>
+          <label>
+            Email
+            <input name="email" type="email" autoComplete="email" required />
+          </label>
+          <label>
+            Teléfono (opcional)
+            <input name="phone" type="tel" autoComplete="tel" />
+          </label>
+          <label>
+            ¿Qué quieres conseguir?
+            <textarea
+              name="message"
+              rows={5}
+              required
+              placeholder="Ej: necesito una web para captar clientes en Valencia..."
+            />
+          </label>
+
+          <div className="form__row">
+            <Button as="button" className="btn--primary" type="submit">Enviar</Button>
+            <Button className="btn--ghost" href={waLink} target="_blank" rel="noreferrer">
+              WhatsApp
+            </Button>
+          </div>
+
+          <p className="muted small">
+            Al enviar aceptas la política de privacidad. (Pendiente de poner la página/legal definitivo)
+          </p>
+
+          <p className="form__note" aria-live="polite">{note}</p>
+        </form>
+
+        <aside className="box">
+          <h3>Zona de trabajo</h3>
+          <p>
+            Estamos en <strong>{BRAND.city}</strong> y trabajamos también en remoto para <strong>toda {BRAND.country}</strong>.
+          </p>
+          <ul className="mini">
+            <li>Reunión inicial: 30–45 min</li>
+            <li>Presupuesto claro y por escrito</li>
+            <li>Entregas por hitos</li>
+          </ul>
+
+          <div className="divider" />
+
+          <h3>Datos</h3>
+          <p className="muted small">
+            Email: {BRAND.email}
+            <br />
+            Tel: {BRAND.phoneDisplay}
+          </p>
+        </aside>
+      </div>
+    </Section>
+  );
+}
+
+function Footer() {
+  const year = new Date().getFullYear();
+  return (
+    <footer className="footer">
+      <div className="container footer__grid">
+        <div>
+          <div className="brand brand--footer">
+            <span className="brand__mark" aria-hidden="true" />
+            <span className="brand__text">{BRAND.name}</span>
+          </div>
+          <p className="muted small">{BRAND.tagline} · {BRAND.city} / {BRAND.country}</p>
+        </div>
+
+        <div className="footer__links">
+          <a href="#">Aviso legal</a>
+          <a href="#">Privacidad</a>
+          <a href="#">Cookies</a>
+        </div>
+
+        <div className="footer__copy muted small">© {year} {BRAND.name}. Todos los derechos reservados.</div>
+      </div>
+    </footer>
+  );
+}
+
+export default function App() {
+  useEffect(() => {
+    document.title = `Desarrollo web y apps en ${BRAND.city} | ${BRAND.name}`;
+  }, []);
+
+  return (
+    <>
+      <a className="skip" href="#contenido">Saltar al contenido</a>
+      <Header />
+      <main id="contenido">
+        <Hero />
+        <Services />
+        <Projects />
+        <Process />
+        <Team />
+        <Faq />
+        <Contact />
+      </main>
+      <Footer />
+    </>
+  );
+}
