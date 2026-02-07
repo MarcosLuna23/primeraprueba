@@ -202,7 +202,7 @@ a { color: inherit; }
 
   width: var(--pillW);
   overflow: visible; /* allow status pulses to be visible */
-  transition: width 220ms var(--ease), transform 220ms var(--ease), box-shadow 220ms var(--ease);
+  transition: width 520ms var(--ease), transform 320ms var(--ease), box-shadow 420ms var(--ease);
 }
 
 .headerIsland__pill:hover,
