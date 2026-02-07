@@ -643,10 +643,61 @@ function Team() {
 }
 
 function Faq() {
+  const prefersReduced =
+    typeof window !== "undefined" &&
+    window.matchMedia &&
+    window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  const animateDetails = (detailsEl) => {
+    if (!detailsEl || prefersReduced) return;
+    const content = detailsEl.querySelector(".faq__content");
+    if (!content) return;
+
+    // Cancel any in-flight animation
+    if (content._anim) content._anim.cancel();
+
+    const isOpen = detailsEl.open;
+
+    // Measure heights
+    const startH = content.getBoundingClientRect().height;
+    // Temporarily set height:auto to measure full height
+    const prevH = content.style.height;
+    content.style.height = "auto";
+    const fullH = content.scrollHeight;
+    content.style.height = prevH;
+
+    const endH = isOpen ? fullH : 0;
+
+    // Ensure we start from the current height
+    content.style.height = `${startH}px`;
+
+    // Animate height
+    const anim = content.animate(
+      [{ height: `${startH}px` }, { height: `${endH}px` }],
+      { duration: 280, easing: "cubic-bezier(0.2, 0.8, 0.2, 1)" }
+    );
+
+    content._anim = anim;
+
+    anim.onfinish = () => {
+      // When open, let it size naturally; when closed keep at 0.
+      content.style.height = isOpen ? "auto" : "0px";
+      content._anim = null;
+    };
+    anim.oncancel = () => {
+      content._anim = null;
+    };
+  };
+
+  const onToggle = (e) => {
+    // Toggle fires after the 'open' attribute has changed.
+    animateDetails(e.currentTarget);
+  };
+
   return (
     <Section id="faq" narrow title="FAQ" subtitle="Respuestas rápidas a lo que más nos preguntan.">
       <div className="faq">
-        <details>
+        <details onToggle={onToggle}>
           <summary>¿Cuánto cuesta una web?</summary>
           <div className="faq__content">
             <p>
@@ -655,7 +706,7 @@ function Faq() {
             </p>
           </div>
         </details>
-        <details>
+        <details onToggle={onToggle}>
           <summary>¿En cuánto tiempo estará lista?</summary>
           <div className="faq__content">
             <p>
@@ -664,7 +715,7 @@ function Faq() {
             </p>
           </div>
         </details>
-        <details>
+        <details onToggle={onToggle}>
           <summary>¿Incluye SEO?</summary>
           <div className="faq__content">
             <p>
@@ -673,7 +724,7 @@ function Faq() {
             </p>
           </div>
         </details>
-        <details>
+        <details onToggle={onToggle}>
           <summary>¿Hacéis mantenimiento?</summary>
           <div className="faq__content">
             <p>Sí: actualizaciones, seguridad, backups, monitorización y mejoras.</p>

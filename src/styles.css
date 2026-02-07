@@ -1117,11 +1117,9 @@ h1 {
   color: rgba(15, 23, 42, 0.82);
 }
 
-/* Soft FAQ open/close animation (no hardcoded heights) */
+/* FAQ open/close animation (JS-driven height + CSS fade/slide) */
 .faq__content {
-  display: grid;
-  grid-template-rows: 0fr;
-  transition: grid-template-rows 260ms var(--ease);
+  height: 0;
   overflow: hidden;
   padding: 0 16px 16px;
 }
@@ -1135,15 +1133,10 @@ h1 {
 .faq__content > p {
   margin: 10px 0 0;
   color: var(--muted);
-  overflow: hidden;
 
   opacity: 0;
-  transform: translateY(-4px);
+  transform: translateY(-6px);
   transition: opacity 220ms var(--ease), transform 260ms var(--ease);
-}
-
-.faq details[open] .faq__content {
-  grid-template-rows: 1fr;
 }
 
 .faq details[open] .faq__content > p {
@@ -1152,10 +1145,9 @@ h1 {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .faq__content,
+  .faq__content { height: auto !important; }
   .faq__content > p {
     transition: none;
-    grid-template-rows: 1fr;
     opacity: 1;
     transform: none;
   }
