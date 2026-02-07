@@ -1077,6 +1077,24 @@ function Footer() {
   return (
     <footer className="footer">
       <div className="container">
+        <div className="footerCta">
+          <div>
+            <h2>¿Listo para lanzar (o mejorar) tu proyecto?</h2>
+            <p className="muted">
+              Cuéntanos tu idea y te devolvemos un plan claro: alcance, plazos y una propuesta por escrito.
+            </p>
+            <ul className="footerCta__trust">
+              <li><strong>Respuesta en &lt; 24h</strong></li>
+              <li><strong>Presupuesto claro</strong></li>
+              <li><strong>Entrega por hitos</strong></li>
+            </ul>
+          </div>
+          <div className="footerCta__actions">
+            <Button className="btn--primary" href="#contacto">Pedir propuesta</Button>
+            <a className="footerCta__secondary" href={`mailto:${BRAND.email}`}>o escríbenos: {BRAND.email}</a>
+          </div>
+        </div>
+
         <div className="footer__top">
           <div>
             <div className="brand brand--footer">
@@ -1106,7 +1124,7 @@ function Footer() {
 
           <div className="footer__col footer__cta">
             <p className="footer__label">¿Hablamos?</p>
-            <Button className="btn--primary" href="#contacto">Pedir presupuesto</Button>
+            <Button className="btn--primary" href="#contacto">Pedir propuesta</Button>
             <span className="footer__meta">Sin compromiso · 10 min</span>
           </div>
         </div>
