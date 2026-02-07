@@ -384,24 +384,12 @@ a { color: inherit; }
   .headerIsland { display: inline-flex; }
 
   .headerIsland__pill {
-    --pillW: 152px;
-    --pillWOpen: 152px;
-    height: 34px;
+    --pillW: 168px;
+    --pillWOpen: 168px;
+    height: 40px;
     width: var(--pillW);
-    padding-left: 10px;
-    padding-right: 8px;
-    box-shadow:
-      0 14px 34px rgba(2, 8, 23, 0.14),
-      inset 0 1px 0 rgba(255, 255, 255, 0.08);
-  }
-
-  .headerIsland__label {
-    font-size: 12px;
-  }
-
-  .headerIsland__dot {
-    width: 7px;
-    height: 7px;
+    padding-left: 12px;
+    padding-right: 10px;
   }
 
   .headerIsland__pill:hover,
