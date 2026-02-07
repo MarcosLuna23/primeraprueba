@@ -282,13 +282,43 @@ function Hero() {
 
       <motion.div className="container logos" aria-label="Tecnologías" {...m.inView}>
         <p className="logos__label">Trabajamos con:</p>
-        <div className="logos__row">
-          <span className="chip">HTML/CSS/JS</span>
-          <span className="chip">React / Next.js</span>
-          <span className="chip">Node.js</span>
-          <span className="chip">APIs</span>
-          <span className="chip">WordPress (si encaja)</span>
-          <span className="chip">SEO</span>
+        <div className="tech">
+          <div className="tech__item">
+            <img className="tech__icon" src="/tech/html5.svg" alt="HTML5" loading="lazy" decoding="async" />
+            <span className="tech__label">HTML</span>
+          </div>
+          <div className="tech__item">
+            <img className="tech__icon" src="/tech/css3.svg" alt="CSS3" loading="lazy" decoding="async" />
+            <span className="tech__label">CSS</span>
+          </div>
+          <div className="tech__item">
+            <img className="tech__icon" src="/tech/javascript.svg" alt="JavaScript" loading="lazy" decoding="async" />
+            <span className="tech__label">JavaScript</span>
+          </div>
+          <div className="tech__item">
+            <img className="tech__icon" src="/brands/react.svg" alt="React" loading="lazy" decoding="async" />
+            <span className="tech__label">React</span>
+          </div>
+          <div className="tech__item">
+            <img className="tech__icon" src="/brands/nextjs.svg" alt="Next.js" loading="lazy" decoding="async" />
+            <span className="tech__label">Next.js</span>
+          </div>
+          <div className="tech__item">
+            <img className="tech__icon" src="/brands/nodejs.svg" alt="Node.js" loading="lazy" decoding="async" />
+            <span className="tech__label">Node.js</span>
+          </div>
+          <div className="tech__item">
+            <img className="tech__icon" src="/tech/api.svg" alt="APIs" loading="lazy" decoding="async" />
+            <span className="tech__label">APIs</span>
+          </div>
+          <div className="tech__item">
+            <img className="tech__icon" src="/tech/wordpress.svg" alt="WordPress" loading="lazy" decoding="async" />
+            <span className="tech__label">WordPress</span>
+          </div>
+          <div className="tech__item">
+            <img className="tech__icon" src="/tech/seo.svg" alt="SEO" loading="lazy" decoding="async" />
+            <span className="tech__label">SEO</span>
+          </div>
         </div>
       </motion.div>
     </section>
@@ -647,33 +677,70 @@ function Team() {
       id="equipo"
       alt
       title="Sobre el equipo"
-      subtitle={`Somos un equipo técnico, cercano y orientado a resultados. Trabajamos desde ${BRAND.city} y damos servicio a toda ${BRAND.country}.`}
+      subtitle="Un equipo técnico (de verdad) con mentalidad de producto: claridad, velocidad y foco en resultados."
     >
       <motion.div
-        className="grid grid--2"
+        className="team"
         variants={m.stagger}
         initial="hidden"
         whileInView="show"
         viewport={{ once: true, amount: 0.2 }}
       >
-        <motion.div className="box" variants={m.fadeUp}>
-          <img className="sectionPhoto" src="/sections/team.jpg" alt="" loading="lazy" decoding="async" />
-          <h3>Lo que valoran nuestros clientes</h3>
-          <ul className="mini">
-            <li>Comunicación clara</li>
-            <li>Calidad y orden</li>
-            <li>Velocidad (en la web y en la ejecución)</li>
-            <li>Enfoque negocio (no “features por hacer”)</li>
-          </ul>
-        </motion.div>
-        <motion.div className="box" variants={m.fadeUp}>
-          <h3>Áreas</h3>
-          <ul className="mini">
-            <li>Front-end y UX</li>
-            <li>Back-end y APIs</li>
-            <li>Bases de datos</li>
-            <li>DevOps básico (deploy, backups, monitorización)</li>
-          </ul>
+        <motion.article className="team__hero" variants={m.fadeUp}>
+          <img className="team__photo" src="/sections/team.jpg" alt="" loading="lazy" decoding="async" />
+          <div className="team__overlay">
+            <h3>Trabajamos como si fuera nuestro</h3>
+            <p className="muted">Sin humo. Sin entregas a medias. Con comunicación clara y un proceso que se entiende.</p>
+
+            <ul className="team__bullets">
+              <li>
+                <span className="team__dot" aria-hidden="true" />
+                <span><strong>Comunicación directa</strong> (sin intermediarios)</span>
+              </li>
+              <li>
+                <span className="team__dot" aria-hidden="true" />
+                <span><strong>Orden y calidad</strong> en el código y en el diseño</span>
+              </li>
+              <li>
+                <span className="team__dot" aria-hidden="true" />
+                <span><strong>Entrega rápida</strong> por hitos, con mejoras continuas</span>
+              </li>
+            </ul>
+          </div>
+        </motion.article>
+
+        <motion.div className="team__cards" variants={m.fadeUp}>
+          <article className="teamCard">
+            <h3>Áreas</h3>
+            <ul className="mini">
+              <li>Front-end (React/Next) y UX</li>
+              <li>Back-end, APIs y automatizaciones</li>
+              <li>Base de datos y rendimiento</li>
+              <li>DevOps básico (deploy, backups, monitorización)</li>
+            </ul>
+          </article>
+
+          <article className="teamCard">
+            <h3>Cómo trabajamos</h3>
+            <ul className="mini">
+              <li>Brief → objetivos → alcance</li>
+              <li>Prototipo rápido + validación</li>
+              <li>Desarrollo por sprints</li>
+              <li>Entrega + analítica + optimización</li>
+            </ul>
+          </article>
+
+          <article className="teamCard teamCard--accent">
+            <h3>Lo que te llevas</h3>
+            <p className="muted" style={{ marginTop: 0 }}>
+              Un producto rápido, medible y fácil de mantener.
+            </p>
+            <ul className="mini">
+              <li>Checklist de lanzamiento</li>
+              <li>Documentación mínima y útil</li>
+              <li>Soporte real cuando lo necesitas</li>
+            </ul>
+          </article>
         </motion.div>
       </motion.div>
     </Section>

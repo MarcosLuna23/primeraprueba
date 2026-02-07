@@ -906,6 +906,44 @@ h1 {
 
 .logos { padding: 18px 0 10px; }
 .logos__label { margin: 0 0 10px; color: var(--muted2); font-size: 13px; }
+
+/* Tech icons row */
+.tech {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.tech__item {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.62);
+  border: 1px solid rgba(15, 23, 42, 0.10);
+  box-shadow: 0 10px 26px rgba(2, 8, 23, 0.06);
+  transition: transform 220ms var(--ease), box-shadow 260ms var(--ease);
+}
+.tech__item:hover {
+  transform: var(--hoverRaise);
+  box-shadow: var(--hoverShadow), var(--hoverGlow);
+}
+.tech__icon {
+  width: 18px;
+  height: 18px;
+  display: block;
+}
+/* recolor custom stroke icons while keeping devicon colors */
+.tech__icon[src^="/tech/"] { filter: saturate(1.15); }
+
+.tech__label {
+  font-size: 13px;
+  font-weight: 900;
+  letter-spacing: -0.01em;
+  color: rgba(15, 23, 42, 0.82);
+}
+
+/* legacy chips (kept but unused) */
 .logos__row { display: flex; flex-wrap: wrap; gap: 10px; }
 .chip {
   padding: 8px 10px;
@@ -1174,6 +1212,91 @@ h1 {
 .steps li:hover { transform: var(--hoverRaise); box-shadow: var(--hoverShadow), var(--hoverGlow); }
 .steps h3 { margin: 0 0 8px; letter-spacing: -0.01em; }
 .steps p { margin: 0; color: var(--muted); }
+
+/* Team section */
+.team {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 22px;
+  align-items: stretch;
+}
+.team__hero {
+  position: relative;
+  border-radius: var(--radius2);
+  overflow: hidden;
+  border: 1px solid rgba(15, 23, 42, 0.10);
+  background: rgba(255,255,255,0.70);
+  box-shadow: 0 18px 50px rgba(2, 8, 23, 0.08);
+}
+.team__photo {
+  width: 100%;
+  height: 100%;
+  min-height: 360px;
+  object-fit: cover;
+  display: block;
+  filter: saturate(1.02) contrast(1.02);
+}
+.team__overlay {
+  position: absolute;
+  inset: auto 0 0 0;
+  padding: 18px;
+  background: linear-gradient(180deg, rgba(7, 8, 20, 0.00), rgba(7, 8, 20, 0.78));
+  color: rgba(255, 255, 255, 0.96);
+}
+.team__overlay .muted { color: rgba(255, 255, 255, 0.76); }
+.team__overlay h3 { margin: 0 0 6px; letter-spacing: -0.02em; }
+.team__overlay p { margin: 0 0 12px; }
+.team__bullets { list-style: none; padding: 0; margin: 0; display: grid; gap: 8px; }
+.team__bullets li { display: flex; gap: 10px; align-items: flex-start; }
+.team__dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  margin-top: 6px;
+  background: rgba(34, 197, 94, 0.95);
+  box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.18);
+  flex: 0 0 10px;
+}
+.team__cards {
+  display: grid;
+  gap: 14px;
+}
+.teamCard {
+  position: relative;
+  padding: 22px;
+  border-radius: var(--radius2);
+  border: 1px solid rgba(15, 23, 42, 0.10);
+  background: rgba(255, 255, 255, 0.74);
+  box-shadow: 0 12px 36px rgba(2, 8, 23, 0.06);
+  overflow: hidden;
+  transition: transform 220ms var(--ease), box-shadow 260ms var(--ease);
+}
+.teamCard::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 240ms var(--ease);
+  background: var(--hoverOverlay);
+}
+.teamCard:hover {
+  transform: var(--hoverRaise);
+  box-shadow: var(--hoverShadow), var(--hoverGlow);
+}
+.teamCard:hover::before { opacity: 1; }
+.teamCard h3 { margin: 0 0 10px; letter-spacing: -0.01em; }
+.teamCard--accent {
+  border-color: rgba(14, 165, 233, 0.18);
+  background:
+    radial-gradient(700px 420px at 30% 0%, rgba(14, 165, 233, 0.14), transparent 66%),
+    rgba(255, 255, 255, 0.78);
+}
+
+@media (max-width: 960px) {
+  .team { grid-template-columns: 1fr; }
+  .team__photo { min-height: 320px; }
+}
 
 .faq details {
   border: 1px solid rgba(15, 23, 42, 0.10);
