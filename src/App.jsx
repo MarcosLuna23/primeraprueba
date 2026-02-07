@@ -1074,52 +1074,70 @@ function SponsorsMarquee() {
 
 function Footer() {
   const year = new Date().getFullYear();
+
   return (
-    <footer className="footer">
+    <footer className="siteFooter">
       <div className="container">
-        <div className="footer__top">
-          <div>
+        <div className="siteFooter__grid">
+          <div className="siteFooter__brand">
             <div className="brand brand--footer">
               <span className="brand__mark" aria-hidden="true" />
               <span className="brand__text">{BRAND.name}</span>
             </div>
-            <p className="muted small">
+            <p className="siteFooter__tagline">
               {BRAND.tagline} · {BRAND.city} / {BRAND.country}
             </p>
-            <p className="muted small" style={{ marginTop: 10 }}>
-              Respuesta en menos de 24h. Presupuesto claro y por escrito.
+            <p className="siteFooter__note">
+              Diseño, desarrollo y optimización para que tu web/app convierta y escale.
             </p>
+
+            <div className="siteFooter__social" aria-label="Redes">
+              <a className="siteFooter__socialBtn" href="#" aria-label="GitHub">
+                <img src="/brands/github.svg" alt="" width="18" height="18" loading="lazy" decoding="async" />
+              </a>
+              <a className="siteFooter__socialBtn" href="#" aria-label="Instagram">
+                <img src="/brands/instagram.svg" alt="" width="18" height="18" loading="lazy" decoding="async" />
+              </a>
+              <a className="siteFooter__socialBtn" href="#" aria-label="YouTube">
+                <img src="/brands/youtube.svg" alt="" width="18" height="18" loading="lazy" decoding="async" />
+              </a>
+            </div>
           </div>
 
-          <div className="footer__col">
-            <p className="footer__label">Contacto</p>
-            <a className="footer__link" href={`mailto:${BRAND.email}`}>{BRAND.email}</a>
-            <span className="footer__meta">Tel: {BRAND.phoneDisplay}</span>
-          </div>
+          <nav className="siteFooter__col" aria-label="Servicios">
+            <p className="siteFooter__label">Servicios</p>
+            <a className="siteFooter__link" href="#servicios">Instalación y puesta en marcha</a>
+            <a className="siteFooter__link" href="#servicios">Mantenimiento y soporte</a>
+            <a className="siteFooter__link" href="#servicios">Actualizaciones y contenidos</a>
+            <a className="siteFooter__link" href="#servicios">Consultoría y optimización</a>
+          </nav>
 
-          <div className="footer__col">
-            <p className="footer__label">Enlaces</p>
-            <a className="footer__link" href="#servicios">Servicios</a>
-            <a className="footer__link" href="#proyectos">Proyectos</a>
-            <a className="footer__link" href="#contacto">Contacto</a>
-          </div>
+          <nav className="siteFooter__col" aria-label="Secciones">
+            <p className="siteFooter__label">Secciones</p>
+            <a className="siteFooter__link" href="#proyectos">Proyectos</a>
+            <a className="siteFooter__link" href="#proceso">Proceso</a>
+            <a className="siteFooter__link" href="#faq">FAQ</a>
+            <a className="siteFooter__link" href="#contacto">Contacto</a>
+          </nav>
 
-          <div className="footer__col footer__cta">
-            <p className="footer__label">¿Hablamos?</p>
-            <Button className="btn--primary" href="#contacto">Pedir propuesta</Button>
-            <span className="footer__meta">Sin compromiso · 10 min</span>
+          <div className="siteFooter__col siteFooter__contact">
+            <p className="siteFooter__label">Contacto</p>
+            <a className="siteFooter__link" href={`mailto:${BRAND.email}`}>{BRAND.email}</a>
+            <p className="siteFooter__meta">Tel: {BRAND.phoneDisplay}</p>
+            <div className="siteFooter__cta">
+              <Button className="btn--primary" href="#contacto">Pedir propuesta</Button>
+              <p className="siteFooter__meta">Sin compromiso · te respondemos en &lt; 24h</p>
+            </div>
           </div>
         </div>
-      </div>
 
-      <div className="footerBar">
-        <div className="container footerBar__inner">
-          <div className="footerBar__legal">
-            <a className="footerBar__link" href="#">Aviso legal</a>
-            <a className="footerBar__link" href="#">Privacidad</a>
-            <a className="footerBar__link" href="#">Cookies</a>
+        <div className="siteFooter__bottom">
+          <div className="siteFooter__legal">
+            <a className="siteFooter__legalLink" href="#">Aviso legal</a>
+            <a className="siteFooter__legalLink" href="#">Privacidad</a>
+            <a className="siteFooter__legalLink" href="#">Cookies</a>
           </div>
-          <div className="footerBar__copy">© {year} {BRAND.name}. Todos los derechos reservados.</div>
+          <div className="siteFooter__copy">© {year} {BRAND.name}. Todos los derechos reservados.</div>
         </div>
       </div>
     </footer>
