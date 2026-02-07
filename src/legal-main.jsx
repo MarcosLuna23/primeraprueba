@@ -70,16 +70,24 @@ function HeaderLite() {
 function FooterLite() {
   const year = new Date().getFullYear();
   return (
-    <footer className="siteFooter">
-      <div className="container">
-        <div className="siteFooter__bottom">
-          <div className="siteFooter__legal">
-            <a className="siteFooter__legalLink" href="/aviso-legal.html">Aviso legal</a>
-            <a className="siteFooter__legalLink" href="/privacidad.html">Privacidad</a>
-            <a className="siteFooter__legalLink" href="/cookies.html">Cookies</a>
-          </div>
-          <div className="siteFooter__copy">© {year} {BRAND.name}. Todos los derechos reservados.</div>
+    <footer className="legalFooter">
+      <div className="container legalFooter__inner">
+        <div className="legalFooter__brand">
+          <a className="brand brand--footer" href="/" aria-label="Ir al inicio">
+            <span className="brand__mark" aria-hidden="true" />
+            <span className="brand__text">{BRAND.name}</span>
+          </a>
+          <p className="legalFooter__meta">{BRAND.city} · {BRAND.country}</p>
         </div>
+
+        <div className="legalFooter__links">
+          <a className="legalFooter__link" href="/aviso-legal.html">Aviso legal</a>
+          <a className="legalFooter__link" href="/privacidad.html">Privacidad</a>
+          <a className="legalFooter__link" href="/cookies.html">Cookies</a>
+          <a className="legalFooter__link" href="/">Volver a la web</a>
+        </div>
+
+        <div className="legalFooter__copy">© {year} {BRAND.name}. Todos los derechos reservados.</div>
       </div>
     </footer>
   );
@@ -94,11 +102,13 @@ function LegalContent({ kind }) {
     </div>
   );
 
+  const updatedLine = <p className="muted small"><strong>Última actualización:</strong> {updated}</p>;
+
   if (kind === "aviso-legal") {
     return (
       <Section id="aviso-legal" narrow title="Aviso legal" subtitle="Información legal del sitio web.">
         <div className="box">
-          <p className="muted small"><strong>Última actualización:</strong> {updated}</p>
+          {updatedLine}
           {demoPill}
           <h3>Titular del sitio</h3>
           <p className="muted">
@@ -146,7 +156,7 @@ function LegalContent({ kind }) {
     return (
       <Section id="privacidad" narrow alt title="Política de privacidad" subtitle="Cómo tratamos los datos personales y con qué finalidad.">
         <div className="box">
-          <p className="muted small"><strong>Última actualización:</strong> {updated}</p>
+          {updatedLine}
           {demoPill}
           <h3>Responsable del tratamiento</h3>
           <p className="muted">
@@ -200,26 +210,32 @@ function LegalContent({ kind }) {
   return (
     <Section id="cookies" narrow title="Política de cookies" subtitle="Qué cookies usamos y cómo gestionarlas.">
       <div className="box">
-        <p className="muted small"><strong>Última actualización:</strong> {updated}</p>
+        {updatedLine}
+        {demoPill}
+
         <h3>¿Qué son las cookies?</h3>
         <p className="muted">
           Las cookies son pequeños archivos que se guardan en tu dispositivo para permitir funciones técnicas,
           personalización o medición del uso del sitio.
         </p>
-        <h3>Cookies utilizadas</h3>
+
+        <h3>Cookies que usamos en esta demo</h3>
         <ul className="mini">
           <li><strong>Técnicas</strong>: necesarias para el funcionamiento básico del sitio.</li>
-          <li><strong>Analítica</strong> (opcional): si activamos GA4/Matomo, se usarán cookies o identificadores para medir el uso.</li>
+          <li><strong>Analítica</strong>: actualmente <strong>no</strong> está activada en esta demo. Si se activa GA4/Matomo, se mostraría un banner/gestor para aceptar o rechazar.</li>
         </ul>
-        <h3>Gestión de cookies</h3>
+
+        <h3>Cómo gestionar cookies</h3>
         <p className="muted">
           Puedes bloquear o eliminar cookies desde la configuración de tu navegador. Ten en cuenta que algunas
           funcionalidades podrían verse afectadas.
         </p>
-        <h3>Consentimiento</h3>
-        <p className="muted">
-          Si se habilitan cookies no técnicas (por ejemplo, analítica), se mostrará un aviso/gestor de consentimiento
-          para que puedas aceptarlas o rechazarlas.
+
+        <div className="divider" />
+
+        <p className="muted small">
+          Nota: si en el futuro se añaden cookies no técnicas (analítica/marketing), esta política se actualizará y se
+          implementará un sistema de consentimiento.
         </p>
       </div>
     </Section>
