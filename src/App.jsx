@@ -190,6 +190,7 @@ function Header({ onNav }) {
                 exit={{ opacity: 0, y: 6, scale: 0.98 }}
                 transition={{ duration: 0.22, ease: [0.2, 0.8, 0.2, 1] }}
               >
+                <li><a className="nav__link" href="#auditoria">Auditoría</a></li>
                 <li><a className="nav__link" href="#servicios">Servicios</a></li>
                 <li><a className="nav__link" href="#proyectos">Proyectos</a></li>
                 <li><a className="nav__link" href="#proceso">Proceso</a></li>
@@ -227,24 +228,25 @@ function Hero() {
             {BRAND.city} · Toda {BRAND.country} · Presupuesto en 24h
           </motion.p>
           <motion.h1 variants={m.fadeUp}>
-            Desarrollo web y apps a medida para captar clientes
+            Tu web debería traer clientes.
+            <br />
+            Si no lo hace, la optimizamos.
           </motion.h1>
           <motion.p className="lead" variants={m.fadeUp}>
-            Creamos webs rápidas, modernas y orientadas a convertir: desde landings hasta aplicaciones web complejas.
-            Diseño + desarrollo + mantenimiento, sin líos.
+            Para negocios que ya tienen web, pero no le sacan todo el rendimiento. Mejoramos velocidad, SEO técnico,
+            conversión y medición para que empiece a generar contactos de forma constante.
           </motion.p>
           <motion.div className="hero__actions" variants={m.fadeUp}>
-            <Button className="btn--primary" href="#contacto">
-              Pedir presupuesto
+            <Button className="btn--primary" href="#auditoria">
+              Quiero una auditoría
             </Button>
-            {/* WhatsApp button removed */}
             <Button className="btn--ghost" href="#proyectos">Ver proyectos</Button>
           </motion.div>
           <motion.ul className="trust" variants={m.fadeUp}>
-            <li>Respuesta &lt; 24h</li>
-            <li>Rendimiento (Core Web Vitals)</li>
-            <li>SEO técnico + analítica</li>
-            <li>Soporte y evolución</li>
+            <li>Diagnóstico claro</li>
+            <li>Mejoras rápidas (quick wins)</li>
+            <li>Tracking (GA4/Matomo + eventos)</li>
+            <li>Mantenimiento y optimización</li>
           </motion.ul>
         </motion.div>
 
@@ -377,6 +379,202 @@ function Results() {
         <Button className="btn--primary" href="#contacto">
           Pedir presupuesto
         </Button>
+      </div>
+    </Section>
+  );
+}
+
+function Symptoms() {
+  const m = useMotion();
+
+  return (
+    <Section
+      id="diagnostico"
+      alt
+      title="¿Tu web ya existe, pero no está dando resultados?"
+      subtitle="Si tienes visitas pero no llegan contactos (o ni siquiera sabes cuántas), casi siempre hay oportunidades rápidas: velocidad, SEO técnico, conversión y medición."
+    >
+      <motion.div
+        className="grid grid--3"
+        variants={m.stagger}
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true, amount: 0.2 }}
+      >
+        <motion.article className="box" variants={m.fadeUp}>
+          <h3>Síntomas típicos</h3>
+          <ul className="mini">
+            <li>Pocas solicitudes / llamadas</li>
+            <li>La gente entra y se va</li>
+            <li>No se entiende la propuesta en 5 segundos</li>
+            <li>En móvil se ve “regular”</li>
+          </ul>
+        </motion.article>
+
+        <motion.article className="box" variants={m.fadeUp}>
+          <h3>Lo que solemos encontrar</h3>
+          <ul className="mini">
+            <li>Core Web Vitals pobres (lento)</li>
+            <li>SEO técnico sin resolver</li>
+            <li>CTAs débiles / sin intención</li>
+            <li>Formularios con fricción</li>
+          </ul>
+        </motion.article>
+
+        <motion.article className="box" variants={m.fadeUp}>
+          <h3>Cómo lo arreglamos</h3>
+          <ul className="mini">
+            <li>Auditoría + prioridades (quick wins)</li>
+            <li>Implementación y QA</li>
+            <li>Tracking (GA4/Matomo + eventos)</li>
+            <li>Optimización mensual</li>
+          </ul>
+        </motion.article>
+      </motion.div>
+
+      <div style={{ marginTop: 16 }}>
+        <Button className="btn--primary" href="#auditoria">Quiero una auditoría</Button>
+        <Button className="btn--ghost" href="#contacto" style={{ marginLeft: 10 }}>Hablar con el equipo</Button>
+      </div>
+    </Section>
+  );
+}
+
+function AuditOffer() {
+  const m = useMotion();
+  const [note, setNote] = useState("");
+
+  function onSubmit(e) {
+    e.preventDefault();
+    const fd = new FormData(e.currentTarget);
+    const url = (fd.get("url") || "").toString().trim();
+    const sector = (fd.get("sector") || "").toString().trim();
+    const goal = (fd.get("goal") || "").toString().trim();
+    const email = (fd.get("email") || "").toString().trim();
+
+    const subject = encodeURIComponent("Auditoría web — solicitud");
+    const body = encodeURIComponent(
+      [
+        "Quiero una auditoría express.",
+        "",
+        `URL: ${url}`,
+        sector ? `Sector: ${sector}` : null,
+        goal ? `Objetivo: ${goal}` : null,
+        email ? `Email de contacto: ${email}` : null,
+      ].filter(Boolean).join("\n")
+    );
+
+    setNote("Abriendo tu email para solicitar la auditoría…");
+    window.location.href = `mailto:${BRAND.email}?subject=${subject}&body=${body}`;
+
+    setTimeout(() => {
+      e.currentTarget.reset();
+      setNote(`Si no se abrió tu cliente de correo, escríbenos a ${BRAND.email}.`);
+    }, 1200);
+  }
+
+  return (
+    <Section
+      id="auditoria"
+      title="Auditoría express (para webs que no convierten)"
+      subtitle="Te devolvemos un diagnóstico claro con prioridades: qué arreglar primero para conseguir más contactos con la misma web."
+    >
+      <div className="grid grid--2">
+        <motion.form className="form" onSubmit={onSubmit} {...m.inView}>
+          <label>
+            URL de tu web
+            <input name="url" type="url" placeholder="https://" required />
+          </label>
+          <label>
+            Sector (opcional)
+            <input name="sector" type="text" placeholder="Clínica, inmobiliaria, servicios, e‑commerce…" />
+          </label>
+          <label>
+            ¿Qué quieres conseguir?
+            <textarea name="goal" rows={4} placeholder="Ej: más llamadas, más leads, más reservas…" required />
+          </label>
+          <label>
+            Email (para responderte)
+            <input name="email" type="email" autoComplete="email" required />
+          </label>
+
+          <div className="form__row">
+            <Button as="button" className="btn--primary" type="submit">Solicitar auditoría</Button>
+          </div>
+          <p className="form__note" aria-live="polite">{note}</p>
+        </motion.form>
+
+        <motion.aside className="box" {...m.inView}>
+          <h3>Qué revisamos</h3>
+          <ul className="mini">
+            <li>Velocidad (Core Web Vitals)</li>
+            <li>SEO técnico (indexación, estructura, metadatos)</li>
+            <li>Conversión (copy, CTAs, estructura)</li>
+            <li>Tracking (GA4/Matomo + eventos)</li>
+          </ul>
+          <div className="divider" />
+          <h3>Qué te llevas</h3>
+          <ul className="mini">
+            <li>Lista priorizada (quick wins)</li>
+            <li>Estimación de esfuerzo/plazo</li>
+            <li>Recomendación de mantenimiento</li>
+          </ul>
+        </motion.aside>
+      </div>
+    </Section>
+  );
+}
+
+function Sectors() {
+  const m = useMotion();
+
+  return (
+    <Section
+      id="sectores"
+      alt
+      title="Esto funciona especialmente bien para…"
+      subtitle="Negocios que ya tienen web, pero quieren que sea una máquina de captación."
+    >
+      <motion.div
+        className="grid grid--3"
+        variants={m.stagger}
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true, amount: 0.2 }}
+      >
+        <motion.article className="box" variants={m.fadeUp}>
+          <h3>Servicios locales</h3>
+          <p className="muted">Fontaneros, clínicas, abogados, reformas, academias…</p>
+          <ul className="mini">
+            <li>SEO local + páginas de servicio</li>
+            <li>WhatsApp/formulario sin fricción</li>
+            <li>Medición de llamadas/leads</li>
+          </ul>
+        </motion.article>
+
+        <motion.article className="box" variants={m.fadeUp}>
+          <h3>E‑commerce / catálogo</h3>
+          <p className="muted">Tiendas pequeñas y medianas que quieren vender más.</p>
+          <ul className="mini">
+            <li>Rendimiento + UX en móvil</li>
+            <li>Tracking de conversiones</li>
+            <li>Optimización de fichas</li>
+          </ul>
+        </motion.article>
+
+        <motion.article className="box" variants={m.fadeUp}>
+          <h3>Marca personal / B2B</h3>
+          <p className="muted">Consultores, agencias, estudios, SaaS…</p>
+          <ul className="mini">
+            <li>Propuesta clara + casos</li>
+            <li>Captación por contenido</li>
+            <li>Embudo y eventos</li>
+          </ul>
+        </motion.article>
+      </motion.div>
+
+      <div style={{ marginTop: 16 }}>
+        <Button className="btn--primary" href="#auditoria">Quiero una auditoría</Button>
       </div>
     </Section>
   );
@@ -1186,8 +1384,11 @@ export default function App() {
         <main id="contenido">
           <Hero />
           <Results />
+          <Symptoms />
+          <AuditOffer />
           <Services />
           <Pricing />
+          <Sectors />
           <Projects />
           <Process />
           <Team />
