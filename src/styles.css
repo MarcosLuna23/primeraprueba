@@ -201,7 +201,7 @@ a { color: inherit; }
   color: rgba(255, 255, 255, 0.92);
 
   width: var(--pillW);
-  overflow: hidden;
+  overflow: visible; /* allow status pulses to be visible */
   transition: width 220ms var(--ease), transform 220ms var(--ease), box-shadow 220ms var(--ease);
 }
 
