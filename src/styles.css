@@ -1725,6 +1725,20 @@ input:focus, textarea:focus { border-color: rgba(14, 165, 233, 0.55); box-shadow
   .siteFooter__grid { grid-template-columns: 1fr; padding: 20px; }
 }
 
+@media (max-width: 560px) {
+  /* Make footer much shorter on mobile */
+  .siteFooter { padding: 48px 0 18px; }
+  .siteFooter__grid { padding: 16px; gap: 16px; }
+  .siteFooter__note { display: none; }
+  .siteFooter__social { margin-top: 10px; }
+
+  /* show fewer links to avoid an overly long footer */
+  .siteFooter__col[aria-label="Servicios"] .siteFooter__link:nth-of-type(n+3) { display: none; }
+  .siteFooter__col[aria-label="Secciones"] .siteFooter__link:nth-of-type(n+4) { display: none; }
+
+  .siteFooter__bottom { margin-top: 14px; }
+}
+
 /* First-load micro-animation (subtle) */
 @keyframes popInSoft {
   from { opacity: 0; transform: translateY(6px); }
