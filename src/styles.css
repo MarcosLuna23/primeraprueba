@@ -1071,9 +1071,10 @@ h1 {
 .faq details {
   border: 1px solid rgba(15, 23, 42, 0.10);
   border-radius: 18px;
-  padding: 16px 16px;
+  padding: 0; /* padding moves to summary/content so the whole strip feels clickable */
   background: rgba(255, 255, 255, 0.70);
   margin-bottom: 12px;
+  overflow: hidden;
   contain: layout paint;
 }
 
@@ -1088,12 +1089,33 @@ h1 {
   justify-content: space-between;
   gap: 10px;
 
-  /* bigger hit area */
-  padding: 2px 2px;
+  width: 100%;
+  padding: 16px 16px;
 }
 
+/* remove native marker */
 .faq details > summary::-webkit-details-marker { display: none; }
 .faq details > summary::marker { content: ""; }
+
+/* affordance icon */
+.faq details > summary::after {
+  content: "▾";
+  font-size: 14px;
+  line-height: 1;
+  color: rgba(15, 23, 42, 0.55);
+  transform: rotate(-90deg);
+  transition: transform 220ms var(--ease), color 160ms ease;
+  margin-left: 8px;
+}
+
+.faq details[open] > summary::after {
+  transform: rotate(0deg);
+  color: rgba(15, 23, 42, 0.68);
+}
+
+.faq details > summary:hover::after {
+  color: rgba(15, 23, 42, 0.82);
+}
 
 /* Soft FAQ open/close animation (no hardcoded heights) */
 .faq__content {
@@ -1101,11 +1123,13 @@ h1 {
   grid-template-rows: 0fr;
   transition: grid-template-rows 260ms var(--ease);
   overflow: hidden;
+  padding: 0 16px 16px;
 }
 
 /* Prevent the collapsed content area from stealing clicks */
 .faq details:not([open]) .faq__content {
   pointer-events: none;
+  padding-bottom: 0;
 }
 
 .faq__content > p {
