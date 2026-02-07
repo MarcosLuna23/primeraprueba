@@ -1763,7 +1763,14 @@ input:focus, textarea:focus { border-color: rgba(14, 165, 233, 0.55); box-shadow
   display: flex;
   flex-direction: column;
 }
-.legalPage__main { flex: 1; }
+.legalPage__main {
+  flex: 1;
+  /* header is fixed/float; mimic .page top padding so content doesn't sit under the header */
+  padding-top: 94px;
+}
+@media (max-width: 560px) {
+  .legalPage__main { padding-top: 86px; }
+}
 
 /* Legal pages footer */
 .legalFooter {
