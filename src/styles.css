@@ -18,6 +18,11 @@
   --shadow: 0 18px 50px rgba(2, 8, 23, 0.10);
   --shadow2: 0 10px 30px rgba(2, 8, 23, 0.08);
 
+  /* Unified hover (match services cards) */
+  --hoverRaise: translateY(-3px);
+  --hoverBorder: rgba(14, 165, 233, 0.22);
+  --hoverShadow: 0 18px 50px rgba(2, 8, 23, 0.10);
+
   --radius: 18px;
   --radius2: 26px;
 
@@ -201,9 +206,9 @@ a { color: inherit; }
 .headerIsland__pill:hover,
 .headerIsland__pill:focus-within {
   width: var(--pillWOpen);
-  transform: translateY(-1px);
+  transform: var(--hoverRaise);
   box-shadow:
-    0 24px 66px rgba(2, 8, 23, 0.22),
+    var(--hoverShadow),
     inset 0 1px 0 rgba(255, 255, 255, 0.10);
 }
 
@@ -316,9 +321,10 @@ a { color: inherit; }
 }
 
 .islandBtn:hover {
-  transform: translateY(-1px);
+  transform: var(--hoverRaise);
   background: rgba(255, 255, 255, 0.10);
   border-color: rgba(255, 255, 255, 0.16);
+  box-shadow: var(--hoverShadow);
 }
 
 /* Right side (island + nav) */
@@ -390,12 +396,15 @@ a { color: inherit; }
   padding: 10px 10px;
   border-radius: 999px;
   color: var(--muted);
-  transition: background 160ms ease, color 160ms ease, transform 160ms ease;
+  border: 1px solid transparent;
+  transition: transform 220ms var(--ease), border-color 220ms var(--ease), box-shadow 260ms var(--ease), background 200ms var(--ease), color 160ms ease;
 }
 .nav__link:hover {
-  background: rgba(15, 23, 42, 0.06);
+  transform: var(--hoverRaise);
+  border-color: var(--hoverBorder);
+  box-shadow: var(--hoverShadow);
+  background: rgba(255, 255, 255, 0.68);
   color: rgba(15, 23, 42, 0.92);
-  transform: translateY(-1px);
 }
 
 /* Header CTA: WhatsApp */
@@ -418,12 +427,11 @@ a { color: inherit; }
 
   box-shadow: 0 10px 24px rgba(0, 0, 0, 0.10);
   white-space: nowrap;
-  transition: box-shadow 240ms var(--ease), filter 200ms var(--ease), background 200ms var(--ease);
+  transition: transform 220ms var(--ease), box-shadow 260ms var(--ease), filter 200ms var(--ease);
 }
 .nav__cta:hover {
-  background: linear-gradient(135deg, #1DB954, #128C7E);
-  color: #fff;
-  box-shadow: 0 16px 34px rgba(0, 0, 0, 0.14);
+  transform: var(--hoverRaise);
+  box-shadow: var(--hoverShadow);
   filter: saturate(1.05);
 }
 .nav__cta:active {
@@ -630,13 +638,11 @@ h1 {
     filter 200ms var(--ease);
 }
 .btn:hover {
-  transform: translateY(-2px);
+  transform: var(--hoverRaise);
   filter: saturate(1.05);
-  border-color: rgba(255, 255, 255, 0.68);
-  background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.72), rgba(255, 255, 255, 0.36));
+  border-color: var(--hoverBorder);
   box-shadow:
-    0 22px 58px rgba(2, 8, 23, 0.20),
+    var(--hoverShadow),
     inset 0 1px 0 rgba(255, 255, 255, 0.80);
 }
 .btn:active {
@@ -971,9 +977,9 @@ h1 {
   will-change: transform;
 }
 .box:hover {
-  transform: translateY(-3px);
-  border-color: rgba(14, 165, 233, 0.22);
-  box-shadow: 0 18px 50px rgba(2, 8, 23, 0.10);
+  transform: var(--hoverRaise);
+  border-color: var(--hoverBorder);
+  box-shadow: var(--hoverShadow);
 }
 .box h3 { margin: 0 0 10px; font-size: 18px; letter-spacing: -0.01em; }
 
@@ -1063,9 +1069,9 @@ h1 {
   transition: transform 220ms var(--ease), box-shadow 260ms var(--ease), border-color 220ms var(--ease);
 }
 .priceCard:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 18px 50px rgba(2, 8, 23, 0.10);
-  border-color: rgba(14, 165, 233, 0.20);
+  transform: var(--hoverRaise);
+  box-shadow: var(--hoverShadow);
+  border-color: var(--hoverBorder);
 }
 .priceCard__top { margin-bottom: 12px; }
 .priceCard__top h3 { margin: 0 0 6px; letter-spacing: -0.01em; }
@@ -1092,9 +1098,9 @@ h1 {
   will-change: transform;
 }
 .case:hover {
-  transform: translateY(-3px);
-  border-color: rgba(14, 165, 233, 0.22);
-  box-shadow: 0 18px 50px rgba(2, 8, 23, 0.10);
+  transform: var(--hoverRaise);
+  border-color: var(--hoverBorder);
+  box-shadow: var(--hoverShadow);
 }
 .case__top h3 { margin: 0 0 6px; letter-spacing: -0.01em; }
 .case__top p { margin: 0; }
@@ -1117,7 +1123,7 @@ h1 {
   transition: transform 220ms var(--ease), box-shadow 260ms var(--ease);
   contain: layout paint;
 }
-.steps li:hover { transform: translateY(-2px); box-shadow: 0 16px 44px rgba(2, 8, 23, 0.08); }
+.steps li:hover { transform: var(--hoverRaise); box-shadow: var(--hoverShadow); border-color: var(--hoverBorder); }
 .steps h3 { margin: 0 0 8px; letter-spacing: -0.01em; }
 .steps p { margin: 0; color: var(--muted); }
 
@@ -1266,12 +1272,21 @@ input:focus, textarea:focus { border-color: rgba(14, 165, 233, 0.55); box-shadow
 .footer__col { display: grid; gap: 8px; }
 
 .footer__link {
+  display: inline-flex;
+  width: max-content;
+  padding: 6px 10px;
+  border-radius: 999px;
+  border: 1px solid transparent;
   color: rgba(255, 255, 255, 0.76);
   text-decoration: none;
+  transition: transform 220ms var(--ease), border-color 220ms var(--ease), box-shadow 260ms var(--ease), background 200ms var(--ease), color 160ms ease;
 }
 .footer__link:hover {
+  transform: var(--hoverRaise);
+  border-color: rgba(255, 255, 255, 0.18);
+  box-shadow: var(--hoverShadow);
+  background: rgba(255, 255, 255, 0.06);
   color: rgba(255, 255, 255, 0.92);
-  text-decoration: underline;
 }
 
 .footer__meta {
