@@ -237,7 +237,7 @@ a { color: inherit; }
 
 /* simple expand/contract effect (the green dot itself) */
 .headerIsland__dot {
-  animation: statusDotPulse 1.05s cubic-bezier(0.2, 0.8, 0.2, 1) infinite;
+  animation: statusDotPulse 1.7s cubic-bezier(0.2, 0.8, 0.2, 1) infinite;
   transform-origin: center;
 }
 @keyframes statusDotPulse {
