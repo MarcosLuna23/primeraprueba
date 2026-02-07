@@ -1077,24 +1077,6 @@ function Footer() {
   return (
     <footer className="footer">
       <div className="container">
-        <div className="footerCta">
-          <div>
-            <h2>¿Listo para lanzar (o mejorar) tu proyecto?</h2>
-            <p className="muted">
-              Cuéntanos tu idea y te devolvemos un plan claro: alcance, plazos y una propuesta por escrito.
-            </p>
-            <ul className="footerCta__trust">
-              <li><strong>Respuesta en &lt; 24h</strong></li>
-              <li><strong>Presupuesto claro</strong></li>
-              <li><strong>Entrega por hitos</strong></li>
-            </ul>
-          </div>
-          <div className="footerCta__actions">
-            <Button className="btn--primary" href="#contacto">Pedir propuesta</Button>
-            <a className="footerCta__secondary" href={`mailto:${BRAND.email}`}>o escríbenos: {BRAND.email}</a>
-          </div>
-        </div>
-
         <div className="footer__top">
           <div>
             <div className="brand brand--footer">
@@ -1128,14 +1110,16 @@ function Footer() {
             <span className="footer__meta">Sin compromiso · 10 min</span>
           </div>
         </div>
+      </div>
 
-        <div className="footer__bottom">
-          <div className="footer__legal">
-            <a className="footer__link" href="#">Aviso legal</a>
-            <a className="footer__link" href="#">Privacidad</a>
-            <a className="footer__link" href="#">Cookies</a>
+      <div className="footerBar">
+        <div className="container footerBar__inner">
+          <div className="footerBar__legal">
+            <a className="footerBar__link" href="#">Aviso legal</a>
+            <a className="footerBar__link" href="#">Privacidad</a>
+            <a className="footerBar__link" href="#">Cookies</a>
           </div>
-          <div className="footer__copy muted small">© {year} {BRAND.name}. Todos los derechos reservados.</div>
+          <div className="footerBar__copy">© {year} {BRAND.name}. Todos los derechos reservados.</div>
         </div>
       </div>
     </footer>
