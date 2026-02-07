@@ -657,17 +657,26 @@ function Faq() {
   const animateHeight = (el, from, to) => {
     if (!el) return null;
     if (el._anim) el._anim.cancel();
+
+    el.classList.add("is-animating");
+
     const anim = el.animate(
       [{ height: `${from}px` }, { height: `${to}px` }],
-      { duration: 280, easing: "cubic-bezier(0.2, 0.8, 0.2, 1)" }
+      {
+        duration: 240,
+        easing: "cubic-bezier(0.2, 0.8, 0.2, 1)",
+        fill: "both",
+      }
     );
+
     el._anim = anim;
-    anim.onfinish = () => {
+    const cleanup = () => {
       el._anim = null;
+      el.classList.remove("is-animating");
     };
-    anim.oncancel = () => {
-      el._anim = null;
-    };
+    anim.onfinish = cleanup;
+    anim.oncancel = cleanup;
+
     return anim;
   };
 
@@ -686,16 +695,21 @@ function Faq() {
 
     if (isOpen) {
       // CLOSE: keep it open during animation, then close at the end.
-      const startH = content.getBoundingClientRect().height;
+      // Use scrollHeight to avoid forcing layout with getBoundingClientRect().
+      const startH = content.scrollHeight;
       content.style.height = `${startH}px`;
 
-      const anim = animateHeight(content, startH, 0);
-      if (!anim) return;
-      anim.onfinish = () => {
-        content.style.height = "0px";
-        detailsEl.open = false;
-        content._anim = null;
-      };
+      // Kick animation on next frame to let the browser apply the starting height.
+      window.requestAnimationFrame(() => {
+        const anim = animateHeight(content, startH, 0);
+        if (!anim) return;
+        anim.onfinish = () => {
+          content.style.height = "0px";
+          detailsEl.open = false;
+          content._anim = null;
+          content.classList.remove("is-animating");
+        };
+      });
       return;
     }
 
@@ -708,12 +722,15 @@ function Faq() {
     // Measure target
     const fullH = content.scrollHeight;
 
-    const anim = animateHeight(content, 0, fullH);
-    if (!anim) return;
-    anim.onfinish = () => {
-      content.style.height = "auto";
-      content._anim = null;
-    };
+    window.requestAnimationFrame(() => {
+      const anim = animateHeight(content, 0, fullH);
+      if (!anim) return;
+      anim.onfinish = () => {
+        content.style.height = "auto";
+        content._anim = null;
+        content.classList.remove("is-animating");
+      };
+    });
   };
 
   const onFaqClickCapture = (e) => {

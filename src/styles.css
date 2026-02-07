@@ -1124,6 +1124,10 @@ h1 {
   padding: 0 16px 16px;
 }
 
+.faq__content.is-animating {
+  will-change: height;
+}
+
 /* Prevent the collapsed content area from stealing clicks */
 .faq details:not([open]) .faq__content {
   pointer-events: none;
