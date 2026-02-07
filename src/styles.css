@@ -377,8 +377,40 @@ a { color: inherit; }
   .header__inner {
     display: flex;
     justify-content: space-between;
+    gap: 10px;
   }
-  .headerIsland { display: none; }
+
+  /* Mobile: keep the dynamic island visible but simplified */
+  .headerIsland { display: inline-flex; }
+
+  .headerIsland__pill {
+    --pillW: 168px;
+    --pillWOpen: 168px;
+    height: 40px;
+    width: var(--pillW);
+    padding-left: 12px;
+    padding-right: 10px;
+  }
+
+  .headerIsland__pill:hover,
+  .headerIsland__pill:focus-within {
+    width: var(--pillW);
+    transform: none;
+    box-shadow:
+      0 18px 44px rgba(2, 8, 23, 0.18),
+      inset 0 1px 0 rgba(255, 255, 255, 0.10);
+  }
+
+  .headerIsland__actions { display: none; }
+
+  .headerIsland__label {
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    text-decoration: none;
+  }
+
+  /* Slightly calmer pulse on small screens */
+  .headerIsland__dot { animation-duration: 2.1s; }
 }
 
 .brand {
