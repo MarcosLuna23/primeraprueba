@@ -1216,12 +1216,16 @@ function LegalPages() {
       >
         <div className="box">
           <p className="muted small"><strong>Última actualización:</strong> {updated}</p>
+          <div className="pill" style={{ marginBottom: 14 }}>
+            Sitio de demostración (demo). Datos identificativos ficticios.
+          </div>
+
           <h3>Titular del sitio</h3>
           <p className="muted">
             <strong>Nombre comercial:</strong> {BRAND.name}<br />
-            <strong>Titular / Razón social:</strong> <em>[PENDIENTE]</em><br />
-            <strong>NIF/CIF:</strong> <em>[PENDIENTE]</em><br />
-            <strong>Domicilio:</strong> <em>[PENDIENTE]</em><br />
+            <strong>Titular:</strong> Marcos Luna Campos (demo)<br />
+            <strong>NIF:</strong> 00000000T (ficticio)<br />
+            <strong>Domicilio:</strong> Calle Ejemplo 123, 46000 Valencia, España (ficticio)<br />
             <strong>Email:</strong> {BRAND.email}<br />
             <strong>Teléfono:</strong> {BRAND.phoneDisplay}
           </p>
@@ -1271,9 +1275,15 @@ function LegalPages() {
         <div className="box">
           <p className="muted small"><strong>Última actualización:</strong> {updated}</p>
 
+          <div className="pill" style={{ marginBottom: 14 }}>
+            Sitio de demostración (demo). Datos identificativos ficticios.
+          </div>
+
           <h3>Responsable del tratamiento</h3>
           <p className="muted">
-            <strong>Responsable:</strong> <em>[PENDIENTE: titular/razón social]</em><br />
+            <strong>Responsable:</strong> Marcos Luna Campos (demo)<br />
+            <strong>NIF:</strong> 00000000T (ficticio)<br />
+            <strong>Domicilio:</strong> Calle Ejemplo 123, 46000 Valencia, España (ficticio)<br />
             <strong>Email:</strong> {BRAND.email}
           </p>
 
